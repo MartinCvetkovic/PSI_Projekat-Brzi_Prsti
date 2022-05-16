@@ -8,7 +8,7 @@ CREATE TABLE DnevnaRangLista
 	vreme                FLOAT NULL,
 	idKor                INTEGER NOT NULL,
 	idTekst              INTEGER NOT NULL
-);
+) ENGINE=InnoDB;
 
 ALTER TABLE DnevnaRangLista
 ADD CONSTRAINT XPKDnevnaRangLista PRIMARY KEY (id);
@@ -21,7 +21,7 @@ CREATE TABLE DnevniIzazov
 	tezina               FLOAT NULL,
 	nazivKategorije      VARCHAR(20) NULL,
 	idTekst              INTEGER NOT NULL
-);
+) ENGINE=InnoDB;
 
 ALTER TABLE DnevniIzazov
 ADD CONSTRAINT XPKDnevniIzazov PRIMARY KEY (id);
@@ -32,7 +32,7 @@ CREATE TABLE jePrijatelj
 	id                   INTEGER NOT NULL,
 	idKor1               INTEGER NOT NULL,
 	idKor2               INTEGER NOT NULL
-);
+) ENGINE=InnoDB;
 
 ALTER TABLE jePrijatelj
 ADD CONSTRAINT XPKjePrijatelj PRIMARY KEY (id);
@@ -42,7 +42,7 @@ CREATE TABLE Kategorija
 (
 	id                   INTEGER NOT NULL,
 	naziv                VARCHAR(20) NULL
-);
+) ENGINE=InnoDB;
 
 ALTER TABLE Kategorija
 ADD CONSTRAINT XPKKategorija PRIMARY KEY (id);
@@ -59,7 +59,7 @@ CREATE TABLE Korisnik
 	tip                  INTEGER NULL,
 	aktivan              INTEGER NULL,
 	brojPrijatelja       INTEGER NULL
-);
+) ENGINE=InnoDB;
 
 ALTER TABLE Korisnik
 ADD CONSTRAINT XPKKorisnik PRIMARY KEY (id);
@@ -71,7 +71,7 @@ CREATE TABLE RangLista
 	vreme                FLOAT NULL,
 	idKor                INTEGER NOT NULL,
 	idTekst              INTEGER NOT NULL
-);
+) ENGINE=InnoDB;
 
 ALTER TABLE RangLista
 ADD CONSTRAINT XPKRangLista PRIMARY KEY (id);
@@ -83,7 +83,7 @@ CREATE TABLE Tekst
 	sadrzaj              VARCHAR(4000) NULL,
 	tezina               FLOAT NULL,
 	idKat                INTEGER NOT NULL
-);
+) ENGINE=InnoDB;
 
 ALTER TABLE Tekst
 ADD CONSTRAINT XPKTekst PRIMARY KEY (id);
