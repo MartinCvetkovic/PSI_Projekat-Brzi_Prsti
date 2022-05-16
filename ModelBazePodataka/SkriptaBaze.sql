@@ -4,53 +4,41 @@ USE brziprsti;
 
 CREATE TABLE DnevnaRangLista
 (
-	id                   INTEGER NOT NULL,
+	id                   INTEGER NOT NULL AUTO_INCREMENT,
 	vreme                FLOAT NULL,
 	idKor                INTEGER NOT NULL,
-	idTekst              INTEGER NOT NULL
+	idTekst              INTEGER NOT NULL,
+	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
-ALTER TABLE DnevnaRangLista
-ADD CONSTRAINT XPKDnevnaRangLista PRIMARY KEY (id);
-
 
 CREATE TABLE DnevniIzazov
 (
-	id                   INTEGER NOT NULL,
+	id                   INTEGER NOT NULL AUTO_INCREMENT,
 	sadrzaj              VARCHAR(4000) NULL,
 	tezina               FLOAT NULL,
 	nazivKategorije      VARCHAR(20) NULL,
-	idTekst              INTEGER NOT NULL
+	idTekst              INTEGER NOT NULL,
+	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
-ALTER TABLE DnevniIzazov
-ADD CONSTRAINT XPKDnevniIzazov PRIMARY KEY (id);
-
 
 CREATE TABLE jePrijatelj
 (
-	id                   INTEGER NOT NULL,
+	id                   INTEGER NOT NULL AUTO_INCREMENT,
 	idKor1               INTEGER NOT NULL,
-	idKor2               INTEGER NOT NULL
+	idKor2               INTEGER NOT NULL,
+	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
-ALTER TABLE jePrijatelj
-ADD CONSTRAINT XPKjePrijatelj PRIMARY KEY (id);
-
 
 CREATE TABLE Kategorija
 (
-	id                   INTEGER NOT NULL,
-	naziv                VARCHAR(20) NULL
+	id                   INTEGER NOT NULL AUTO_INCREMENT,
+	naziv                VARCHAR(20) NULL,
+	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
-ALTER TABLE Kategorija
-ADD CONSTRAINT XPKKategorija PRIMARY KEY (id);
-
 
 CREATE TABLE Korisnik
 (
-	id                   INTEGER NOT NULL,
+	id                   INTEGER NOT NULL AUTO_INCREMENT,
 	username             VARCHAR(20) NULL,
 	password             VARCHAR(100) NULL,
 	zlato                INTEGER NULL,
@@ -58,35 +46,27 @@ CREATE TABLE Korisnik
 	bronza               INTEGER NULL,
 	tip                  INTEGER NULL,
 	aktivan              INTEGER NULL,
-	brojPrijatelja       INTEGER NULL
+	brojPrijatelja       INTEGER NULL,
+	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
-ALTER TABLE Korisnik
-ADD CONSTRAINT XPKKorisnik PRIMARY KEY (id);
-
 
 CREATE TABLE RangLista
 (
-	id                   INTEGER NOT NULL,
+	id                   INTEGER NOT NULL AUTO_INCREMENT,
 	vreme                FLOAT NULL,
 	idKor                INTEGER NOT NULL,
-	idTekst              INTEGER NOT NULL
+	idTekst              INTEGER NOT NULL,
+	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
-ALTER TABLE RangLista
-ADD CONSTRAINT XPKRangLista PRIMARY KEY (id);
-
 
 CREATE TABLE Tekst
 (
-	id                   INTEGER NOT NULL,
+	id                   INTEGER NOT NULL AUTO_INCREMENT,
 	sadrzaj              VARCHAR(4000) NULL,
 	tezina               FLOAT NULL,
-	idKat                INTEGER NOT NULL
+	idKat                INTEGER NOT NULL,
+	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
-
-ALTER TABLE Tekst
-ADD CONSTRAINT XPKTekst PRIMARY KEY (id);
 
 
 ALTER TABLE DnevnaRangLista

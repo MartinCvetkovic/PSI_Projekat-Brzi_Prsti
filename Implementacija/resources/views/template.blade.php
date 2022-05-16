@@ -10,7 +10,9 @@
     <title>Brzi prsti</title>
 </head>
 <body>
-    @yield("header")
-    @yield("content")
+    <div class="container">
+        @yield("header")
+        @yield("content")
+    </div>
 </body>
 </html>
