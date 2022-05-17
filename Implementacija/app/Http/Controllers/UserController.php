@@ -65,8 +65,14 @@ class UserController extends Controller
             "required" => "Morate uneti filter pretrage"
         ]);
         $korisnici = UserModel::dohvatiKorisnike($request["filter"]);
-        // dd($korisnici);
-        return view("pretragaProfila")->with("profili",$korisnici);
+       
+        return view("pretragaProfila",["profili"=>$korisnici]);
 
+    }
+    public function visitUser($username)
+    {
+
+        $profile = UserModel::dohvatiKorisnika($username);
+        return view("profile",["profile"=>$profile]);
     }
 }

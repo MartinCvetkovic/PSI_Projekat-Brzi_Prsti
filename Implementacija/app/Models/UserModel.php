@@ -17,7 +17,7 @@ class UserModel extends Authenticatable
 
     protected $table = "korisnik";
     protected $primaryKey = "id";
-    public $timestamops = false;
+    public $timestamps = false;
 
     protected $fillable = [
         "id",
@@ -36,7 +36,12 @@ class UserModel extends Authenticatable
         $korisnici = UserModel::where("username","LIKE","%$filter%")->get();
         return $korisnici;
     }
+    public static function dohvatiKorisnika($username)
+    {
+        $ret = UserModel::where("username",$username)->first();
+        return $ret;
 
+    }
     
 
 }
