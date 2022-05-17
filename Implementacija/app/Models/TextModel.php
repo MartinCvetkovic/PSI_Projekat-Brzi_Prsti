@@ -9,8 +9,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
-
 
 /**
 * TextModel – klasa za upravljanje tekstovima u bazi
@@ -90,12 +88,6 @@ class TextModel extends Model
     public static function search($idKat, $tezina, $duzina, $page) {
         $ret = TextModel::select();
 
-        //Provera parametara
-        if (CategoryModel::where('id', $idKat)->doesntExist()) $idKat = 0;
-        if ($tezina < 0 || $tezina > 2) $tezina = 0;
-        if ($duzina < 0 || $duzina > 2) $duzina = 0;
-
-
         //Filtriranje po kategoriji
         if ($idKat) $ret = $ret->where('idKat', $idKat);
 
@@ -136,4 +128,3 @@ class TextModel extends Model
         return $ret->paginate(5);
     }
 }
-

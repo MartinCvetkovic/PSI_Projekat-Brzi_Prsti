@@ -45,23 +45,42 @@
                     <table class="text-left">
                         <tr>
                             <td>Korisničko ime: </td>
-                            <td><input type="text"></td>
+                            <td><input type="text" name="username"></td>
+                            <td><span class="alert-danger">
+                                @if(isset($errorUsername))
+                                {{$errorUsername}}
+                                @endif
+                                @error("username")
+                                    {{$message}}
+                                @enderror
+                            </span></td>
                         </tr>
-                        <tr>
+                        <!-- Nije potreban mejl -->
+                        <!--<tr>
                             <td>E-mail: </td>
                             <td><input type="email"></td>
-                        </tr>
+                        </tr>-->
                         <tr>
                             <td>Lozinka: </td>
-                            <td><input type="password"></td>
+                            <td><input type="password" name="password"></td>
+                            <td><span class="alert-danger">
+                                @error("password")
+                                {{$message}}
+                                @enderror
+                            </span></td>
                         </tr>
                         <tr>
                             <td>Potvrda lozinke: </td>
-                            <td><input type="password"></td>
+                            <td><input type="password" name="passwordConfirm"></td>
+                            <td><span class="alert-danger">
+                                @error("passwordConfirm")
+                                {{$message}}
+                                @enderror
+                            </span></td>
                         </tr>
                         <tr>
                             <td><button class="btn btn-outline-secondary">Registruj se</button></td>
-                            <td><button class="btn btn-outline-secondary" type="button" onclick="location.href='/'">Odustani</button></td>
+                            <td><button class="btn btn-outline-secondary" type="button" onclick="location.href='{{route('homePage')}}'">Odustani</button></td>
                         </tr>
                     </table>
                 </form>

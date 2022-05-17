@@ -6,6 +6,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 
 /**
@@ -38,27 +39,57 @@ class GuestController extends Controller
     /**
      * Funkcija za registraciju novog korisnika
      * 
-     * @var Request
+     * @param Request $request
      * 
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function register(Request $request)
-    {
+    {   
+        $this->validate($request, [
+            'username' => "required|min:3|max:20",
+            'password' => "required|min:8|max:15|alpha_num",
+            'passwordConfirm' => "required|same:password"
+        ], [
+            'required' => "Polje je obavezno",
+            'min' => "Polje mora imati :min karaktera",
+            'max' => "Polje mora imati :max karaktera",
+            'alpha_num' => "Polje mora sadrzati slova i brojeve",
+            'same' => "Polje mora biti isto kao i lozinka",
+        ]);
 
-        dd($request);
+        if(UserModel::where("username", $request->username)->first() != null){
+            return view("registerPage", [
+                'errorUsername' => "Korisnicko ime vec postoji"
+            ]);
+        };
+        UserModel::addUser($request->username, $request->password, 0, 0, 0, 0, 1, 0);
+        return redirect()->route("homePage");
     }
 
     /**
      * Funkcija za logovanje korisnika
      * 
-     * @var Request
+     * @param Request $request
      * 
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function login(Request $request)
     {
 
-        dd($request);
+        $this->validate($request, [
+            'username' => 'required',
+            'password' => 'required'
+        ], [
+            'required' => 'Polje je obavezno'
+        ]);
+        
+        if(!auth()->attempt($request->only('username', 'password'))) {
+            return back()->with('status', 'Pogresno korisnicko ime ili lozinka');
+        }
+
+        //dd(session());
+
+        return redirect()->route("homePage");
     }
 
 

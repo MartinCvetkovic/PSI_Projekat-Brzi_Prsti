@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GuestController::class, "homePage"]);
-Route::get('/registerPage', [GuestController::class, "registerPage"]);
-Route::post('/register', [GuestController::class, "register"]);
-Route::post('/login', [GuestController::class, "login"]);
+Route::get('/', [GuestController::class, "homePage"])->name('homePage');
+Route::get('/registerPage', [GuestController::class, "registerPage"])->name('registerPage');
+Route::post('/register', [GuestController::class, "register"])->name('register');
+Route::post('/login', [GuestController::class, "login"])->name('login');
 
 Route::get('/texts', [UserController::class, 'showTexts'])->name('texts');
 Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_texts');
