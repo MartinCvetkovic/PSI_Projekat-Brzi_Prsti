@@ -6,9 +6,8 @@
 
 @section('content')
 
-
 <div class="row">
-    
+
     <div class="col-sm-12">
 
         <!-- Bar za pretragu -->
@@ -59,7 +58,7 @@
 
             </tr>
         </table>
-        
+
 
         <!-- Tabela tekstova -->
         <table class="table table-bordered table-striped">
@@ -86,7 +85,7 @@
 <!-- Bar za navigaciju kroz stranice tabele tekstova -->
 <div class="row">
     <div class="col-sm-12">
-        {{ $texts->appends(request()->input())->links();}}
+        {{ $texts->appends(request()->input())->links() }}
     </div>
 </div>
 
