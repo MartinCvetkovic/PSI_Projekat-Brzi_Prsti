@@ -48,4 +48,14 @@ class UserController extends Controller
             'duzina' => $request->duzina
         ]);
     }
+
+    public function searchUsers()
+    {
+        return view("pretragaProfila");
+    }
+    public function searchUsersSubmit(Request $request)
+    {
+        dd($request);
+        
+    }
 }

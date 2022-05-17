@@ -20,3 +20,6 @@ Route::get('/', [GuestController::class, "homePage"]);
 Route::get('/texts', [UserController::class, 'showTexts'])->name('texts');
 Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_texts');
 
+Route::get('/searchusers', [UserController::class, 'searchUsers'])->name('search_users');
+Route::get('/submitusersearch', [UserController::class, 'searchUsersSubmit'])->name('searchusers_submit');
+
