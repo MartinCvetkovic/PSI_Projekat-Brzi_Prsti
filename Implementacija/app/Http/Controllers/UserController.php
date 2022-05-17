@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
 use App\Models\TextModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -55,7 +56,14 @@ class UserController extends Controller
     }
     public function searchUsersSubmit(Request $request)
     {
-        dd($request);
-        
+        $this->validate($request,[
+            'filter'=> "required"
+        ],[
+            "required" => "Morate uneti filter pretrage"
+        ]);
+        $korisnici = UserModel::dohvatiKorisnike($request["filter"]);
+        // dd($korisnici);
+        return view("pretragaProfila")->with("profili",$korisnici);
+
     }
 }
