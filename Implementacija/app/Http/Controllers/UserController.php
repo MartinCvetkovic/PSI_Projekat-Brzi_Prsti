@@ -24,9 +24,9 @@ class UserController extends Controller
         return view('texts', [
             'texts' => $texts,
             'categories' => $categories,
-            'kategorija' => '',
-            'tezina' => '',
-            'duzina' => ''
+            'kategorija' => 0,
+            'tezina' => 0,
+            'duzina' => 0
         ]);
     }
 
@@ -37,6 +37,7 @@ class UserController extends Controller
      * */
     public function searchTexts(Request $request)
     {
+
         $texts = TextModel::search($request->kategorija, $request->tezina, $request->duzina, $request->page);
         $categories = CategoryModel::all();
 
