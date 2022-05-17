@@ -65,7 +65,7 @@
             @foreach ($texts as $text)
                 <tr>
                     <td rowspan="3" class="col-sm-5 align-middle">{{$text->sadrzaj}}</td>
-                    <td rowspan="3" class="col-sm-3 align-middle text-center"><button class="btn btn-primary">Započni Solo Brzo Kucanje</button></td>
+                    <td rowspan="3" class="col-sm-3 align-middle text-center"><a class="btn btn-primary" href="{{route('solo_kucanje', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a></td>
                     <td class="col-sm-2">Kategorija: </td>
                     <td class="col-sm-2">{{$text->category()->naziv}}</td>
                 </tr>
