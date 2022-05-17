@@ -1,4 +1,8 @@
 <?php
+/**
+ * Autor:
+ * Martin Cvetkovic 19/0284
+ */
 
 namespace App\Models;
 
