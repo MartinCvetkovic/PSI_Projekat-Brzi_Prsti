@@ -56,6 +56,8 @@ class UserController extends Controller
     }
     public function searchUsersSubmit(Request $request)
     {
+        // kada budes imao auth nemoj sebe da uzimas iz baze
+
         $this->validate($request,[
             'filter'=> "required"
         ],[
