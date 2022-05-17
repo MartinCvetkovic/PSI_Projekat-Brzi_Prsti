@@ -58,21 +58,20 @@ class UserController extends Controller
     public function searchUsersSubmit(Request $request)
     {
         // kada budes imao auth nemoj sebe da uzimas iz baze
-
         $this->validate($request,[
             'filter'=> "required"
         ],[
             "required" => "Morate uneti filter pretrage"
         ]);
+        
         $korisnici = UserModel::dohvatiKorisnike($request["filter"]);
-       
         return view("pretragaProfila",["profili"=>$korisnici]);
 
     }
     public function visitUser($username)
     {
-
         $profile = UserModel::dohvatiKorisnika($username);
+        // dohvati prijatelji sa jePrijateljModel, gde je username korisnik1 
         return view("profile",["profile"=>$profile]);
     }
 }
