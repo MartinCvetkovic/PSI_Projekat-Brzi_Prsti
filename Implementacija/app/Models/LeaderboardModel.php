@@ -35,4 +35,31 @@ class LeaderboardModel extends Model
         'idTekst',
         'vreme'
     ];
+
+
+    /** Funkcija koja dodaje novi red u tabelu ranglista
+     * 
+     * @param integer $idKor Id korisnika
+     * @param integer $idTekst Id teksta
+     * @param double $vreme Vreme za koje je otkucan tekst
+     * 
+     * */
+    public static function insert($idKor, $idTekst, $vreme) {
+        $entry = new LeaderboardModel();
+        $entry->idKor = $idKor;
+        $entry->idTekst = $idTekst;
+        $entry->vreme = $vreme;
+
+        $entry->save();
+    }
+
+    /** Funkcija koja vraca poziciju reda u tabeli ranglista sortiranoj po vremenu rastuce
+     * 
+     * @return integer
+     * 
+     * */
+    public function getLeaderboardPosition() {
+        return LeaderboardModel::where('idTekst', $this->idTekst)->where('vreme', '<=', $this->vreme - 0.000001)->count() + 1;
+    }
+
 }

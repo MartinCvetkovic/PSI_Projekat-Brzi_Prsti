@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\LeaderboardModel;
 use App\Models\TextModel;
 use Illuminate\Http\Request;
 
@@ -68,6 +69,4 @@ class UserController extends BaseController
             'duzina' => $request->duzina
         ]);
     }
-
-    
 }
