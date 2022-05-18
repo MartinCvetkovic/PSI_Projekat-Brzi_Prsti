@@ -25,3 +25,10 @@ Route::post('/login', [GuestController::class, "login"])->name('login');
 Route::get('/texts', [UserController::class, 'showTexts'])->name('texts');
 Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_texts');
 
+//Ove tri rute treba da idu na BaseController (kad bude napravljen)
+Route::get('/solo', [UserController::class, 'soloKucanje'])->name('solo_kucanje');
+Route::get('/solo/{id}', [UserController::class, 'soloKucanje'])->name('solo_kucanje');
+//Promeni u GET!!!
+Route::get('/soloEnd', [UserController::class, 'soloKucanjeKraj'])->name('solo_kucanje_kraj');
+
+
