@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GuestController::class, "homePage"])->name('homePage');
+Route::get('/', [BaseController::class, "homePage"])->name('homePage');
+
 Route::get('/registerPage', [GuestController::class, "registerPage"])->name('registerPage');
 Route::post('/register', [GuestController::class, "register"])->name('register');
 Route::post('/login', [GuestController::class, "login"])->name('login');

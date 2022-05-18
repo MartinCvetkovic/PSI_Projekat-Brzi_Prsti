@@ -14,16 +14,13 @@ use Illuminate\Http\Request;
  * 
  * @version 1.0
  */
-class GuestController extends Controller
+class GuestController extends BaseController
 {
     /**
-     * Funkcija za prikaz pocetne strane
-     * 
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * Konstruktor sa podesavanjem middleware-a
      */
-    public function homePage()
-    {
-        return view("home");
+    function __construct() {
+        $this->middleware('guest');
     }
 
     /**
