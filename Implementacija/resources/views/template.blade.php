@@ -28,10 +28,25 @@
                 <h1>Brzi Prsti</h1>
                 <br>
                 <div class="btn-group m-2">
-                    <button class="btn-light btn-lg" type="button" id="pocetna">Pocetna</button>
+                    <button class="btn-light btn-lg" type="button" id="pocetna" onclick="location.href='{{route('homePage')}}'">Pocetna</button>
+                    @guest
+                    <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Kucanje</button>
+                    @endguest
+                    @auth
                     <button class="btn-light btn-lg" type="button" id="kucanje">Kucanje</button>
+                    @endauth
+                    @guest
+                    <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Korisnici</button>
+                    @endguest
+                    @auth
                     <button class="btn-light btn-lg" type="button" id="korisnici">Korisnici</button>
-                    <button class="btn-light btn-lg" type="button" id="tekstovi">Tekstovi</button>
+                    @endauth
+                    @guest
+                    <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Tekstovi</button>
+                    @endguest
+                    @auth
+                    <button class="btn-light btn-lg" type="button" id="tekstovi" onclick="location.href='{{route('texts')}}'">Tekstovi</button>
+                    @endauth
                     <button class="btn-light btn-lg" type="button" id="rangliste">Rang liste</button>
                 </div>
             </div>
