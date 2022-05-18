@@ -84,8 +84,6 @@ class GuestController extends BaseController
             return back()->with('status', 'Pogresno korisnicko ime ili lozinka');
         }
 
-        //dd(session());
-
         return redirect()->route("homePage");
     }
 

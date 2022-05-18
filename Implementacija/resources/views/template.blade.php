@@ -67,14 +67,21 @@
                 </form>
                 
                 @endguest
+
                 @auth
-                    <p>proba</p>
+                    <div class="d-flex flex-column">
+                        <div class="text-center">
+                            {{auth()->user()->username}}
+                        </div>
+                        <div class ="d-flex justify-content-between">
+                            <button type="button" class="btn p-2"><b>Profil</b></button>
+                            <button type="button" class="btn p-2" onclick="location.href='{{route('logout')}}'"><b>Odjavi se</b></button>
+                        </div>
+                    </div>
                 @endauth
                 
             </div>
         </div>
-
-        {{dd(session());}}
         <!-- end of header -->
 
         @yield("content")

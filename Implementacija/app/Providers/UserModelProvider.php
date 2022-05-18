@@ -19,7 +19,7 @@ class UserModelProvider implements UserProvider {
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function retrieveById($identifier){
-        return UserModel::where("username", $identifier)->first();
+        return UserModel::where("id", $identifier)->first();
     }
 
     /**

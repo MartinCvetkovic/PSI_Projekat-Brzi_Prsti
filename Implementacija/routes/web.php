@@ -22,6 +22,8 @@ Route::get('/registerPage', [GuestController::class, "registerPage"])->name('reg
 Route::post('/register', [GuestController::class, "register"])->name('register');
 Route::post('/login', [GuestController::class, "login"])->name('login');
 
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
 Route::get('/texts', [UserController::class, 'showTexts'])->name('texts');
 Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_texts');
 

@@ -30,7 +30,7 @@ class UserController extends BaseController
     public function logout()
     {
         auth()->logout();
-        return redirect()->route('index');
+        return redirect()->route('homePage');
     }
 
     /** Funkcija koja prikazuje listu svih tekstova
