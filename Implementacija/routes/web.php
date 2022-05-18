@@ -26,3 +26,6 @@ Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_
 Route::get('/searchusers', [UserController::class, 'searchUsers'])->name('search_users');
 Route::get('/submitusersearch', [UserController::class, 'searchUsersSubmit'])->name('searchusers_submit');
 Route::get('/user/{username}', [UserController::class, 'visitUser'])->name('visit_user');
+Route::get('/dodaj/{username}', [UserController::class, 'dodajPrijatelja'])->name('dodaj_prijatelja');
+Route::get('/blokiraj/{username}', [UserController::class, 'blokirajKorisnika'])->name('blokiraj_korisnika');
+Route::get('/mod/{username}', [UserController::class, 'dodajModeratora'])->name('dodeli_mod');

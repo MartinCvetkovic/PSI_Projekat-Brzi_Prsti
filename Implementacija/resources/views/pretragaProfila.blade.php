@@ -33,7 +33,7 @@
             @if (!$profili->isEmpty())
             
             @foreach ($profili as $profil)
-                {{-- ruta je ovakva radi testiranja kasnije ih dodaj do profila --}}
+                
                 <a href="{{route("visit_user",["username"=> $profil->username])}}" class="list-group-item list-group-item-action d-flex justify-content-between text-center ">
                     <p style="margin-bottom: 0em">  {{$profil->username}}</p>
                     <p style="margin-bottom: 0em">Broj nagrada:    {{$profil->zlato  +$profil->srebro+$profil->bronza}} </p>

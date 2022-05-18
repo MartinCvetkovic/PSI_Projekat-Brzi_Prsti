@@ -37,10 +37,9 @@ class UserModel extends Authenticatable
         return $korisnici;
     }
     public static function dohvatiKorisnika($username)
-    {
+    {     
         $ret = UserModel::where("username",$username)->first();
         return $ret;
-
     }
     
 

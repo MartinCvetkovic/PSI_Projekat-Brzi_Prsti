@@ -3,9 +3,11 @@
     Autor(i):
     Petar Tirnanic, 19/0039
     Aleksa Savic, 19/0595
+    Savic Ivan, 19/0389
 */
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\CategoryModel;
 use App\Models\TextModel;
@@ -70,8 +72,39 @@ class UserController extends Controller
     }
     public function visitUser($username)
     {
+
+        $korisnik = UserModel::dohvatiKorisnika($username);
+        $prijatelji = DB::table('korisnik')
+            ->join('jeprijatelj','jeprijatelj.idKor2','=','korisnik.id')
+            ->where(['jeprijatelj.idKor1' => $korisnik->id])
+            ->get();
+        
+        // dohvatanje informacije da li je on moj prijatelj
+        // $mojPrijatelj = DB::table("jePrijatelj")
+        //                     ->where("idKor1",ja)
+        //                     ->where("idKor2", $korisnik->id)
+
         $profile = UserModel::dohvatiKorisnika($username);
-        // dohvati prijatelji sa jePrijateljModel, gde je username korisnik1 
-        return view("profile",["profile"=>$profile]);
+        return view("profile",["profile"=>$profile, "prijatelji"=>$prijatelji]);
+    }
+    public function dodajPrijatelja($username)
+    {
+        // uvaci u tabelu "jePrijatelj
+        $korisnik = UserModel::dohvatiKorisnika($username);
+        return redirect()->route('visit_user', ["username"=>$korisnik->username]);
+    }
+    public function blokirajKorisnika($username)
+    {
+        $korisnik = UserModel::dohvatiKorisnika($username);
+        $korisnik->aktivan = 1 - $korisnik->aktivan;
+        $korisnik->save();
+        return redirect()->route('visit_user', ["username"=>$korisnik->username]);
+    }
+    public function dodajModeratora($username)
+    {
+        $korisnik = UserModel::dohvatiKorisnika($username);
+        $korisnik->tip = 1 - $korisnik->tip;
+        $korisnik->save();
+        return redirect()->route('visit_user', ["username"=>$korisnik->username]);
     }
 }
