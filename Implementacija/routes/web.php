@@ -32,5 +32,6 @@ Route::get('/solo', [BaseController::class, 'soloKucanje'])->name('solo_kucanje'
 Route::get('/solo/{id}', [BaseController::class, 'soloKucanje'])->name('solo_kucanje');
 //Promeni u POST!!!
 Route::get('/soloEnd', [BaseController::class, 'soloKucanjeKraj'])->name('solo_kucanje_kraj');
+Route::get('/soloResults', [BaseController::class, 'soloKucanjePrikazRezultata'])->name('solo_kucanje_rezultati');
 
 

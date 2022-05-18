@@ -31,10 +31,16 @@
             <p>Tezina: {{$text->tezina}} / 10</p>
 
             <p><hr>Cestitamo, vasa brzina kucanja je {{$speed}} Reci po Minutu</p>
-            <p>Vas najbolji pokusaj je {{$best_speed}} Reci po Minutu @if ($speed == $best_speed)
-                (Novi licni Rekord!)
-            @endif</p>
-            <p>Vasa pozicija na rang listi je {{$best_position}}</p>
+            @auth
+                <p>Vas najbolji pokusaj je {{$best_speed}} Reci po Minutu @if ($speed == $best_speed)
+                    (Novi licni Rekord!)
+                @endif</p>
+                <p>Vasa pozicija na rang listi je #{{$best_position}}</p>
+            @endauth
+            @guest
+                <p>Rezultati kucanja se cuvaju samo registrovanim korisnicima</p>
+            @endguest
+            
             <table class="table"><tr>
                 <td><a class="btn btn-primary" href="{{route('solo_kucanje', ['id' => $text->id])}}">Pokusaj Ponovo</a></td>
                 <td><a class="btn btn-primary">Rang Lista</a></td>

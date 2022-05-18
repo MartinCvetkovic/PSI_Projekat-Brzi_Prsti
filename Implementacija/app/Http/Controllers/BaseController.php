@@ -45,39 +45,41 @@ class BaseController extends Controller
         return view('solo', ['text' => $text]);
     }
 
-    /** Funkcija koja zavrsava sesiju solo kucanja, prikazuje i ubacuje rezultat pokusaja u bazu
+    /** Funkcija koja zavrsava sesiju solo kucanja, ubacuje rezultat pokusaja u bazu
+     * , i redirectuje na prikaz rezultata
      * 
      * @param Request $request Http zahtev
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * 
      * */
     public function soloKucanjeKraj(Request $request) {
 
         //Funkcija nije zavrsena, ne dirati nista
-        
 
-        $text = TextModel::where('id', $request->idTekst)->first() ?? TextModel::inRandomOrder()->firstOrFail();
+        $text = TextModel::where('id', $request->idTekst)->firstOrFail();
         $time = $request->time ?? round(random_int(500, 3000) / 100.0, 2);
-        $mistakes = $request->errors ?? random_int(0, 5);
+        $mistakes = $request->mistakes ?? random_int(0, 5);
 
         $speed = round(($text->word_count / $time) * 60, 2);
 
-        //if (auth()->user())
+        if (auth()->user()){
             $idKor = auth()->user()->id ?? 1;
-            //Napraviti PostRedirectGet na kraju
             LeaderboardModel::insert($idKor, $text->id, $time);
             
             $best = LeaderboardModel::where('idTekst', $text->id)->where('idKor', $idKor)->orderBy('vreme', 'asc')->first();
             $best_speed = round($text->word_count / $best->vreme * 60, 2);
             $best_position = $best->getLeaderboardPosition();
-        /*else {
-            //$best_speed = 0;
-            //$best_position = 0;
-        }*/
+        }
+        else {
+            $best = 0;
+            $best_speed = 0;
+            $best_position = 0;
+        }
 
         
-        return view('soloEnd', [
-            'text' => $text,
+        return redirect()->route('solo_kucanje_rezultati', [
+            'id' => $text->id,
             'time' => $time,
             'mistakes' => $mistakes,
             'speed' => $speed,
@@ -85,5 +87,25 @@ class BaseController extends Controller
             'best_position' => $best_position
         ]);
     }
+
+    /** Funkcija koja prikazuje rezultate kucanja
+     * 
+     * @param Request $request Http zahtev
+     *
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * 
+     * */
+    public function soloKucanjePrikazRezultata(Request $request) {
+
+        return view('soloResults', [
+            'text' => TextModel::where('id', $request->id)->firstOrFail(),
+            'time' => $request->time,
+            'mistakes' => $request->mistakes,
+            'speed' => $request->speed,
+            'best_speed' => $request->best_speed,
+            'best_position' => $request->best_position
+        ]);
+    }
+
 
 }
