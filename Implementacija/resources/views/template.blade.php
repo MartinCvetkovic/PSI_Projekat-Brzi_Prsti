@@ -74,7 +74,6 @@
             </div>
         </div>
 
-        {{dd(session());}}
         <!-- end of header -->
 
         @yield("content")

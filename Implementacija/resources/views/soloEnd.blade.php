@@ -10,7 +10,7 @@
             <table class="table">
                 <tr>
                     <td>Greske: </td>
-                    <td>{{$errors}}</td>
+                    <td>{{$mistakes}}</td>
                     <td rowspan="2"class="align-middle">Solo Brzo Kucanje</td>
                     <td>Prosecno vreme: </td>
                     <td>{{$text->average_time}}</td>
