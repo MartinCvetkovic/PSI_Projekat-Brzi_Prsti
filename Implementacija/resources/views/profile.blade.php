@@ -1,5 +1,4 @@
 
-
 {{-- Иван Савић 2019-0389 Страница за преглед профила --}}
 
 @extends("template")
@@ -27,7 +26,7 @@
             {{-- nista ne prikazujemo na svom profilu --}}
         @else
             @if ($prijatelj->isEmpty())
-                <a class="btn btn-primary" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Dodaj</a>
+            <a class="btn btn-primary" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Dodaj</a>
             @else
                 <a class="btn btn-danger" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Obrisi</a>
             @endif
@@ -79,6 +78,7 @@
         <div class="text-center" style="height:30px; width:300px;background-color: #cc6633"> {{$profile->bronza}}</div>
     </div>
 </div>
+
 
 
 @endsection

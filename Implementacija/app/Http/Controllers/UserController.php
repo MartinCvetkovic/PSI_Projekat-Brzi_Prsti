@@ -115,6 +115,7 @@ class UserController extends BaseController
     {
         // uvaci u tabelu "jePrijatelj
         $korisnik = UserModel::dohvatiKorisnika($username);
+
         $currentUser = auth()->user();
         $mojPrijatelj = DB::table("jePrijatelj")
                            ->where("idKor1",$currentUser->id)
@@ -127,12 +128,27 @@ class UserController extends BaseController
             $id = DB::table('jeprijatelj')->insertGetId(
                 ['idKor1' => $currentUser->id, "idKor2" => $korisnik->id]
             );
+            $currentUser->brojPrijatelja +=1;
+            $currentUser->save();
         }else{
             $deleted = DB::table('jeprijatelj')->where('idKor1', $currentUser->id)
                                             ->where('idKor2', $korisnik->id)
                                             ->delete();
+            $currentUser->brojPrijatelja -=1;
+            $currentUser->save();
         }
-        return $this->visitUser($username);
+        $prijatelji = DB::table('korisnik')
+        ->join('jeprijatelj','jeprijatelj.idKor2','=','korisnik.id')
+        ->where(['jeprijatelj.idKor1' => $korisnik->id])
+        ->get();
+
+        
+        $prijatelj = !$mojPrijatelj->isEmpty();
+        return back()->withInput(array('username' => $korisnik->username,
+                        "prijatelji"=>$prijatelji,
+                        "prijatelj"=>$prijatelj
+        ));
+        // return $this->visitUser($username);
     }
     public function blokirajKorisnika($username)
     {
