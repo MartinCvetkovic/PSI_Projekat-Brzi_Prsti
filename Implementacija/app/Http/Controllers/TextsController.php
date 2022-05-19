@@ -49,21 +49,21 @@ class TextsController extends Controller
         ]);
     }
 
-    // TODO: Ovi metodi su za tekstove, sredicu ih i povezati sa pogledima
-
     /**
-     * Show the form for creating a new resource.
+     * Prikazuje formu za ubacivanje novog teksta.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         $tekst = new TextModel();
-        return view('texts\create', compact('tekst'));
+        $kategorije = CategoryModel::pluck('naziv', 'id')->toArray();
+
+        return view('texts\create', compact('tekst', 'kategorije'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Ubacuje novi tekst u bazu.
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -76,7 +76,7 @@ class TextsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Prikazuje atribute datog teksta.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
@@ -89,7 +89,7 @@ class TextsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Prikazuje formu za izmenu teksta.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
@@ -97,12 +97,13 @@ class TextsController extends Controller
     public function edit($id)
     {
         $tekst = TextModel::find($id);
+        $kategorije = CategoryModel::pluck('naziv', 'id')->toArray();
 
-        return view('texts\edit', compact('tekst'));
+        return view('texts\edit', compact('tekst', 'kategorije'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Ažurira tekst u bazi.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  TextModel $tekst
@@ -120,6 +121,8 @@ class TextsController extends Controller
     }
 
     /**
+     * Briše tekst iz baze.
+     *
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception

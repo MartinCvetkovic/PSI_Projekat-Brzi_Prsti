@@ -14,8 +14,8 @@
             {!! $errors->first('tezina', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            <label for="idKat">Kategorija</label>
-            {{ Form::text('idKat', $tekst->idKat, ['class' => 'form-control' . ($errors->has('idKat') ? ' is-invalid' : ''), 'placeholder' => 'Kategorija']) }}
+            {{ Form::label('idKat', 'Kategorija:')}}
+            {!! Form::select('idKat', $kategorije, null, ['class' => 'form-control']) !!}
             {!! $errors->first('idKat', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
