@@ -22,13 +22,14 @@
     {{-- Преглед сопственог профила нема додатне дугмиће --}}
     <div class="col-sm-4">
         
-        @if ($profile->username == auth()->user()->username )
+        @if ($profile->username == auth()->user()->username)
             {{-- nista ne prikazujemo na svom profilu --}}
         @else
-            @if ($prijatelj->isEmpty())
-            <a class="btn btn-primary" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Dodaj</a>
-            @else
-                <a class="btn btn-danger" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Obrisi</a>
+            @if ($profile->aktivan == 1)
+                @if ($prijatelj->isEmpty())
+                    <a class="btn btn-primary" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Dodaj</a>
+                @else
+                    <a class="btn btn-danger" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Obrisi</a>                    @endif
             @endif
             
             {{-- Ako sam ja admin/mod mogu ga blokirati/odblokirati --}}
@@ -41,8 +42,8 @@
                 @endif
             @endif
             {{-- Ako sam ja admin modu dodeliti/uzeti moda --}}
-            @if(auth()->user()->tip  == 2)
-                @if ($profile->tip == 1)
+            @if(auth()->user()->tip  == 2 && $profile->aktivan == 1)
+                @if ($profile->tip == 1 )
                     <a  class="btn btn-warning " href="{{ route("dodeli_mod",["username"=>$profile->username]) }}">Mod</a>
                 @else
                 <a  class="btn btn-danger " href="{{ route("dodeli_mod",["username"=>$profile->username]) }}">Skini mod</a>

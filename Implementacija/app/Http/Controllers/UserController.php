@@ -148,15 +148,27 @@ class UserController extends BaseController
                         "prijatelji"=>$prijatelji,
                         "prijatelj"=>$prijatelj
         ));
-        // return $this->visitUser($username);
     }
     public function blokirajKorisnika($username)
     {
         $korisnik = UserModel::dohvatiKorisnika($username);
+        $deleted = DB::table('jeprijatelj')->where('idKor1', $korisnik->id)
+                                            ->orWhere('idKor2', $korisnik->id)
+                                            ->delete();
+
+        $korisnik = UserModel::dohvatiKorisnika($username);
         $korisnik->aktivan = 1 - $korisnik->aktivan;
         $korisnik->save();
 
-        return $this->visitUser($username);
+        $prijatelji = DB::table('korisnik')
+        ->join('jeprijatelj','jeprijatelj.idKor2','=','korisnik.id')
+        ->where(['jeprijatelj.idKor1' => $korisnik->id])
+        ->get();
+        $prijatelj = [];
+        return back()->withInput(array('username' => $korisnik->username,
+                        "prijatelji"=>$prijatelji,
+                        "prijatelj"=>$prijatelj
+        ));
     }
     public function dodajModeratora($username)
     {
@@ -170,10 +182,10 @@ class UserController extends BaseController
         ->where(['jeprijatelj.idKor1' => $korisnik->id])
         ->get();
 
-        return $this->visitUser($username);
+        
         // return redirect()->back()->withInput(array("profile"=>$korisnik,"prijatelji"=>$prijatelji));
         // return view("profile",["profile"=>$korisnik,"prijatelji"=>$prijatelji]);
-        //  return back()->withInput(array('username' => $korisnik->username,"prijatelji"=>$prijatelji));
+        return back()->withInput(array('username' => $korisnik->username,"prijatelji"=>$prijatelji));
         // return redirect()->route('visit_user', ["username"=>$korisnik->username]);
     }
 }

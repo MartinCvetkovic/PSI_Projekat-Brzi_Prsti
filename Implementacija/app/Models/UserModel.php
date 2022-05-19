@@ -54,8 +54,7 @@ class UserModel extends Authenticatable
 
     public static function dohvatiKorisnike($filter)
     {
-        $korisnici = UserModel::where("username","LIKE","%$filter%")
-                        ->where("id","!=", auth()->user()->id);
+        $korisnici = UserModel::where("username","LIKE","%$filter%");
         if(auth()->user()->tip == 0){
             $korisnici = $korisnici->where("aktivan",1);
         }
