@@ -8,7 +8,6 @@
 @section('content')
 
 <div class="row">
-
     <table class="table">
         <tr>
             @if ($tipRangListe == 0)
@@ -21,22 +20,16 @@
         </tr>
 
         <table class="table table-bordered table-striped">
-            @foreach ($users as $user)
+            @foreach ($rankList as $listRow)
                 <tr>
-                    <td rowspan="3" class="col-sm-5 align-middle">{{$user->username}}</td>
+                    <td rowspan="3" class="col-sm-5 align-middle">{{$listRow->userModel->username}}</td>
                     <td rowspan="3" class="col-sm-3 align-middle text-center">
-                        Vreme: {{$user->time}}, WPM: {{$user->wpm}}
+                        Vreme: {{$listRow->time}}, WPM: {{$listRow->wpm}}
                     </td>
                 </tr>
             @endforeach
         </table>
     </table>
-</div>
-
-<div class="row">
-    <div class="col-sm-12">
-        {{ $users->appends(request()->input())->links() }}
-    </div>
 </div>
 
 @endsection
