@@ -8,7 +8,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\LeaderboardModel;
+use App\Models\LeaderboardRowModel;
 use App\Models\TextModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 
 class TextsController extends Controller
@@ -51,16 +54,39 @@ class TextsController extends Controller
 
     public function rankList(Request $request, $id)
     {
+        $rankList = $this->getRankList($id);
 
+        // Sortiranje po vremenu i wpm
+        usort($rankList, function($a, $b) {
+            $time_diff = $a->time - $b->time;
+            if ($time_diff) return $time_diff;
+            return $a->wpm - $b->wpm;
+        });
 
-        return view('texts\rank_list');
+        return view('texts\rank_list', compact('rankList'));
     }
 
     public function friendlyRankList(Request $request, $id)
     {
+        // TODO: Izvaditi user id i filtrirati po prijateljima
+        $rankList = $this->getRankList($id);
 
+        $filteredRankList = array();
+        foreach ($rankList as $rankListRow)
+        {
+            // TODO: Ako je $rankListRow->userModel u spisku prijatelja, dodaj u $filteredRankList
+        }
 
-        return view('texts\rank_list');
+        $rankList = $filteredRankList;
+
+        // Sortiranje po vremenu i wpm
+        usort($rankList, function($a, $b) {
+            $time_diff = $a->time - $b->time;
+            if ($time_diff) return $time_diff;
+            return $a->wpm - $b->wpm;
+        });
+
+        return view('texts\rank_list', compact('rankList'));
     }
 
     /**
@@ -146,5 +172,43 @@ class TextsController extends Controller
         $tekst = TextModel::find($id)->delete();
 
         return redirect()->route('texts')->with('success', 'Tekst uspešno obrisan.');
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getRankList($id): array
+    {
+        $resultsForText = LeaderboardModel::where('idTekst', $id)->get();
+        $text = TextModel::find($id);
+        $userDict = array();
+
+        // Za svaki upisani rezultat za dati tekst, po korisnicima zapisi svako vreme i wpm
+        foreach ($resultsForText as $result) {
+            $currentUser = UserModel::find($resultsForText->idKor);
+            if (!array_key_exists($currentUser, $userDict)) {
+                $userDict[$currentUser] = array();
+                $userDict[$currentUser]["vreme"] = array();
+                $userDict[$currentUser]["wpm"] = array();
+            }
+
+            // Dodaju se vreme i wpm
+            $userDict[$currentUser]["time"][] = $resultsForText->vreme;
+
+            // TODO: Proveriti format vremena
+            $userDict[$currentUser]["wpm"][] = $resultsForText->vreme / 60.0 * $text->word_count;
+        }
+
+        // Nalazenje proseka od time i wpm za svakog korisnika
+        $rankList = array();
+        foreach ($userDict as $currentUser) {
+            $newRankListRow = new LeaderboardRowModel;
+            $newRankListRow->userModel = $currentUser;
+            $newRankListRow->time = array_sum($userDict[$currentUser]["time"]) / count($userDict[$currentUser]["time"]);
+            $newRankListRow->wpm = array_sum($userDict[$currentUser]["wpm"]) / count($userDict[$currentUser]["wpm"]);
+            $rankList[] = $newRankListRow;
+        }
+        return $rankList;
     }
 }
