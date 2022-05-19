@@ -75,14 +75,14 @@ class TextModel extends Model
     }
     
     /**
-    * Funkcija koja vraca sve tekstove koji se poklapaju sa kriterijumima pretrage
+    * Funkcija koja vraca paginator sa tekstovima koji se poklapaju sa kriterijumima pretrage
     * 
     * @var integer $idKat Id Kategorije (0 za sve)
     * @var integer $tezina Opcija tezine (0 za sve)
     * @var integer $duzina Opcija duzine (0 za sve)
     * @var integer $page Broj stranice rezultata
     *
-    * @return array[TextModel] 
+    * @return Illuminate\Pagination\LengthAwarePaginator
     *
     */
     public static function search($idKat, $tezina, $duzina, $page) {
@@ -134,11 +134,11 @@ class TextModel extends Model
     }
 
     /**
-    * Funkcija koja vraca prvih N reci teksta
+    * Funkcija koja vraca tekst skracen na prvih $count reci
     * 
     * @var integer $count Broj stranice rezultata
     *
-    * @return array[TextModel] 
+    * @return string
     *
     */
     public function firstWords($count) {

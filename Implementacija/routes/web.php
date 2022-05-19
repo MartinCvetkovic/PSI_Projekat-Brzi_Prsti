@@ -29,7 +29,7 @@ Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_
 
 //Ove tri rute treba da idu na BaseController (kad bude napravljen)
 Route::get('/solo', [BaseController::class, 'soloKucanje'])->name('solo_kucanje');
-Route::get('/solo/{id}', [BaseController::class, 'soloKucanje'])->name('solo_kucanje');
+Route::get('/solo/{id}', [BaseController::class, 'soloKucanje'])->name('solo_kucanje_id');
 //Promeni u POST!!!
 Route::get('/soloEnd', [BaseController::class, 'soloKucanjeKraj'])->name('solo_kucanje_kraj');
 Route::get('/soloResults', [BaseController::class, 'soloKucanjePrikazRezultata'])->name('solo_kucanje_rezultati');

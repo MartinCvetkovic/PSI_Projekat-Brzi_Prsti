@@ -92,7 +92,7 @@ class BaseController extends Controller
      * 
      * @param Request $request Http zahtev
      *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      * 
      * */
     public function soloKucanjePrikazRezultata(Request $request) {
