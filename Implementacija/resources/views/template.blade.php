@@ -80,7 +80,7 @@
                         <button type="button" class="btn p-2" id="registracija" onclick="location.href='{{route('registerPage')}}'"><b>Registruj se</b></button>
                     </div>
                 </form>
-                
+
                 @endguest
 
                 @auth
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 @endauth
-                
+
             </div>
         </div>
         <!-- end of header -->

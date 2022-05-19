@@ -60,12 +60,31 @@
         </table>
 
 
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{$message}}
+            </div>
+        @endif
+
         <!-- Tabela tekstova -->
         <table class="table table-bordered table-striped">
             @foreach ($texts as $text)
                 <tr>
                     <td rowspan="3" class="col-sm-5 align-middle">{{$text->sadrzaj}}</td>
-                    <td rowspan="3" class="col-sm-3 align-middle text-center"><a class="btn btn-primary" href="{{route('solo_kucanje', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a></td>
+                    <td rowspan="3" class="col-sm-3 align-middle text-center">
+                        <a class="btn btn-primary" href="{{route('solo_kucanje', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a>
+                        <hr>
+
+                        @auth
+                        <form action="{{ route('destroy_text',$text->id) }}" method="POST">
+                            <a class="btn btn-sm btn-primary " href="{{ route('show_text',$text->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                            <a class="btn btn-sm btn-success" href="{{ route('edit_text',$text->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                        </form>
+                        @endauth
+                    </td>
                     <td class="col-sm-2">Kategorija: </td>
                     <td class="col-sm-2">{{$text->category()->naziv}}</td>
                 </tr>
