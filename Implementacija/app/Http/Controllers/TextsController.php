@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\JePrijateljModel;
 use App\Models\LeaderboardModel;
 use App\Models\LeaderboardRowModel;
 use App\Models\TextModel;
@@ -53,6 +54,11 @@ class TextsController extends Controller
         ]);
     }
 
+    /**
+     * Prikazuje globalnu rang listu za dati tekst.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function rankList(Request $request, $id)
     {
         $rankList = $this->getRankList($id);
@@ -70,16 +76,23 @@ class TextsController extends Controller
         return view('texts\rank_list', compact('rankList', 'tipRangListe', 'text'));
     }
 
+    /**
+     * Prikazuje prijateljsku rang listu za dati tekst.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function friendlyRankList(Request $request, $id)
     {
         $rankList = $this->getRankList($id);
 
         $currentUserId = Auth::user()->id;
-        // TODO: Izvuci spisak prijatelja i uporediti dole
+        $userFriends = JePrijateljModel::where('idKor2', $currentUserId)->pluck('idKor2')->toArray();
 
         $filteredRankList = array();
         foreach ($rankList as $rankListRow)
         {
+            if (in_array($rankListRow->userModel->id, $userFriends))
+                $filteredRankList[] = $rankListRow;
             // TODO: Ako je $rankListRow->userModel u spisku prijatelja, dodaj u $filteredRankList
         }
 
@@ -193,8 +206,6 @@ class TextsController extends Controller
         $text = TextModel::find($id);
         $userDict = array();
 
-        //dd($resultsForText);
-
         // Za svaki upisani rezultat za dati tekst, po korisnicima zapisi svako vreme i wpm
         foreach ($resultsForText as $result) {
             $currentUser = UserModel::find($result->idKor);
@@ -210,8 +221,6 @@ class TextsController extends Controller
             // TODO: Proveriti format vremena
             $userDict[$currentUser->id]["wpm"][] = $result->vreme / 60.0 * $text->word_count;
         }
-
-        //dd($userDict);
 
         // Nalazenje proseka od time i wpm za svakog korisnika
         $rankList = array();
