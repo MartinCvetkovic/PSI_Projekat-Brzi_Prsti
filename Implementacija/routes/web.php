@@ -27,6 +27,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/texts', [UserController::class, 'showTexts'])->name('texts');
 Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_texts');
 
+
 Route::get('/searchusers', [UserController::class, 'searchUsers'])->name('search_users');
 Route::get('/submitusersearch', [UserController::class, 'searchUsersSubmit'])->name('searchusers_submit');
 Route::get('/user/{username}', [UserController::class, 'visitUser'])->name('visit_user');

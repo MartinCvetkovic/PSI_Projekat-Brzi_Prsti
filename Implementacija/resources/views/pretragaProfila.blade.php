@@ -31,14 +31,16 @@
            
             @isset($profili)
             @if (!$profili->isEmpty())
-            
-            @foreach ($profili as $profil)
-                
-                <a href="{{route("visit_user",["username"=> $profil->username])}}" class="list-group-item list-group-item-action d-flex justify-content-between text-center ">
-                    <p style="margin-bottom: 0em">  {{$profil->username}}</p>
-                    <p style="margin-bottom: 0em">Broj nagrada:    {{$profil->zlato  +$profil->srebro+$profil->bronza}} </p>
-                </a>
-            @endforeach
+            <div class="list-group  overflow-auto border-top border-bottom border-black" style="max-height:300px">
+
+                @foreach ($profili as $profil)
+                    
+                    <a href="{{route("visit_user",["username"=> $profil->username])}}" class="list-group-item list-group-item-action d-flex justify-content-between text-center ">
+                        <p style="margin-bottom: 0em">  {{$profil->username}}</p>
+                        <p style="margin-bottom: 0em">Broj nagrada:    {{$profil->zlato  +$profil->srebro+$profil->bronza}} </p>
+                    </a>
+                @endforeach
+            </div>
             @else
             <p class="alert alert-danger text-center">  Korisnik nije pronadjen </p>
             @endif

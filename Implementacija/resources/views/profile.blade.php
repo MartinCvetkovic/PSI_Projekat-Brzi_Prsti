@@ -7,12 +7,9 @@
 @section("content")
 
  {{-- simulira tip i ime korisnika koji pristupa profilima --}}
-{{
-$cao = 3; 
-}}
-
 <div class="row  mx-4  d-flex align-items-center">
 
+    
     
     <div class="col-sm-8">
         <ul class="list-group bg-light">
@@ -25,31 +22,27 @@ $cao = 3;
     </div>
     {{-- Преглед сопственог профила нема додатне дугмиће --}}
     <div class="col-sm-4">
-        {{-- 
-        Сви
-        Админ Мод
-        Админ 
-        --}}
         
-        @if ($profile->username == "ikiliki" )
+        @if ($profile->username == auth()->user()->username )
             {{-- nista ne prikazujemo na svom profilu --}}
-            
         @else
-            
-            @if ($profile->brojPrijatelja == 0)
+            @if ($prijatelj->isEmpty())
                 <a class="btn btn-primary" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Dodaj</a>
             @else
                 <a class="btn btn-danger" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Obrisi</a>
             @endif
             
-            @if ($cao >1)
-                @if ($profile->aktivan == 1)
+            {{-- Ako sam ja admin/mod mogu ga blokirati/odblokirati --}}
+            @if (auth()->user()->tip >0)
+                {{-- da li je aktivan --}}
+                @if ($profile->aktivan == 1)    
                 <a  class="btn btn-danger mx-4" href="{{ route("blokiraj_korisnika",["username"=>$profile->username]) }}">Blokiraj</a>
                 @else
                 <a  class="btn btn-primary mx-4" href="{{ route("blokiraj_korisnika",["username"=>$profile->username]) }}">Odblokiraj</a>
                 @endif
             @endif
-            @if($cao > 2)
+            {{-- Ako sam ja admin modu dodeliti/uzeti moda --}}
+            @if(auth()->user()->tip  == 2)
                 @if ($profile->tip == 1)
                     <a  class="btn btn-warning " href="{{ route("dodeli_mod",["username"=>$profile->username]) }}">Mod</a>
                 @else
@@ -70,7 +63,7 @@ $cao = 3;
                 <a href="{{route("visit_user",["username"=> $prijatelj->username])}}" class="list-group-item list-group-item-action d-flex justify-content-between">
                     <p style="margin-bottom:0px"> {{$prijatelj->username}}</p>
                     <p style="margin-bottom:0px">
-                        Broj nagrada:    {{$profile->zlato  +$profile->srebro+$profile->bronza}}
+                        Broj nagrada:    {{$prijatelj->zlato+$prijatelj->srebro+$prijatelj->bronza}}
                     </p>
                 </a>
                 @endforeach

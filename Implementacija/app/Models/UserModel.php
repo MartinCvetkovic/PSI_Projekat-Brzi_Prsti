@@ -42,7 +42,6 @@ class UserModel extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        "id",
         "username",
         "password",
         "zlato",
