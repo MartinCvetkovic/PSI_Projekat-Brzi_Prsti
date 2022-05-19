@@ -49,6 +49,20 @@ class TextsController extends Controller
         ]);
     }
 
+    public function rankList(Request $request, $id)
+    {
+
+
+        return view('texts\rank_list');
+    }
+
+    public function friendlyRankList(Request $request, $id)
+    {
+
+
+        return view('texts\rank_list');
+    }
+
     /**
      * Prikazuje formu za ubacivanje novog teksta.
      *
