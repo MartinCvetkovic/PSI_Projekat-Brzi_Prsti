@@ -1,9 +1,5 @@
 @extends('template')
 
-@section('template_title')
-    {{ $tekst->name ?? 'Show Tekst' }}
-@endsection
-
 @section('content')
     <section class="content container-fluid">
         <div class="row">
@@ -11,25 +7,27 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Tekst</span>
+                            <h2 class="card-title">Prikaz teksta</h2>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('texts') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('texts') }}">Nazad</a>
                         </div>
                     </div>
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <strong>Sadrzaj:</strong>
+                            <strong>Sadržaj:</strong>
                             {{ $tekst->sadrzaj }}
                         </div>
+                        <br>
                         <div class="form-group">
-                            <strong>Tezina:</strong>
+                            <strong>Težina:</strong>
                             {{ $tekst->tezina }}
                         </div>
+                        <br>
                         <div class="form-group">
-                            <strong>Idkat:</strong>
+                            <strong>Kategorija:</strong>
                             {{ $tekst->idKat }}
                         </div>
 

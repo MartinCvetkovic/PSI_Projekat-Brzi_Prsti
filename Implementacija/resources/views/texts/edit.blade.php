@@ -1,19 +1,15 @@
 @extends('template')
 
-@section('template_title')
-    Update Tekst
-@endsection
-
 @section('content')
     <section class="content container-fluid">
         <div class="">
-            <div class="col-md-12">
+            <div class="col-md-6">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Tekst</span>
+                        <h2 class="card-title">Izmena teksta</h2>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('update_text', $tekst->id) }}"  role="form" enctype="multipart/form-data">

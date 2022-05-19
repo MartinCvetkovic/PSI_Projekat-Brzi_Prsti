@@ -4,22 +4,23 @@
         {{ Form::hidden('id', $tekst->id, array('id' => $tekst->id)) }}
 
         <div class="form-group">
-            {{ Form::label('sadrzaj') }}
-            {{ Form::textarea('sadrzaj', $tekst->sadrzaj, ['class' => 'form-control' . ($errors->has('sadrzaj') ? ' is-invalid' : ''), 'placeholder' => 'Sadrzaj']) }}
+            <label for="sadrzaj">Sadržaj</label>
+            {{ Form::textarea('sadrzaj', $tekst->sadrzaj, ['class' => 'form-control' . ($errors->has('sadrzaj') ? ' is-invalid' : ''), 'placeholder' => 'Sadržaj']) }}
             {!! $errors->first('sadrzaj', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('tezina') }}
+            <label for="tezina">Težina</label>
             {{ Form::text('tezina', $tekst->tezina, ['class' => 'form-control' . ($errors->has('tezina') ? ' is-invalid' : ''), 'placeholder' => 'Tezina']) }}
             {!! $errors->first('tezina', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('idKat') }}
-            {{ Form::text('idKat', $tekst->idKat, ['class' => 'form-control' . ($errors->has('idKat') ? ' is-invalid' : ''), 'placeholder' => 'Idkat']) }}
+            <label for="idKat">Kategorija</label>
+            {{ Form::text('idKat', $tekst->idKat, ['class' => 'form-control' . ($errors->has('idKat') ? ' is-invalid' : ''), 'placeholder' => 'Kategorija']) }}
             {!! $errors->first('idKat', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>
+    <br>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Snimi</button>
     </div>

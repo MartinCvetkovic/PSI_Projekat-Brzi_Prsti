@@ -1,9 +1,5 @@
 @extends('template')
 
-@section('template_title')
-    Dodaj tekst
-@endsection
-
 @section('content')
     <section class="content container-fluid">
         <div class="row">
@@ -13,7 +9,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Tekst</span>
+                        <h2 class="card-title">Dodavanje teksta</h2>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('store_text') }}"  role="form" enctype="multipart/form-data">
