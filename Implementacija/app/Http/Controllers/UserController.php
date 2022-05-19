@@ -10,12 +10,32 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\CategoryModel;
+use App\Models\LeaderboardModel;
 use App\Models\TextModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
+    
+    /**
+     * Konstruktor sa podesavanjem middleware-a
+     */
+    function __construct() {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Funkcija za odjavljivanje
+     * 
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('homePage');
+    }
+
     /** Funkcija koja prikazuje listu svih tekstova
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
@@ -27,9 +47,9 @@ class UserController extends Controller
         return view('texts', [
             'texts' => $texts,
             'categories' => $categories,
-            'kategorija' => 0,
-            'tezina' => 0,
-            'duzina' => 0
+            'kategorija' => '',
+            'tezina' => '',
+            'duzina' => ''
         ]);
     }
 
@@ -40,7 +60,6 @@ class UserController extends Controller
      * */
     public function searchTexts(Request $request)
     {
-
         $texts = TextModel::search($request->kategorija, $request->tezina, $request->duzina, $request->page);
         $categories = CategoryModel::all();
 
