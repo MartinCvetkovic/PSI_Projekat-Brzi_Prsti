@@ -75,15 +75,15 @@
                         <a class="btn btn-primary" href="{{route('solo_kucanje', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a>
                         <hr>
 
-                        @auth
                         <form action="{{ route('destroy_text',$text->id) }}" method="POST">
                             <a class="btn btn-sm btn-primary " href="{{ route('rank_list', $text->id) }}"><i class="fa fa-fw fa-eye"></i>Rang liste</a>
+                            @auth
                             <a class="btn btn-sm btn-success" href="{{ route('edit_text', $text->id) }}"><i class="fa fa-fw fa-edit"></i>Izmeni</a>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>Obriši</button>
+                            @endauth
                         </form>
-                        @endauth
                     </td>
                     <td class="col-sm-2">Kategorija: </td>
                     <td class="col-sm-2">{{$text->category()->naziv}}</td>

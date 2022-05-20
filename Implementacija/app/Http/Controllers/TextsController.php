@@ -74,7 +74,7 @@ class TextsController extends Controller
         $tipRangListe = 0;
         $i = 0;
 
-        return view('texts\rank_list', compact('rankList', 'tipRangListe', 'text', 'i'));
+        return view('texts\text_rank_list', compact('rankList', 'tipRangListe', 'text', 'i'));
     }
 
     /**
@@ -110,7 +110,7 @@ class TextsController extends Controller
         $tipRangListe = 1;
         $i = 0;
 
-        return view('texts\rank_list', compact('rankList', 'tipRangListe', 'text', 'i'));
+        return view('texts\text_rank_list', compact('rankList', 'tipRangListe', 'text', 'i'));
     }
 
     /**
