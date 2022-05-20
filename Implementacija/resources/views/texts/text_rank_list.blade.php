@@ -8,7 +8,7 @@
 @section('content')
 
 <div class="row">
-    <h1>Rang lista @if ($tipRangListe == 0) (globalna) @elseif ($tipRangListe == 1) (prijateljska) @endif</h1>
+    <h1>Rang lista za tekst @if ($tipRangListe == 0) (globalna) @elseif ($tipRangListe == 1) (prijateljska) @endif</h1>
     <div class="col-md-12">
         <table class="table">
             <tr>
