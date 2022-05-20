@@ -52,6 +52,23 @@ class UserModel extends Authenticatable
         "brojPrijatelja"
     ];
 
+    public static function dohvatiKorisnike($filter)
+    {
+        $korisnici = UserModel::where("username","LIKE","%$filter%");
+        if(auth()->user()->tip == 0){
+            $korisnici = $korisnici->where("aktivan",1);
+        }
+        $korisnici = $korisnici->get();
+                        
+        return $korisnici;
+    }
+
+    public static function dohvatiKorisnika($username)
+    {     
+        $ret = UserModel::where("username",$username)->first();
+        return $ret;
+    }
+    
     /**
      * Funkcija za dodavanje korisnika
      * 
