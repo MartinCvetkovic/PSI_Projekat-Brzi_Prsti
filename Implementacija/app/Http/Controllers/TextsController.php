@@ -72,8 +72,9 @@ class TextsController extends Controller
 
         $text = TextModel::find($id);
         $tipRangListe = 0;
+        $i = 0;
 
-        return view('texts\rank_list', compact('rankList', 'tipRangListe', 'text'));
+        return view('texts\rank_list', compact('rankList', 'tipRangListe', 'text', 'i'));
     }
 
     /**
@@ -107,8 +108,9 @@ class TextsController extends Controller
 
         $text = TextModel::find($id);
         $tipRangListe = 1;
+        $i = 0;
 
-        return view('texts\rank_list', compact('rankList', 'tipRangListe', 'text'));
+        return view('texts\rank_list', compact('rankList', 'tipRangListe', 'text', 'i'));
     }
 
     /**

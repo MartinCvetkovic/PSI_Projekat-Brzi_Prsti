@@ -24,6 +24,7 @@
             <table class="table table-bordered table-striped">
                 @foreach ($rankList as $listRow)
                     <tr>
+                        <td>{{++$i}}.</td>
                         <td rowspan="3" class="col-sm-5 align-middle">{{$listRow->userModel->username}}</td>
                         <td rowspan="3" class="col-sm-3 align-middle text-center">
                             Vreme: {{$listRow->time}}, WPM: {{$listRow->wpm}}
