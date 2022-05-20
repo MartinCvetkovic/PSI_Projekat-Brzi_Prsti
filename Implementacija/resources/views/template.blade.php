@@ -22,6 +22,7 @@
     <script src="{{asset('js/jQuery/jquery-3.6.0.min.js')}}"></script>
     <link rel="stylesheet" href={{asset("css/templateStyle.css")}}>
     <title>Brzi prsti</title>
+    @yield("additionalHead")
 </head>
 <body>
     <div class="container">

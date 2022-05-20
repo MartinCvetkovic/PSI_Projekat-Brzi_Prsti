@@ -4,6 +4,11 @@
 
 @extends("template")
 
+@section("additionalHead")
+    <script src="{{asset('js/solo.js')}}"></script>
+    <link rel="stylesheet" href={{asset("css/typingStyle.css")}}>
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-sm-2">
@@ -14,7 +19,7 @@
                 </tr>
                 <tr>
                     <td class="text-start">Tezina: </td>
-                    <td class="text-end">{{$text->tezina}} / 10</td>
+                    <td class="text-end">{{$text->tezina}}/10</td>
                 </tr>
             </table>
         </div>
@@ -22,7 +27,7 @@
             <table class="table">
                 <tr>
                     <td>Greske: </td>
-                    <td>0</td>
+                    <td><span id="mistakes">0</span></td>
                     <td rowspan="2"class="align-middle">Solo Brzo Kucanje</td>
                     <td>Prosecno vreme: </td>
                     <td>{{$text->average_time}}</td>
@@ -31,14 +36,14 @@
                     <td></td>
                     <td></td>
                     <td>Vase vreme: </td>
-                    <td>0.0 s</td>
+                    <td><span id="time">0.0 s</span></td>
                 </tr>
             </table>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <p>{{$text->sadrzaj}}</p>
+            <p id="textContent"><span class="notTypedText">{{$text->sadrzaj}}</span></p>
         </div>
     </div>
     <div class="row">
@@ -48,8 +53,11 @@
                 <button class="btn btn-primary">Simuliraj pokusaj (DEBUG)</button>
             </form>
         </div>
-        <div class="col-sm-11">
-            <input type="text" class="form-control">
+        <div class="col-sm-1">
+            <button class="btn btn-primary" id="test">Test Button</button>
+        </div>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="userInput">
         </div>
     </div>
 @endsection
