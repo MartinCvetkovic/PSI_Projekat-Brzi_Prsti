@@ -54,3 +54,5 @@ Route::post('/texts/update', [TextsController::class, 'update'])->name('update_t
 
 Route::get('/texts/ranks/{id}', [TextsController::class, 'rankList'])->name('rank_list');
 Route::get('/texts/friendly_ranks/{id}', [TextsController::class, 'friendlyRankList'])->name('friendly_rank_list')->middleware("auth");
+
+Route::get('/rankList', [TextsController::class, 'globalRankList'])->name('global_rank_list');

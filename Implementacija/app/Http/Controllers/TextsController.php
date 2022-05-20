@@ -94,7 +94,6 @@ class TextsController extends Controller
         {
             if (in_array($rankListRow->userModel->id, $userFriends))
                 $filteredRankList[] = $rankListRow;
-            // TODO: Ako je $rankListRow->userModel u spisku prijatelja, dodaj u $filteredRankList
         }
 
         $rankList = $filteredRankList;
@@ -111,6 +110,47 @@ class TextsController extends Controller
         $i = 0;
 
         return view('texts\text_rank_list', compact('rankList', 'tipRangListe', 'text', 'i'));
+    }
+
+    /**
+     * Prikazuje globalnu rang listu najbrzih korisnika.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function globalRankList(Request $request)
+    {
+        $resultsForAllTexts = LeaderboardModel::all();
+        $userDict = array();
+
+        // Za svaki upisani rezultat po korisniku, dodati vreme i wpm
+        foreach ($resultsForAllTexts as $result) {
+            $currentUser = UserModel::find($result->idKor);
+            $text = TextModel::find($result->idTekst);
+
+            if (!array_key_exists($currentUser->id, $userDict)) {
+                $userDict[$currentUser->id] = array();
+                $userDict[$currentUser->id]["time"] = array();
+                $userDict[$currentUser->id]["wpm"] = array();
+            }
+
+            // Dodaju se vreme i wpm
+            $userDict[$currentUser->id]["time"][] = $result->vreme;
+            $userDict[$currentUser->id]["wpm"][] = $result->vreme / 60.0 * $text->word_count;
+        }
+
+        // Nalazenje proseka od time i wpm za svakog korisnika
+        $rankList = array();
+        foreach ($userDict as $currentUser => $values) {
+            $newRankListRow = new LeaderboardRowModel;
+            $newRankListRow->userModel = UserModel::find($currentUser);
+            $newRankListRow->time = array_sum($values["time"]) / count($values["time"]);
+            $newRankListRow->wpm = array_sum($values["wpm"]) / count($values["wpm"]);
+            $rankList[] = $newRankListRow;
+        }
+
+        $i = 0;
+
+        return view('rank_list', compact('rankList', 'i'));
     }
 
     /**

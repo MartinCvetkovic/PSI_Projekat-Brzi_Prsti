@@ -47,7 +47,7 @@
                     @auth
                     <button class="btn-light btn-lg" type="button" id="tekstovi" onclick="location.href='{{route('texts')}}'">Tekstovi</button>
                     @endauth
-                    <button class="btn-light btn-lg" type="button" id="rangliste">Rang liste</button>
+                    <button class="btn-light btn-lg" type="button" id="rangliste" onclick="location.href='{{route('global_rank_list')}}'">Rang lista</button>
                 </div>
             </div>
             <div class="col-sm-3 bg-light d-flex align-items-center justify-content-start p-3 my-2" style="width:24%">
