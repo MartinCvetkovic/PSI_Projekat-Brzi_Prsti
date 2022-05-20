@@ -1,0 +1,11 @@
+span.typedText {
+    background-color: lightgreen;
+}
+
+span.notTypedText {
+    background-color: lightgray;
+}
+
+span.mistakeText {
+    background-color: red;
+}
