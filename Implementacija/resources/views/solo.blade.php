@@ -30,7 +30,7 @@
                     <td><span id="mistakes">0</span></td>
                     <td rowspan="2"class="align-middle">Solo Brzo Kucanje</td>
                     <td>Prosecno vreme: </td>
-                    <td>{{$text->average_time}}</td>
+                    <td>{{$text->average_time}} s</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -41,23 +41,20 @@
             </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="mainRow">
         <div class="col-sm-12">
             <p id="textContent"><span class="notTypedText">{{$text->sadrzaj}}</span></p>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-1">
-            <form action="{{route('solo_kucanje_kraj')}}" method="GET">
-                <input type="hidden" name="idTekst" value="{{$text->id}}">
-                <button class="btn btn-primary">Simuliraj pokusaj (DEBUG)</button>
+        <div class="col-sm-12">
+            <form>
+                @csrf
+                <input type="hidden" name="_text" value="{{$text->sadrzaj}}">
+                <input type="hidden" name="_idTekst" value="{{$text->id}}">
+                <input type="hidden" name="_endRoute" value="{{route('solo_kucanje_kraj')}}">
+                <input type="text" class="form-control" id="userInput">
             </form>
-        </div>
-        <div class="col-sm-1">
-            <button class="btn btn-primary" id="test">Test Button</button>
-        </div>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="userInput">
         </div>
     </div>
 @endsection

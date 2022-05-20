@@ -42,27 +42,30 @@ class TextModel extends Model
         'tezina'
     ];  //Dostupno i word_count, average_time (van Query-a)
 
+
     /**
      * Dozvoljava pristup novom "atributu" word_count (broj reci u sadrzaju teksta)
      * Koristiti kao $this->word_count
      *
-     * @return integer
+     * @return Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function getWordCountAttribute()
     {
         return str_word_count($this->sadrzaj);
     }
 
+
     /**
      * Dozvoljava pristup novom "atributu" average_time (prosecno vreme za kucanje teksta)
      * Koristiti kao $this->average_time
      *
-     * @return double
+     * @return Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function getAverageTimeAttribute()
     {
         return round(LeaderboardModel::where('idTekst', $this->id)->avg('vreme'), 2);
     }
+
 
     /**
     * Funkcija koja vraca kategoriju teksta
@@ -74,6 +77,7 @@ class TextModel extends Model
         return CategoryModel::where('id', $this->idKat)->first();
     }
     
+
     /**
     * Funkcija koja vraca paginator sa tekstovima koji se poklapaju sa kriterijumima pretrage
     * 
@@ -133,10 +137,11 @@ class TextModel extends Model
         return $ret->paginate(5);
     }
 
+    
     /**
     * Funkcija koja vraca tekst skracen na prvih $count reci
     * 
-    * @var integer $count Broj stranice rezultata
+    * @var integer $count Broj reci na koji treba skratiti tekst
     *
     * @return string
     *
