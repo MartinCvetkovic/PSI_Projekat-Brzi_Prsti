@@ -181,4 +181,16 @@ class DailyChallengeModel extends Model
         //Pamcenje novog dnevnog izazova u bazi podataka
         $newDaily->save();
     }
+
+
+    /**
+    * Funkcija koja vraca sadrzaj teksta bez novih redova, tabulacije,
+    * duplih razmaka, i belina na pocetku i kraju
+    * 
+    * @return string
+    *
+    */
+    public function cleanText() {
+        return $this->text()->cleanText();
+    }
 }

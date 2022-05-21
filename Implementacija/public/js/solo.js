@@ -18,18 +18,40 @@ $(document).ready(function() {
     let started = false;
 
     //Funkcija koja zapocinje merenje vremena
+    let stopwatchHandle = null;
     function start() {
         if (started) return;
         started = true;
-        setInterval(stopwatch, 10);
+        stopwatchHandle = setInterval(stopwatch, 10);
+        flashTime();
+    }
+
+    //Funkcija koja boji polje "Vase vreme" u zeleno na trenutak (sa fade animacijom)
+    function flashTime() {
+        let fields = $("td[name='time']");
+
+        fields.removeClass("bg-fade").addClass("bg-success");
+
+        setTimeout(function() {
+            fields.addClass("bg-fade").removeClass("bg-success");
+        }, 50);
+    }
+
+    //Funkcija koja boji polje "Greske" u crveno na trenutak (sa fade animacijom)
+    function flashMistakes() {
+        let fields = $("td[name='mistakes']");
+
+        fields.removeClass("bg-fade").addClass("bg-danger");
+
+        setTimeout(function() {
+            fields.addClass("bg-fade").removeClass("bg-danger");
+        }, 50);
     }
 
     //Funkcija koja zavrsava sesiju kucanja i obradjuje rezultate AJAX pozivom
     function finish() {
         if (finished) return;
         finished = true;
-
-        $("#userInput").remove();
 
         $.ajax({
             type: "POST",
@@ -41,13 +63,19 @@ $(document).ready(function() {
             }
         }).done(function(result) {
             $("#mainRow").html(result);
+            scrollTo(0, $(document).height());
         });
+
+        $("#userInputRow").remove();
     }
 
     //Funkcija koja meri vreme
     let time = 0.0;
     function stopwatch() {
-        if (finished) return;
+        if (finished) {
+            clearInterval(stopwatchHandle);
+            return;
+        }
         time += 0.01;
         $("#time").text(time.toFixed(2) + " s")
     }
@@ -66,6 +94,7 @@ $(document).ready(function() {
     let mistakes = 0;
     function addMistake() {
         mistakes++;
+        flashMistakes();
         $("#mistakes").text(mistakes);
     }
 
@@ -109,16 +138,18 @@ $(document).ready(function() {
     //Hvatanje "backspace" unosa od korisnika
     $("#userInput").keydown(function( event ) {
         if (finished) return;
-        if (event.which == 8) backspace();
-
-        renderText();
+        if (event.which == 8) {
+            event.preventDefault();
+            backspace();
+            renderText();
+        }        
     });
 
     //Hvatanje tekstualnih unosa od korisnika
     $("#userInput").keypress(function( event ) {
-        start();
         event.preventDefault();
         if (finished) return;
+        if (!started) start();
         letterTyped(String.fromCharCode(event.which));
     });
     

@@ -147,11 +147,27 @@ class TextModel extends Model
     *
     */
     public function firstWords($count) {
-        if ($this->word_count > 10){
+        if ($this->word_count > $count){
             $words = explode(" ", $this->sadrzaj, $count + 1);
             unset($words[$count]);
             return implode(" ", $words)."...";
         }
             else return $this->sadrzaj;
+    }
+
+
+    /**
+    * Funkcija koja vraca sadrzaj teksta bez novih redova, tabulacije,
+    * duplih razmaka, i belina na pocetku i kraju
+    * 
+    * @return string
+    *
+    */
+    public function cleanText() {
+        $text = $this->sadrzaj;
+        $text = preg_replace("/\s+/", " ", $text);
+        $text = trim($text);
+
+        return $text;
     }
 }

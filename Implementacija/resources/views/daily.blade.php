@@ -43,17 +43,16 @@
     </div>
     <div class="row" id="mainRow">
         <div class="col-sm-12">
-            <p id="textContent"><span class="notTypedText">{{$daily->sadrzaj}}</span></p>
+            <p id="textContent"><span class="notTypedText">{{$daily->cleanText()}}</span></p>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <form>
                 @csrf
-                <input type="hidden" name="_text" value="{{$daily->sadrzaj}}">
+                <input type="hidden" name="_text" value="{{$daily->cleanText()}}">
                 <input type="hidden" name="_idTekst" value="{{$daily->idTekst}}">
                 <input type="hidden" name="_endRoute" value="{{route('daily_kucanje_kraj')}}">
-                <input type="text" class="form-control" id="userInput">
             </form>
         </div>
     </div>

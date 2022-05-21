@@ -28,7 +28,7 @@
     <div class="container">
 
         <!-- header -->
-        <div class="row bg-primary border border-3 border-dark m-4 d-flex align-items-center">
+        <div class="row bg-primary border border-3 border-dark mt-4 mb-4 pt-3 pb-3 d-flex align-items-center">
             <div class="col-sm-3">
                 <img src="{{ asset("images/logo.png") }}" alt="logo brzi prsti" id="logo">
             </div>

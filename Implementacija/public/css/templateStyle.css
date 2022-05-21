@@ -11,3 +11,16 @@
 .border-3{
     border-width:3px !important;
 }
+
+
+/* Vracanje Info button-a na Bootstrap 4 boje */
+.btn-info {
+    color: white;
+    background-color: #17A2B8;
+    border-color: #C5E8ED;
+}
+.btn-info:hover {
+    color: white;
+    background-color: #138496;
+    border-color: #C3DEE2;
+}

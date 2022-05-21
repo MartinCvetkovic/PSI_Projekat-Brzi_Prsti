@@ -1,11 +1,91 @@
 span.typedText {
-    background-color: lightgreen;
+    background-color: limegreen;
 }
 
+/*
 span.notTypedText {
     background-color: lightgray;
 }
+*/
 
 span.mistakeText {
     background-color: red;
+}
+
+.typing-text {
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-text {
+    font-size: 18px;
+}
+
+.title-text {
+    font-size : 40px;
+    font-weight: bold;
+}
+
+.bg-primary {
+    background-color: skyblue !important;
+}
+
+.border-light {
+    background-color: lightgray;
+    border-width: 10px !important;
+    border-color: lightslategray !important;
+}
+
+td.inset-pill {
+    background-color: rgb(233, 233, 233);
+}
+
+.bg-fade {
+    transition: background-color 1s linear;
+}
+
+.rounded-pill-start {
+    border-top-left-radius: 50rem;
+    border-bottom-left-radius: 50rem;
+
+    padding-left: 16px !important;
+}
+
+.rounded-pill-end {
+    border-top-right-radius: 50rem;
+    border-bottom-right-radius: 50rem;
+
+    padding-right: 16px !important;
+}
+
+.mr-6 {
+    margin-right: 20px;
+}
+
+.ml-6 {
+    margin-left: 20px;
+}
+
+hr {
+    border-width: 10px  !important;
+    background-color: lightslategray;
+    border-color: lightslategray !important;
+    border-radius: 50rem;
+    border-style: solid;
+}
+
+.btn-result {
+    color: white;
+    background-color: lightslategray;
+    border-color: slategray;
+    width: 100%;
+}
+.btn-result:hover {
+    color: white;
+    background-color: rgb(169, 177, 185);
+    border-color: rgb(151, 162, 173);
+}
+
+td.divider {
+    width: 60px;
 }

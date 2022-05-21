@@ -9,10 +9,10 @@
 
 <div class="row">
 
-    <div class="col-sm-12">
+    <div class="col-sm-12 p-0">
 
         <!-- Bar za pretragu -->
-        <table class="table">
+        <table class="table table-borderless">
             <tr>
                 <form method="GET" action="{{route('search_texts')}}">
 
@@ -47,15 +47,18 @@
                     </td>
 
                     <!-- Submit dugme -->
-                    <td class="col-sm-2 align-middle text-center">
-                        <button class="btn btn-primary" type="submit">Pretrazi</button>
+                    <td class="col-sm align-middle text-center">
+                        <button class="btn btn-primary w-100" type="submit">Pretrazi</button>
                     </td>
                 </form>
 
-                <!-- Dugme za dodavanje novog teksta -->
-                <td class="col-sm-2 align-middle text-center">
-                    <a class="btn btn-primary" href="{{route("create_text")}}" role="button">Dodaj tekst</a>
-                </td>
+                @if (auth()->user()->tip == 1 || auth()->user()->tip == 2)
+                        <!-- Dugme za dodavanje novog teksta -->
+                    <td class="col-sm-2 align-middle text-center">
+                        <a class="btn btn-primary w-100" href="{{route("create_text")}}" role="button">Dodaj tekst</a>
+                    </td>
+                @endif
+                
 
             </tr>
         </table>
@@ -71,22 +74,34 @@
         <table class="table table-bordered table-striped">
             @foreach ($texts as $text)
                 <tr>
-                    <td rowspan="3" class="col-sm-5 align-middle">{{$text->sadrzaj}}</td>
-                    <td rowspan="3" class="col-sm-3 align-middle text-center">
-                        <a class="btn btn-primary" href="{{route('solo_kucanje_id', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a>
-                        <hr>
-
-                        <form action="{{ route('destroy_text',$text->id) }}" method="POST">
-                            <a class="btn btn-sm btn-primary " href="{{ route('rank_list', $text->id) }}"><i class="fa fa-fw fa-eye"></i>Rang liste</a>
-                            @auth
-                            @if(auth()->user()->tip != 0)
-                            <a class="btn btn-sm btn-success" href="{{ route('edit_text', $text->id) }}"><i class="fa fa-fw fa-edit"></i>Izmeni</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>Obriši</button>
-                            @endif
-                            @endauth
-                        </form>
+                    <td rowspan="3" class="col-sm-5 align-middle">{{$text->firstWords(35)}}</td>
+                    <td rowspan="3" class="col-sm-3 align-middle">
+                        <table class="table table-borderless mb-0">
+                            <tr>
+                                <td colspan="3">
+                                    <a class="btn btn-primary w-100 h-100" href="{{route('solo_kucanje_id', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <form action="{{ route('destroy_text',$text->id) }}" method="POST">
+                                    <td>
+                                        <a class="btn btn-info w-100 h-100" href="{{ route('rank_list', $text->id) }}"><i class="fa fa-fw fa-eye"></i>Rang lista</a>
+                                    </td>
+                                    @auth
+                                        @if(auth()->user()->tip != 0)
+                                            <td>
+                                                <a class="btn btn-success w-100 h-100" href="{{ route('edit_text', $text->id) }}"><i class="fa fa-fw fa-edit"></i>Izmeni</a>
+                                            </td>
+                                            <td>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger w-100 h-100"><i class="fa fa-fw fa-trash"></i>Obriši</button>
+                                            </td>
+                                        @endif
+                                    @endauth
+                                </form>
+                            </tr>
+                        </table>
                     </td>
                     <td class="col-sm-2">Kategorija: </td>
                     <td class="col-sm-2">{{$text->category()->naziv}}</td>
