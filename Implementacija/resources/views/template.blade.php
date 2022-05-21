@@ -42,13 +42,13 @@
                     <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Kucanje</button>
                     @endguest
                     @auth
-                    <button class="btn-light btn-lg" type="button" id="kucanje">Kucanje</button>
+                    <button class="btn-light btn-lg" type="button" id="kucanje" onclick="location.href='{{route('solo_kucanje')}}'">Kucanje</button>
                     @endauth
                     @guest
                     <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Korisnici</button>
                     @endguest
                     @auth
-                    <button class="btn-light btn-lg" type="button" id="korisnici">Korisnici</button>
+                    <button class="btn-light btn-lg" type="button" id="korisnici" onclick="location.href='{{route('search_users')}}'">Korisnici</button>
                     @endauth
                     @guest
                     <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Tekstovi</button>
@@ -98,7 +98,7 @@
                             {{auth()->user()->username}}
                         </div>
                         <div class ="d-flex justify-content-between">
-                            <button type="button" class="btn p-2"><b>Profil</b></button>
+                            <button type="button" class="btn p-2" onclick="location.href='{{route('visit_user', ['username' => auth()->user()->username])}}'"><b>Profil</b></button>
                             <button type="button" class="btn p-2" onclick="location.href='{{route('logout')}}'"><b>Odjavi se</b></button>
                         </div>
                     </div>

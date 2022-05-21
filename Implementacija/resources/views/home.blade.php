@@ -11,7 +11,7 @@
     <div class="row bg-primary border border-3 border-dark m-4 p-3">
         <div class="col-sm-6"><b>Sesija brzog kucanja - nasumični tekst koji treba iskucati što je brže moguće</b></div>
         <div class="col-sm-3"></div>
-        <div class="col-sm-3 text-center"><button class="btn btn-light btn-outline-dark">Započni brzo kucanje</button></div>
+        <div class="col-sm-3 text-center"><button class="btn btn-light btn-outline-dark" onclick="location.href='{{route('solo_kucanje')}}'">Započni brzo kucanje</button></div>
     </div>
     <div class="row bg-primary border border-3 border-dark m-4 p-3">
         <div class="col-sm-6"><b>Dnevni izazov - rešite dnevni izazov koji se menja svakog dana, najbolja vremena dobijaju bedževe</b></div>
@@ -22,7 +22,7 @@
         @endguest
 
         @auth
-        <div class="col-sm-3 text-center"><button class="btn btn-light btn-outline-dark">Započni dnevni izazov</button></div>
+        <div class="col-sm-3 text-center"><button class="btn btn-light btn-outline-dark" onclick="location.href='{{route('daily_kucanje')}}'">Započni dnevni izazov</button></div>
         @endauth
     </div>
     <div class="row bg-primary border border-3 border-dark m-4 p-3">
