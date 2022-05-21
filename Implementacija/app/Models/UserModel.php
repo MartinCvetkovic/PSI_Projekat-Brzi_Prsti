@@ -51,6 +51,13 @@ class UserModel extends Authenticatable
         "brojPrijatelja"
     ];
 
+    /**
+     * Funkcija vraca sve korisnike po imenu
+     * 
+     * @param String $filter filter sa kojim se uporedjuje
+     * 
+     * @return $users niz korisnika
+     */
     public static function dohvatiKorisnike($filter)
     {
         $korisnici = UserModel::where("username","LIKE","%$filter%");
@@ -62,6 +69,13 @@ class UserModel extends Authenticatable
         return $korisnici;
     }
 
+    /**
+     * Funkcija vraca korisnika po imenu
+     * 
+     * @param String $username korisnicko ime
+     * 
+     * @return $user korisnik
+     */
     public static function dohvatiKorisnika($username)
     {     
         $ret = UserModel::where("username",$username)->first();
@@ -136,4 +150,20 @@ class UserModel extends Authenticatable
         $this->bronza++;
         $this->save();
     }
+
+    /**
+     * Proverava da li je korisnik blokiran
+     * 
+     * @param String $username korisnicko ime
+     * 
+     * @return boolean
+     */
+    public static function isBlocked($username){
+        $user = UserModel::dohvatiKorisnika($username);
+        if($user == null){
+            return true;
+        }
+        return ($user->aktivan == 0)? true: false;
+    }
+
 }

@@ -1,4 +1,4 @@
- {{-- Иван Савић 0389/2019 Страница за претрагу профила --}}
+ {{-- Иван Савић 0389/2019 Страница за претрагу профила, Martin Cvetkovic 19/0284 - izbacio prikaz admina u pretrazi --}}
 
 @extends("template")
 
@@ -14,9 +14,6 @@
         <div class="input-group rounded">
             <input id=validationFilter name="filter" type="search" value="" class="form-control rounded" placeholder="Pretrazi" aria-label="Pretrazi" aria-describedby="search-addon" />
         </div>
-
-    
-
 
         </form>
     </div>
@@ -34,11 +31,12 @@
             <div class="list-group  overflow-auto border-top border-bottom border-black" style="max-height:300px">
 
                 @foreach ($profili as $profil)
-                    
+                    @if ($profil->tip != 2)
                     <a href="{{route("visit_user",["username"=> $profil->username])}}" class="list-group-item list-group-item-action d-flex justify-content-between text-center ">
                         <p style="margin-bottom: 0em">  {{$profil->username}}</p>
                         <p style="margin-bottom: 0em">Broj nagrada:    {{$profil->zlato  +$profil->srebro+$profil->bronza}} </p>
                     </a>
+                    @endif
                 @endforeach
             </div>
             @else

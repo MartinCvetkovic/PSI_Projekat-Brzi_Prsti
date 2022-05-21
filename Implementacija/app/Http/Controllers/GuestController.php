@@ -79,6 +79,10 @@ class GuestController extends BaseController
         ], [
             'required' => 'Polje je obavezno'
         ]);
+
+        if(UserModel::isBlocked($request->username)){
+            return back()->with('status', 'Korisnik je blokiran');
+        }
         
         if(!auth()->attempt($request->only('username', 'password'))) {
             return back()->with('status', 'Pogresno korisnicko ime ili lozinka');

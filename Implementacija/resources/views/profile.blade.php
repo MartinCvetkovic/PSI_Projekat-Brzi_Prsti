@@ -1,5 +1,5 @@
 
-{{-- Иван Савић 2019-0389 Страница за преглед профила --}}
+{{-- Иван Савић 2019-0389 Страница за преглед профила, Martin Cvetkovic 19/0284 - napravio izmenu kod pogresnih dugmadi kod moderatora --}}
 
 @extends("template")
 
@@ -43,8 +43,8 @@
             @endif
             {{-- Ako sam ja admin modu dodeliti/uzeti moda --}}
             @if(auth()->user()->tip  == 2 && $profile->aktivan == 1)
-                @if ($profile->tip == 1 )
-                    <a  class="btn btn-warning " href="{{ route("dodeli_mod",["username"=>$profile->username]) }}">Mod</a>
+                @if ($profile->tip != 1)
+                    <a  class="btn btn-warning " href="{{ route("dodeli_mod",["username"=>$profile->username]) }}">Dodeli mod</a>
                 @else
                 <a  class="btn btn-danger " href="{{ route("dodeli_mod",["username"=>$profile->username]) }}">Skini mod</a>
                 @endif
