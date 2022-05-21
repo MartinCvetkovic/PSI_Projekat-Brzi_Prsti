@@ -56,7 +56,7 @@
                     @auth
                     <button class="btn-light btn-lg" type="button" id="tekstovi" onclick="location.href='{{route('texts')}}'">Tekstovi</button>
                     @endauth
-                    <button class="btn-light btn-lg" type="button" id="rangliste">Rang liste</button>
+                    <button class="btn-light btn-lg" type="button" id="rangliste" onclick="location.href='{{route('global_rank_list')}}'">Rang lista</button>
                 </div>
             </div>
             <div class="col-sm-3 bg-light d-flex align-items-center justify-content-start p-3 my-2" style="width:24%">
@@ -89,7 +89,7 @@
                         <button type="button" class="btn p-2" id="registracija" onclick="location.href='{{route('registerPage')}}'"><b>Registruj se</b></button>
                     </div>
                 </form>
-                
+
                 @endguest
 
                 @auth
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 @endauth
-                
+
             </div>
         </div>
         <!-- end of header -->

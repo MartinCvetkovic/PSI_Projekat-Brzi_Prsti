@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\TextsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Route;
@@ -57,3 +58,14 @@ Route::get('/dailyChange', [UserController::class, 'promeniDaily'])->name('prome
 
 
 
+Route::get('/texts/create', [TextsController::class, 'create'])->name('create_text')->middleware("auth");
+Route::post('/texts/store', [TextsController::class, 'store'])->name('store_text')->middleware("auth");
+Route::delete('/texts/destroy/{id}', [TextsController::class, 'destroy'])->name('destroy_text')->middleware("auth");
+Route::get('/texts/show/{id}', [TextsController::class, 'show'])->name('show_text');
+Route::get('/texts/edit/{id}', [TextsController::class, 'edit'])->name('edit_text')->middleware("auth");
+Route::post('/texts/update', [TextsController::class, 'update'])->name('update_text')->middleware("auth");
+
+Route::get('/texts/ranks/{id}', [TextsController::class, 'rankList'])->name('rank_list');
+Route::get('/texts/friendly_ranks/{id}', [TextsController::class, 'friendlyRankList'])->name('friendly_rank_list')->middleware("auth");
+
+Route::get('/rankList', [TextsController::class, 'globalRankList'])->name('global_rank_list');
