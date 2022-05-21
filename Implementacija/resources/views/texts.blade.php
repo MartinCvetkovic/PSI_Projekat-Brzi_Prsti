@@ -1,5 +1,6 @@
 <!-- Autor(i)
     Petar Tirnanic 19/0039
+    Martin Cvetkovic 10/0284 - dodao da ne mogu svi korisnici da menjaju tekst
 -->
 
 @extends("template")
@@ -78,10 +79,12 @@
                         <form action="{{ route('destroy_text',$text->id) }}" method="POST">
                             <a class="btn btn-sm btn-primary " href="{{ route('rank_list', $text->id) }}"><i class="fa fa-fw fa-eye"></i>Rang liste</a>
                             @auth
+                            @if(auth()->user()->tip != 0)
                             <a class="btn btn-sm btn-success" href="{{ route('edit_text', $text->id) }}"><i class="fa fa-fw fa-edit"></i>Izmeni</a>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>Obriši</button>
+                            @endif
                             @endauth
                         </form>
                     </td>

@@ -1,5 +1,6 @@
 <!-- Autor(i)
     Petar Tirnanic 19/0039
+    Martin Cvetkovic 10/0284 povezano rang dugme
 -->
 
 <!-- Sluzi za AJAX request, nije HTML stranica -->
@@ -22,7 +23,7 @@
     
     <table class="table"><tr>
         <td><a class="btn btn-primary" href="{{route('solo_kucanje_id', ['id' => $text->id])}}">Pokusaj Ponovo</a></td>
-        <td><a class="btn btn-primary">Rang Lista</a></td>
+        <td><a class="btn btn-primary" href="{{ route('rank_list', $text->id) }}">Rang Lista</a></td>
     </tr></table>
 </div>
 <div class="col-sm-4">

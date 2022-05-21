@@ -41,17 +41,16 @@ Route::get('/blokiraj/{username}', [UserController::class, 'blokirajKorisnika'])
 Route::get('/mod/{username}', [UserController::class, 'dodajModeratora'])->name('dodeli_mod');
 
 
-//Ove tri rute treba da idu na BaseController (kad bude napravljen)
 Route::get('/solo', [BaseController::class, 'soloKucanje'])->name('solo_kucanje');
 Route::get('/solo/{id}', [BaseController::class, 'soloKucanje'])->name('solo_kucanje_id');
 Route::post('/soloEnd', [BaseController::class, 'soloKucanjeKraj'])->name('solo_kucanje_kraj');
-//Redirect na hompage ako user rucno proba da ode na /soloEnd
+//Redirect na homepage ako user rucno proba da ode na /soloEnd
 Route::get('/soloEnd', function() {return redirect()->route('homePage');});
 Route::get('/soloResults', [BaseController::class, 'soloKucanjePrikazRezultata'])->name('solo_kucanje_rezultati');
 
 Route::get('/daily', [UserController::class, 'dailyKucanje'])->name('daily_kucanje');
 Route::post('/dailyEnd', [UserController::class, 'dailyKucanjeKraj'])->name('daily_kucanje_kraj');
-//Redirect na hompage ako user rucno proba da ode na /dailyEnd
+//Redirect na homepage ako user rucno proba da ode na /dailyEnd
 Route::get('/dailyEnd', function() {return redirect()->route('homePage');});
 Route::get('/dailyResults', [UserController::class, 'dailyKucanjePrikazRezultata'])->name('daily_kucanje_rezultati');
 Route::get('/dailyChange', [UserController::class, 'promeniDaily'])->name('promeni_daily');

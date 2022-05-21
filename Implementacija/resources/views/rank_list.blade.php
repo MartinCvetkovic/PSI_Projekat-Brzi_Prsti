@@ -1,6 +1,7 @@
 <!--
     Autor(i):
     Aleksa Savic 19/0039
+    Martin Cvetkovic 19/0284 - ispravio los prikaz rang liste
 -->
 
 @extends("template")
@@ -15,8 +16,8 @@
                     @foreach ($rankList as $listRow)
                         <tr>
                             <td>{{++$i}}.</td>
-                            <td rowspan="3" class="col-sm-5 align-middle">{{$listRow->userModel->username}}</td>
-                            <td rowspan="3" class="col-sm-3 align-middle text-center">
+                            <td class="col-sm-5 align-middle">{{$listRow->userModel->username}}</td>
+                            <td class="col-sm-3 align-middle text-center">
                                 Vreme: {{$listRow->time}}, WPM: {{$listRow->wpm}}
                             </td>
                         </tr>
