@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class LeaderboardModel extends Model
+class DailyLeaderboardModel extends Model
 {
     use HasFactory;
 
     /**
      * @var string $table Ime tabele modela u bazi podataka
      */
-    protected $table = 'ranglista';
+    protected $table = 'dnevnaranglista';
     /**
      * @var string $primaryKey Ime primarnog kljuca tabele modela
      */
@@ -46,45 +46,46 @@ class LeaderboardModel extends Model
      */
     public function getWpmAttribute()
     {
-        return round(TextModel::where("id", $this->idTekst)->first()->word_count / $this->vreme * 60, 2);
+        return round(TextModel::where('id', $this->idTekst)->first()->word_count / $this->vreme * 60, 2);
     }
 
 
     /**
-     * Dozvoljava pristup novom "atributu" rank (rangiranje reda za dati tekst)
+     * Dozvoljava pristup novom "atributu" rank (rangiranje reda)
      * Koristiti kao $this->rank
      *
      * @return Illuminate\Database\Eloquent\Casts\Attribute
      */
     public function getRankAttribute()
     {
-        return LeaderboardModel::where('idTekst', $this->idTekst)->where('vreme', '<=', $this->vreme - 0.000001)->distinct()->count("idKor") + 1;
+        return DailyLeaderboardModel::where('vreme', '<=', $this->vreme - 0.000001)->distinct()->count("idKor") + 1;
     }
 
 
-    /** Funkcija koja vraca novi LeaderboardModel
+    /** Funkcija koja vraca novi DailyLeaderboardModel
      * i cuva ga u bazi ako je korisnik ulogovan
+     * i ako se dnevni izazov nije promenio u medjuvremenu
      * 
-     * @param integer $idTekst Id teksta
+     * @param integer $idTekst id Teksta koji je kucan
      * @param double $vreme Vreme za koje je otkucan tekst
      * 
-     * @return LeaderboardModel
+     * @return DailyLeaderboardModel
      * */
     public static function create($idTekst, $vreme) {
-        $entry = new LeaderboardModel();
+        $entry = new DailyLeaderboardModel();
         $entry->idKor = Auth::check()? auth()->user()->id : 0;
         $entry->idTekst = $idTekst;
         $entry->vreme = $vreme;
 
-        if (Auth::check()) $entry->save();
+        if (Auth::check() && $idTekst == DailyChallengeModel::getDaily()->idTekst) $entry->save();
         return $entry;
     }
 
 
-    /** Funkcija koja vraca najbolje pokusaje svih korisnika za svaki tekst
-     *  Koristiti kao LeaderboardModel::asLeaderboard() ili dodati na vec postojeci query ...->asLeaderboard()->...
+    /** Funkcija koja vraca najbolje pokusaje svih korisnika
+     *  Koristiti kao DailyLeaderboardModel::asLeaderboard() ili dodati na vec postojeci query ...->asLeaderboard()->...
      *  (!!) Vraceni redovi vise nemaju id polje (primarni kljuc)
-     *  Dodatno pozvati get() za niz LeaderboardModel-a (bez id) ili dalje nizati ->where()...
+     *  Dodatno pozvati get() za niz DailyLeaderboard modela (bez id) ili dalje nizati ->where()...
      * 
      * @param Illuminate\Database\Eloquent\Builder $query
      * 
@@ -95,20 +96,47 @@ class LeaderboardModel extends Model
     }
 
 
-    /** Funkcija koja vraca najbolji pokusaj datog korisnika na datom tekstu
+    /** Funkcija koja vraca najbolji pokusaj datog korisnika na dnevnom izazovu
      * 
-     * @param integer $idTekst Id teksta
      * @param integer $idKor Id korisnika, ako se ne navede podrazumeva se trenutno ulogovani korisnik
      * 
-     * @return LeaderboardModel
+     * @return DailyLeaderboardModel
      * */
-    public static function bestForUser($idTekst, $idKor = 0) {
+    public static function bestForUser($idKor = 0) {
         if ($idKor == 0) {
             if (Auth::check())
                 $idKor = auth()->user()->id;
                 else return null;
         }
 
-        return LeaderboardModel::where('idTekst', $idTekst)->where('idKor', $idKor)->orderBy('vreme', 'asc')->first();
+        return DailyLeaderboardModel::where('idKor', $idKor)->orderBy('vreme', 'asc')->first();
+    }
+
+
+    /** Funkcija koja vraca naziv nagrade koju korisnik moze da dobije
+     * na osnovu ovog pokusaja
+     *
+     * @return string Jedno od {"gold", "silver", "bronze", "none"}
+     * */
+    public function reward() {
+        $place = $this->rank;
+        if ($place == 1) return "gold";
+        else if ($place <= 3) return "silver";
+        else if ($place <= 10) return "bronze";
+        
+        return "none";
+    }
+
+    /** Funkcija koja premesta $this red u tabelu ranglista
+     * 
+     * */
+    public function moveToLeaderboard () {
+        $entry = new LeaderboardModel();
+        $entry->vreme = $this->vreme;
+        $entry->idTekst = $this->idTekst;
+        $entry->idKor = $this->idKor;
+
+        $entry->save();
+        $this->delete();
     }
 }
