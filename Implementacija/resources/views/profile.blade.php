@@ -42,7 +42,7 @@
                 @endif
             @endif
             {{-- Ako sam ja admin modu dodeliti/uzeti moda --}}
-            @if(auth()->user()->tip  == 2 && $profile->aktivan == 1)
+            @if(auth()->user()->tip  == 2 && $profile->aktivan == 1 && $profile->tip != 2)
                 @if ($profile->tip != 1)
                     <a  class="btn btn-warning " href="{{ route("dodeli_mod",["username"=>$profile->username]) }}">Dodeli mod</a>
                 @else
