@@ -6,7 +6,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -106,4 +105,35 @@ class UserModel extends Authenticatable
         return $this->password;
     }
 
+     /**
+     * Funkcija uvecava broj zlata koje korisnik ima za 1
+     * i update-uje to u bazi podataka
+     * 
+     */
+    public function addGold() {
+        $this->zlato++;
+        $this->save();
+    }
+
+
+     /**
+     * Funkcija uvecava broj zlata koje korisnik ima za 1
+     * i update-uje to u bazi podataka
+     * 
+     */
+    public function addSilver() {
+        $this->srebro++;
+        $this->save();
+    }
+
+
+     /**
+     * Funkcija uvecava broj zlata koje korisnik ima za 1
+     * i update-uje to u bazi podataka
+     * 
+     */
+    public function addBronze() {
+        $this->bronza++;
+        $this->save();
+    }
 }

@@ -72,7 +72,7 @@
                 <tr>
                     <td rowspan="3" class="col-sm-5 align-middle">{{$text->sadrzaj}}</td>
                     <td rowspan="3" class="col-sm-3 align-middle text-center">
-                        <a class="btn btn-primary" href="{{route('solo_kucanje', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a>
+                        <a class="btn btn-primary" href="{{route('solo_kucanje_id', ['id' => $text->id])}}">Započni Solo Brzo Kucanje</a>
                         <hr>
 
                         <form action="{{ route('destroy_text',$text->id) }}" method="POST">

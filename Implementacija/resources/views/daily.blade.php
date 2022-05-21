@@ -15,11 +15,11 @@
             <table class="table">
                 <tr>
                     <td class="text-start">Kategorija: </td>
-                    <td class="text-end">{{$text->category()->naziv}}</td>
+                    <td class="text-end">{{$daily->nazivKategorije}}</td>
                 </tr>
                 <tr>
                     <td class="text-start">Tezina: </td>
-                    <td class="text-end">{{$text->tezina}}/10</td>
+                    <td class="text-end">{{$daily->tezina}}/10</td>
                 </tr>
             </table>
         </div>
@@ -28,9 +28,9 @@
                 <tr>
                     <td>Greske: </td>
                     <td><span id="mistakes">0</span></td>
-                    <td rowspan="2"class="align-middle">Solo Brzo Kucanje</td>
+                    <td rowspan="2"class="align-middle">Dnevni Izazov</td>
                     <td>Prosecno vreme: </td>
-                    <td>{{$text->average_time}} s</td>
+                    <td>{{$daily->average_time}} s</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -43,16 +43,16 @@
     </div>
     <div class="row" id="mainRow">
         <div class="col-sm-12">
-            <p id="textContent"><span class="notTypedText">{{$text->sadrzaj}}</span></p>
+            <p id="textContent"><span class="notTypedText">{{$daily->sadrzaj}}</span></p>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <form>
                 @csrf
-                <input type="hidden" name="_text" value="{{$text->sadrzaj}}">
-                <input type="hidden" name="_idTekst" value="{{$text->id}}">
-                <input type="hidden" name="_endRoute" value="{{route('solo_kucanje_kraj')}}">
+                <input type="hidden" name="_text" value="{{$daily->sadrzaj}}">
+                <input type="hidden" name="_idTekst" value="{{$daily->idTekst}}">
+                <input type="hidden" name="_endRoute" value="{{route('daily_kucanje_kraj')}}">
                 <input type="text" class="form-control" id="userInput">
             </form>
         </div>
