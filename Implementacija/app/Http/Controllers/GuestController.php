@@ -81,14 +81,13 @@ class GuestController extends BaseController
             'required' => 'Polje je obavezno'
         ]);
 
-        $pass = password_hash($request->password, PASSWORD_BCRYPT);
         $user = UserModel::dohvatiKorisnika($request->username);
 
         if($user == null){
             return back()->with('status', 'Nepostojeće korisničko ime');
         }
 
-        if(!password_verify($request->password, $pass)){
+        if(!password_verify($request->password, $user->password)){
             return back()->with('status', 'Pogrešna šifra');
         }
         
