@@ -4,6 +4,9 @@
 */
 
 $(document).ready(function() {
+    //Focus na textbox za kucanje kad se ucita stranica
+    $("#userInput").focus();
+    scrollTo(0, 0);
 
     //Tekst teksta koji se prekucava
     let text = $("input[name='_text']").val();

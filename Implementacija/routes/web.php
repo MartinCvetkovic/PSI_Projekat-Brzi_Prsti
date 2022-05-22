@@ -31,6 +31,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/texts', [UserController::class, 'showTexts'])->name('texts');
 Route::get('/textsearch', [UserController::class, 'searchTexts'])->name('search_texts');
+Route::get('/recommendTexts', [UserController::class, 'recommendTexts'])->name('recommend_texts');
 
 
 Route::get('/searchusers', [UserController::class, 'searchUsers'])->name('search_users');

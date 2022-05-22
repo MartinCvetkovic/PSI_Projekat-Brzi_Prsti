@@ -166,4 +166,67 @@ class UserModel extends Authenticatable
         return ($user->aktivan == 0)? true: false;
     }
 
+
+    /**
+     * Funkcija koja vraca preporucenu tezinu tekstova za korisnika
+     * na osnovu njegove prosecne brzine kucanja
+     * 
+     * @return integer
+     * Vraca jedno od {0, 1, 2, 3}
+     * 0 - ako korisnik nije kucao nijedan tekst,
+     * 1 - prosecna brzina ispod 30,
+     * 2 - prosecna brzina 30-70,
+     * 3 - prosecna brzina iznad 70
+     */
+    function getRecommendedDifficulty() {
+        $avgsPerText = LeaderboardModel::where('idKor', $this->id)->groupBy('idTekst')->selectRaw('idTekst, avg(vreme) as vreme')->get();
+
+        $count = 0;
+        $averageWpm = 0;
+
+        foreach ($avgsPerText as $row) {
+            $averageWpm += $row->wpm;
+            $count++;
+        }
+
+        if ($count == 0) return 0;
+        $averageWpm /= $count;
+
+        if ($averageWpm < 30) return 1;
+        else if ($averageWpm <= 70) return 2;
+        else return 3;
+    }
+
+
+    /**
+     * Funkcija koja vraca preporucenu duzinu tekstova za korisnika
+     * na osnovu duzine tekstova koje je ranije kucao
+     * 
+     * @return integer
+     * Vraca jedno od {0, 1, 2, 3}
+     * 0 - ako je korisnik jednako kucao sve duzine tekstova,
+     * 1 - ako je kucao najvise kratkih tekstova,
+     * 2 - ako je kucao najvise srednjih tekstova,
+     * 3 - ako je kucao najvise dugih tekstova
+     */
+    function getRecommendedLength() {
+        $short = 0;
+        $medium = 0;
+        $long = 0;
+
+        foreach (LeaderboardModel::where('idKor', $this->id)->distinct()->get(['idTekst']) as $row) {
+            $length = $row->text()->duzinaCategory();
+
+            switch($length) {
+                case 1: $short++; break;
+                case 2: $medium++; break;
+                case 3: $long++; break;
+            }
+        }
+        
+        if ($short > ($medium + $long)) return 1;
+        if ($medium > ($short + $long)) return 2;
+        if ($long > ($short + $medium)) return 3;
+        return 0;
+    }
 }

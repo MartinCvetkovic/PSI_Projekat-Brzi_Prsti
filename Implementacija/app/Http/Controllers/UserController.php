@@ -29,6 +29,18 @@ class UserController extends BaseController
         $this->middleware('auth');
     }
 
+    /** 
+     *  Isto sto i auth()->user()
+     *  Funkcija koja vraca trenutno ulogovanog korisnika
+     *  Zvati ovo umesto auth()->user() ako se dalje zovu metode UserModel-a (npr auth()->user()->save() postaje $this->user()->save())
+     *  U suprotnom ce IDE (PHP Intelephense extension) da podvlaci kao gresku (iako kod radi ispravno)
+     *
+     * @return \App\Models\UserModel|\Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    function user() {
+        return auth()->user();
+    }
+
     /**
      * Funkcija za odjavljivanje
      * 
@@ -120,7 +132,7 @@ class UserController extends BaseController
         // uvaci u tabelu "jePrijatelj
         $korisnik = UserModel::dohvatiKorisnika($username);
 
-        $currentUser = auth()->user();
+        $currentUser = $this->user();   //Isto sto i auth()->user()
         $mojPrijatelj = DB::table("jePrijatelj")
                            ->where("idKor1",$currentUser->id)
                            ->where("idKor2", $korisnik->id)
@@ -275,5 +287,24 @@ class UserController extends BaseController
             abort(403);
 
         return redirect()->route('homePage');
+    }
+
+
+    /** Funkcija koja korisniku prikazuje preporucene tekstove
+     * 
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
+    public function recommendTexts() {
+        $korisnik = $this->user();
+
+        $tezina = $korisnik->getRecommendedDifficulty();
+        $duzina = $korisnik->getRecommendedLength();
+
+        return redirect()->route('search_texts', [
+            'kategorija' => 0,
+            'tezina' => $tezina,
+            'duzina' => $duzina,
+            'page' => 1
+        ]);
     }
 }

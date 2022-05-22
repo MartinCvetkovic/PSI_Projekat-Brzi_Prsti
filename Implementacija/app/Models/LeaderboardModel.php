@@ -58,7 +58,7 @@ class LeaderboardModel extends Model
      */
     public function getRankAttribute()
     {
-        return LeaderboardModel::where('idTekst', $this->idTekst)->where('vreme', '<=', $this->vreme - 0.000001)->distinct()->count("idKor") + 1;
+        return LeaderboardModel::where('idTekst', $this->idTekst)->where('vreme', '<=', $this->vreme - 0.01)->distinct()->count("idKor") + 1;
     }
 
 
@@ -110,5 +110,14 @@ class LeaderboardModel extends Model
         }
 
         return LeaderboardModel::where('idTekst', $idTekst)->where('idKor', $idKor)->orderBy('vreme', 'asc')->first();
+    }
+
+    
+    /** Funkcija koja vraca TextModel pokusaja
+     * 
+     * @return TextModel
+     * */
+    public function text() {
+        return TextModel::where('id', $this->idTekst)->first();
     }
 }
