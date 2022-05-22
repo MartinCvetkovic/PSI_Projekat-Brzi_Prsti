@@ -100,8 +100,8 @@ $(document).ready(function() {
 
     //Funkcija koja oznacava naredno slovo neispravno prekucano
     function nextMistake() {
+        if (mistakePosition == position) addMistake();
         if (++mistakePosition > text.length) mistakePosition = text.length;
-        if (mistakePosition == position + 1) addMistake();
     }
 
     //Funkcija koja boji tekst u zavisnosti od tacnosti prekucavanja

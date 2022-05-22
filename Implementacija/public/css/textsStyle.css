@@ -1,0 +1,64 @@
+/* Vracanje Info button-a na Bootstrap 4 boje */
+.btn-info {
+    color: white;
+    background-color: #17A2B8;
+    border-color: #C5E8ED;
+}
+.btn-info:hover {
+    color: white;
+    background-color: #138496;
+    border-color: #C3DEE2;
+}
+
+div.bg-primary {
+    background-color: skyblue !important;
+}
+
+.border-row-divide>tbody>tr:nth-child(3n + 4) {
+    border-top-width: 6px !important;
+    border-top-color: darkgray;
+}
+
+.border-row-divide>tbody {
+    border-width: 4px !important;
+    border-color: lightgray;
+}
+
+a.btn-result {
+    color: white;
+    background-color: lightslategray;
+    border-color: slategray;
+    width: 100%;
+}
+a.btn-result:hover {
+    color: white;
+    background-color: rgb(169, 177, 185);
+    border-color: rgb(151, 162, 173);
+}
+
+.border-row-divide>tbody>tr:nth-child(6n + 1)>td:nth-child(2) {
+    background-color: #cacaca !important;
+}
+
+.border-row-divide>tbody>tr:nth-child(6n + 4)>td:nth-child(2) {
+    background-color: #d2d2d2 !important;
+}
+
+.search-bar {
+    border-color: lightgray !important;
+    border-width: 4px !important;
+    border-style: solid;
+
+    background-color: #F2F2F2;
+}
+
+li.page-item>.page-link {
+    background-color: #ffffff !important;
+    border-color: #DEE2E6 !important;
+    color: #212529;
+}
+
+li.page-item.active>span.page-link {
+    background-color: #212529 !important;
+    border-color: #212529 !important;
+}

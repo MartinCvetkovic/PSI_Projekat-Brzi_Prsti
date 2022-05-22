@@ -11,7 +11,7 @@
                 <p>Cestitamo, vasa brzina kucanja je<br>{{$speed}} Reci po Minutu</p>
                 @auth
                     <p>Vas najbolji pokusaj je<br>{{$best_speed}} Reci po Minutu @if ($speed == $best_speed)
-                        (Novi licni Rekord!)
+                        <br>(Novi licni Rekord!)
                     @endif</p>
                     <p>Vasa pozicija na rang listi je #{{$best_position}}</p>
                 @endauth
@@ -47,7 +47,7 @@
     
     
 </div>
-<div class="col-sm border border-light rounded ml-6">
+<div class="col-sm border border-light rounded ml-6 p-3">
     <p></p>
 </div>
     
