@@ -27,7 +27,7 @@
             <tr>
                 <form method="GET" action="{{route('search_texts')}}">
                     <td class="col-sm-1 align-middle text-center">
-                        <a type="button" id="starButton" class="btn btn-warning w-100" title="Preporuci mi tekstove">⭐</a>
+                        <a type="button" href="{{route('recommend_texts')}}" id="starButton" class="btn btn-warning w-100" title="Preporuci mi tekstove">⭐</a>
                     </td>
 
                     <!-- Polje za unos kategorije -->

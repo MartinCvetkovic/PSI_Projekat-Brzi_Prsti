@@ -115,26 +115,48 @@ class TextModel extends Model
         //Filtriranje po duzini teksta
         //Kako word_count ne postoji u bazi, samo u modelu, ovde se nad rezultatom Query-a vrsi filtriranje
         if ($duzina) {
-            switch($duzina){
-                case 1: $ret = $ret->get()->filter(function($text) {
-                    return $text->word_count <= 20;
-                });
-                    break;
-                case 2: $ret = $ret->get()->filter(function($text) {
-                    return $text->word_count > 20 && $text->word_count <= 50;
-                });
-                    break;
-                case 3: $ret = $ret->get()->filter(function($text) {
-                    return $text->word_count > 50;
-                });
-                    break;
-            }
+            $ret = $ret->get()->filter(function($text) use($duzina) {
+                return $text->duzinaCategory() == $duzina;
+            });
 
             //Filter se moze zvati samo nad Collection, a paginate ne moze nad Collection, tako da se ovde rucno pravi Paginator
             return new LengthAwarePaginator($ret->forPage($page, 5), $ret->count(), 5, $page, ['path' => route('search_texts')]);
         }
 
         return $ret->paginate(5);
+    }
+
+
+    /**
+    * Funkcija koja vraca kategoriju duzine teksta
+    *
+    * @return integer
+    * Jedno od {1, 2, 3}
+    * 1 - Kratak tekst (<20 reci)
+    * 2 - Srednji tekst (21 - 50 reci)
+    * 3 - Dug tekst (>50 reci)
+    */
+    function duzinaCategory() {
+        $words = $this->word_count;
+        if ($words <= 20) return 1;
+        elseif ($words <= 50) return 2;
+        else return 3;
+    }
+
+
+    /**
+    * Funkcija koja vraca kategoriju tezine teksta
+    *
+    * @return integer
+    * Jedno od {1, 2, 3}
+    * 1 - Lak tekst (tezina 0-4)
+    * 2 - Srednji tekst (tezina 4-7)
+    * 3 - Tezak tekst (tezina 7-10)
+    */
+    function tezinaCategory() {
+        if ($this->tezina <= 4) return 1;
+        else if ($this->tezina <= 7) return 2;
+        else return 3;
     }
 
     
@@ -158,7 +180,7 @@ class TextModel extends Model
 
     /**
     * Funkcija koja vraca sadrzaj teksta bez novih redova, tabulacije,
-    * duplih razmaka, i belina na pocetku i kraju
+    * duplih razmaka, i bez belina na pocetku i kraju
     * 
     * @return string
     *
