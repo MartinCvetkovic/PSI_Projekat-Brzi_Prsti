@@ -148,6 +148,13 @@ class TextsController extends Controller
             $rankList[] = $newRankListRow;
         }
 
+        // Sortiranje po vremenu i WPM
+        usort($rankList, function($a, $b) {
+            $time_diff = $a->time - $b->time;
+            if ($time_diff) return $time_diff;
+            return $a->wpm - $b->wpm;
+        });
+
         $i = 0;
 
         return view('rank_list', compact('rankList', 'i'));
@@ -260,7 +267,6 @@ class TextsController extends Controller
             // Dodaju se vreme i wpm
             $userDict[$currentUser->id]["time"][] = $result->vreme;
 
-            // TODO: Proveriti format vremena
             $userDict[$currentUser->id]["wpm"][] = $result->vreme / 60.0 * $text->word_count;
         }
 
