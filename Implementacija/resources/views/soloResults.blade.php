@@ -8,21 +8,21 @@
     <table class="table table-borderless mb-0">
         <tr>
             <td>
-                <p>Cestitamo, vasa brzina kucanja je<br>{{$speed}} Reci po Minutu</p>
+                <p>Čestitamo, vaša brzina kucanja je<br>{{$speed}} Reči po Minutu</p>
                 @auth
-                    <p>Vas najbolji pokusaj je<br>{{$best_speed}} Reci po Minutu @if ($speed == $best_speed)
-                        <br>(Novi licni Rekord!)
+                    <p>Vaš najbolji pokušaj je<br>{{$best_speed}} Reči po Minutu @if ($speed == $best_speed)
+                        <br>(Novi lični Rekord!)
                     @endif</p>
-                    <p>Vasa pozicija na rang listi je #{{$best_position}}</p>
+                    <p>Vaša pozicija na rang listi je #{{$best_position}}</p>
                 @endauth
                  @guest
-                    <p>Vasa pozicija na rang listi bi bila #{{$best_position}}</p>
-                    <p>Rezultati kucanja se cuvaju samo registrovanim korisnicima</p>
+                    <p>Vaša pozicija na rang listi bi bila #{{$best_position}}</p>
+                    <p>Rezultati kucanja se čuvaju samo registrovanim korisnicima</p>
                 @endguest
             </td>
             <td rowspan="2" class="divider"></td>
             <td class="text-center align-middle">
-                <a class="btn btn-result title-text" href="{{route('solo_kucanje_id', ['id' => $text->id])}}">Pokusaj Ponovo ↻</a>
+                <a class="btn btn-result title-text" href="{{route('solo_kucanje_id', ['id' => $text->id])}}">Pokušaj Ponovo ↻</a>
             </td>
             
         </tr>
@@ -37,7 +37,7 @@
             <td>
                 <p class="text-end">{{$text->firstWords(10)}}</p>
                 <p class="text-end">Kategorija: {{$text->category()->naziv}}</p>
-                <p class="text-end">Tezina: {{$text->tezina}} / 10</p>
+                <p class="text-end">Težina: {{$text->tezina}} / 10</p>
             </td>
         </tr>
         
