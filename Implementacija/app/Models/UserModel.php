@@ -74,7 +74,7 @@ class UserModel extends Authenticatable
      * 
      * @param String $username korisnicko ime
      * 
-     * @return $user korisnik
+     * @return Authenticatable $user korisnik
      */
     public static function dohvatiKorisnika($username)
     {     

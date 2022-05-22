@@ -59,7 +59,8 @@ class GuestController extends BaseController
                 'errorUsername' => "Korisnicko ime vec postoji"
             ]);
         };
-        UserModel::addUser($request->username, $request->password, 0, 0, 0, 0, 1, 0);
+        $pass = password_hash($request->password, PASSWORD_BCRYPT);
+        UserModel::addUser($request->username, $pass, 0, 0, 0, 0, 1, 0);
         return redirect()->route("homePage");
     }
 
@@ -80,13 +81,22 @@ class GuestController extends BaseController
             'required' => 'Polje je obavezno'
         ]);
 
+        $pass = password_hash($request->password, PASSWORD_BCRYPT);
+        $user = UserModel::dohvatiKorisnika($request->username);
+
+        if($user == null){
+            return back()->with('status', 'Nepostojeće korisničko ime');
+        }
+
+        if(!password_verify($request->password, $pass)){
+            return back()->with('status', 'Pogrešna šifra');
+        }
+        
         if(UserModel::isBlocked($request->username)){
             return back()->with('status', 'Korisnik je blokiran');
         }
-        
-        if(!auth()->attempt($request->only('username', 'password'))) {
-            return back()->with('status', 'Pogresno korisnicko ime ili lozinka');
-        }
+
+        auth()->login($user);
 
         return redirect()->route("homePage");
     }
