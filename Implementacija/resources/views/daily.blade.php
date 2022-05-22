@@ -19,7 +19,7 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr>
-                    <td class="align-middle text-start rounded-pill-start inset-pill">Tezina: </td>
+                    <td class="align-middle text-start rounded-pill-start inset-pill">Težina: </td>
                     <td class="align-middle text-end rounded-pill-end inset-pill">{{$daily->tezina}} / 10</td>
                 </tr>
             </table>
@@ -27,10 +27,10 @@
         <div class="col-sm-9 text-center d-flex align-items-center border border-light rounded">
             <table class="table table-borderless mb-2 mt-2 pl-3 pr-3 header-text">
                 <tr>
-                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="mistakes">Greske: </td>
+                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="mistakes">Greške: </td>
                     <td class="col-sm align-middle text-end rounded-pill-end inset-pill" name="mistakes"><span id="mistakes">0</span></td>
                     <td rowspan="3"class="col-sm-7 align-middle title-text">Dnevni Izazov</td>
-                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill">Prosecno vreme: </td>
+                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill">Prosečno vreme: </td>
                     <td class="col-sm align-middle text-end rounded-pill-end inset-pill">{{$daily->average_time}} s</td>
                 </tr>
                 <tr>
@@ -42,7 +42,7 @@
                 <tr>
                     <td class="col-sm"></td>
                     <td class="col-sm"></td>
-                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="time">Vase vreme: </td>
+                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="time">Vaše vreme: </td>
                     <td class="col-sm align-middle text-end rounded-pill-end inset-pill" name="time"><span id="time">0.0 s</span></td>
                 </tr>
             </table>
