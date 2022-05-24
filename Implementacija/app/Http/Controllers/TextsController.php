@@ -267,7 +267,7 @@ class TextsController extends Controller
             // Dodaju se vreme i wpm
             $userDict[$currentUser->id]["time"][] = $result->vreme;
 
-            $userDict[$currentUser->id]["wpm"][] = $result->vreme / 60.0 * $text->word_count;
+            $userDict[$currentUser->id]["wpm"][] = $text->word_count / ($result->vreme / 60.0);
         }
 
         // Nalazenje proseka od time i wpm za svakog korisnika
