@@ -120,4 +120,13 @@ class LeaderboardModel extends Model
     public function text() {
         return TextModel::where('id', $this->idTekst)->first();
     }
+
+
+    /** Funkcija koja vraca UserModel pokusaja
+     * 
+     * @return UserModel
+     * */
+    public function user() {
+        return UserModel::where('id', $this->idKor)->first();
+    }
 }

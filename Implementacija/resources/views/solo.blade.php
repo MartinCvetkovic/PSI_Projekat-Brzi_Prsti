@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="row pb-3">
-        <div class="col-sm d-flex align-items-center border border-light rounded mr-6">
+        <div class="col-sm d-flex align-items-center border border-light rounded mr-6 pt-2 pb-2">
             <table class="table table-borderless mb-0 header-text">
                 <tr>
                     <td class="align-middle text-start rounded-pill-start inset-pill ">Kategorija: </td>
@@ -24,7 +24,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-sm-9 text-center d-flex align-items-center border border-light rounded">
+        <div class="col-sm-9 text-center d-flex align-items-center border border-light rounded pt-2 pb-2">
             <table class="table table-borderless mb-2 mt-2 pl-3 pr-3 header-text">
                 <tr>
                     <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="mistakes">Greške: </td>
@@ -48,7 +48,7 @@
             </table>
         </div>
     </div>
-    <div class="row pb-3" id="mainRow">
+    <div class="row pb-3 d-flex align-center" id="mainRow">
         <div class="col-sm-12 border border-light rounded p-3">
             <p id="textContent" class="mb-0 typing-text"><span class="notTypedText">{{$text->cleanText()}}</span></p>
         </div>
@@ -60,6 +60,7 @@
                 <input type="hidden" name="_text" value="{{$text->cleanText()}}">
                 <input type="hidden" name="_idTekst" value="{{$text->id}}">
                 <input type="hidden" name="_endRoute" value="{{route('solo_kucanje_kraj')}}">
+                <input type="hidden" name="_mode" value="solo">
                 <input type="text" class="form-control" id="userInput">
             </form>
         </div>

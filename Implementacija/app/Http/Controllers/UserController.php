@@ -260,6 +260,7 @@ class UserController extends BaseController
      * 
      * */
     public function dailyKucanjePrikazRezultata(Request $request) {
+        $leaderboard = DailyLeaderboardModel::asLeaderboard()->orderBy('vreme', 'asc')->get();
 
         return view('dailyResults', [
             'text' => TextModel::where('id', $request->idTekst)->first(),
@@ -267,7 +268,8 @@ class UserController extends BaseController
             'best_speed' => $request->best_speed,
             'best_position' => $request->best_position,
             'saved' => $request->saved,
-            'reward' => $request->reward
+            'reward' => $request->reward,
+            'leaderboard' => $leaderboard
         ]);
     }
 

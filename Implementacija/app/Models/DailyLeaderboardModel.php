@@ -139,4 +139,12 @@ class DailyLeaderboardModel extends Model
         $entry->save();
         $this->delete();
     }
+
+    /** Funkcija koja vraca UserModel pokusaja
+     * 
+     * @return UserModel
+     * */
+    public function user() {
+        return UserModel::where('id', $this->idKor)->first();
+    }
 }

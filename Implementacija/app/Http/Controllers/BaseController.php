@@ -88,12 +88,14 @@ class BaseController extends Controller
      * 
      * */
     public function soloKucanjePrikazRezultata(Request $request) {
+        $leaderboard = LeaderboardModel::where('idTekst', $request->id)->asLeaderboard()->orderBy('vreme', 'asc')->get();
 
         return view('soloResults', [
             'text' => TextModel::where('id', $request->id)->firstOrFail(),
             'speed' => $request->speed,
             'best_speed' => $request->best_speed,
-            'best_position' => $request->best_position
+            'best_position' => $request->best_position,
+            'leaderboard' => $leaderboard
         ]);
     }
 }

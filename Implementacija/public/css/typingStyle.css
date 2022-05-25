@@ -9,7 +9,7 @@ span.notTypedText {
 */
 
 span.mistakeText {
-    background-color: red;
+    background-color: rgb(205, 50, 50);
 }
 
 .typing-text {
@@ -33,7 +33,7 @@ span.mistakeText {
 .border-light {
     background-color: lightgray;
     border-width: 6px !important;
-    border-color: lightslategray !important;
+    border-color: #bababa !important;
 }
 
 td.inset-pill {
@@ -73,24 +73,36 @@ td.inset-pill {
 
 hr {
     border-width: 10px  !important;
-    background-color: lightslategray;
-    border-color: lightslategray !important;
     border-radius: 50rem;
     border-style: solid;
 }
 
 .btn-result {
     color: white;
-    background-color: lightslategray;
-    border-color: slategray;
+    background-color: #bababa;
+    border-color: #a0a0a0;
+    border-width: 0px;
     width: 100%;
 }
 .btn-result:hover {
     color: white;
-    background-color: rgb(169, 177, 185);
-    border-color: rgb(151, 162, 173);
+    background-color: #a0a0a0;
+    border-color: #888888;
 }
 
 td.divider {
     width: 60px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 1px 3px #bababa;
+    border-color: #bababa;
+}
+
+#yourResult {
+    background-color: rgb(233, 233, 233);
+}
+
+.h-85 {
+    height: 85% !important;
 }

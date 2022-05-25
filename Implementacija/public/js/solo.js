@@ -14,6 +14,8 @@ $(document).ready(function() {
     let position = 0;
     //Pozicija zadnjeg slova koje je netacno prekucano, ako je jednako sa position, onda nema gresaka
     let mistakePosition = 0;
+    //Vrsta kucanja (solo ili daily)
+    let mode = $("input[name='_mode']").val();
 
     //Da li je korisnik zapoceo kucanje
     let finished = false;
@@ -56,6 +58,8 @@ $(document).ready(function() {
         if (finished) return;
         finished = true;
 
+        $("#textContent").html("<div class='spinner-border'></div>&nbsp&nbsp Ucitavanje rezultata");
+
         $.ajax({
             type: "POST",
             url: $("input[name='_endRoute']").val(),
@@ -66,6 +70,11 @@ $(document).ready(function() {
             }
         }).done(function(result) {
             $("#mainRow").html(result);
+            if (mode == "solo")
+                $("#mainRow").height("478px");
+            else
+                $("#mainRow").height("615px");
+            
             scrollTo(0, $(document).height());
         });
 
@@ -135,7 +144,7 @@ $(document).ready(function() {
         if (position == mistakePosition && text.charAt(position) == letter) nextCorrect();
         else nextMistake();
 
-        renderText();
+        if (!finished) renderText();
     }
 
     //Hvatanje "backspace" unosa od korisnika
