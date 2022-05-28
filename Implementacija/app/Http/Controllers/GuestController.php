@@ -49,8 +49,8 @@ class GuestController extends BaseController
             'passwordConfirm' => "required|same:password"
         ], [
             'required' => "Polje je obavezno",
-            'min' => "Polje mora imati :min karaktera",
-            'max' => "Polje mora imati :max karaktera",
+            'min' => "Polje mora imati bar :min karaktera",
+            'max' => "Polje mora imati manje od :max karaktera",
             'alpha_num' => "Polje mora sadrzati slova i brojeve",
             'same' => "Polje mora biti isto kao i lozinka",
         ]);

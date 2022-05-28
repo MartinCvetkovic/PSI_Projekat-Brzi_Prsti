@@ -12,4 +12,10 @@
     border-width:3px !important;
 }
 
+.bg-primary {
+    background-color: skyblue !important;
+}
 
+.reg-table-td{
+    width: 190px;
+}
