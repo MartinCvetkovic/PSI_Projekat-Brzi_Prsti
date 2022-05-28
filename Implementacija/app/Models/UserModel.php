@@ -11,8 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * Klasa koja omogucava rad sa korisnikom u bazi podataka
- * 
+ * Klasa koja omogućava rad sa korisnikom u bazi podataka
+ *
  * @version 1.0
  */
 class UserModel extends Authenticatable
@@ -52,39 +52,39 @@ class UserModel extends Authenticatable
     ];
 
     /**
-     * Funkcija vraca sve korisnike po imenu
-     * 
-     * @param String $filter filter sa kojim se uporedjuje
-     * 
+     * Funkcija vraća sve korisnike po imenu
+     *
+     * @param String $filter filter sa kojim se upoređuje
+     *
      * @return $users niz korisnika
      */
     public static function dohvatiKorisnike($filter)
     {
-        $korisnici = UserModel::where("username","LIKE","%$filter%");
-        if(auth()->user()->tip == 0){
-            $korisnici = $korisnici->where("aktivan",1);
+        $korisnici = UserModel::where("username", "LIKE", "%$filter%");
+        if (auth()->user()->tip == 0) {
+            $korisnici = $korisnici->where("aktivan", 1);
         }
         $korisnici = $korisnici->get();
-                        
+
         return $korisnici;
     }
 
     /**
-     * Funkcija vraca korisnika po imenu
-     * 
-     * @param String $username korisnicko ime
-     * 
+     * Funkcija vraća korisnika po imenu
+     *
+     * @param String $username Korisničko ime
+     *
      * @return Authenticatable $user korisnik
      */
     public static function dohvatiKorisnika($username)
-    {     
-        $ret = UserModel::where("username",$username)->first();
+    {
+        $ret = UserModel::where("username", $username)->first();
         return $ret;
     }
-    
+
     /**
      * Funkcija za dodavanje korisnika
-     * 
+     *
      * @param String $username
      * @param String $password
      * @param Integer $zlato
@@ -93,10 +93,11 @@ class UserModel extends Authenticatable
      * @param Integer $tip
      * @param Integer $aktivan
      * @param Integer $brojPrijatelja
-     * 
+     *
      * @return void
      */
-    public static function addUser($username, $password, $zlato, $srebro, $bronza, $tip, $aktivan, $brojPrijatelja){
+    public static function addUser($username, $password, $zlato, $srebro, $bronza, $tip, $aktivan, $brojPrijatelja)
+    {
         $user = new UserModel();
         $user->username = $username;
         $user->password = $password;
@@ -110,8 +111,8 @@ class UserModel extends Authenticatable
     }
 
     /**
-     * Vraca lozinku
-     * 
+     * Vraća lozinku
+     *
      * @return String $password
      */
     public function getAuthPassword()
@@ -119,66 +120,68 @@ class UserModel extends Authenticatable
         return $this->password;
     }
 
-     /**
-     * Funkcija uvecava broj zlata koje korisnik ima za 1
-     * i update-uje to u bazi podataka
-     * 
+    /**
+     * Funkcija uvećava broj zlata koje korisnik ima za 1
+     * i upisuje to u bazu podataka
+     *
      */
-    public function addGold() {
+    public function addGold()
+    {
         $this->zlato++;
         $this->save();
     }
 
-
-     /**
-     * Funkcija uvecava broj zlata koje korisnik ima za 1
-     * i update-uje to u bazi podataka
-     * 
+    /**
+     * Funkcija uvećava broj srebra koje korisnik ima za 1
+     * i ažurira to u bazi podataka
+     *
      */
-    public function addSilver() {
+    public function addSilver()
+    {
         $this->srebro++;
         $this->save();
     }
 
-
-     /**
-     * Funkcija uvecava broj zlata koje korisnik ima za 1
-     * i update-uje to u bazi podataka
-     * 
+    /**
+     * Funkcija uvecava broj bronzi koje korisnik ima za 1
+     * i ažurira to u bazi podataka
+     *
      */
-    public function addBronze() {
+    public function addBronze()
+    {
         $this->bronza++;
         $this->save();
     }
 
     /**
      * Proverava da li je korisnik blokiran
-     * 
+     *
      * @param String $username korisnicko ime
-     * 
+     *
      * @return boolean
      */
-    public static function isBlocked($username){
+    public static function isBlocked($username)
+    {
         $user = UserModel::dohvatiKorisnika($username);
-        if($user == null){
+        if ($user == null) {
             return true;
         }
-        return ($user->aktivan == 0)? true: false;
+        return ($user->aktivan == 0) ? true : false;
     }
 
-
     /**
-     * Funkcija koja vraca preporucenu tezinu tekstova za korisnika
-     * na osnovu njegove prosecne brzine kucanja
-     * 
+     * Funkcija koja vraća preporučenu težinu tekstova za korisnika
+     * na osnovu njegove prosečne brzine kucanja
+     *
      * @return integer
-     * Vraca jedno od {0, 1, 2, 3}
+     * Vraća jedno od {0, 1, 2, 3}
      * 0 - ako korisnik nije kucao nijedan tekst,
-     * 1 - prosecna brzina ispod 30,
-     * 2 - prosecna brzina 30-70,
-     * 3 - prosecna brzina iznad 70
+     * 1 - prosečna brzina ispod 30,
+     * 2 - prosečna brzina 30-70,
+     * 3 - prosečna brzina iznad 70
      */
-    function getRecommendedDifficulty() {
+    function getRecommendedDifficulty()
+    {
         $avgsPerText = LeaderboardModel::where('idKor', $this->id)->groupBy('idTekst')->selectRaw('idTekst, avg(vreme) as vreme')->get();
 
         $count = 0;
@@ -197,19 +200,19 @@ class UserModel extends Authenticatable
         else return 3;
     }
 
-
     /**
-     * Funkcija koja vraca preporucenu duzinu tekstova za korisnika
-     * na osnovu duzine tekstova koje je ranije kucao
-     * 
+     * Funkcija koja vraća preporučenu dužinu tekstova za korisnika
+     * na osnovu dužine tekstova koje je ranije kucao
+     *
      * @return integer
-     * Vraca jedno od {0, 1, 2, 3}
-     * 0 - ako je korisnik jednako kucao sve duzine tekstova,
-     * 1 - ako je kucao najvise kratkih tekstova,
-     * 2 - ako je kucao najvise srednjih tekstova,
-     * 3 - ako je kucao najvise dugih tekstova
+     * Vraća jedno od {0, 1, 2, 3}
+     * 0 - ako je korisnik jednako kucao sve dužine tekstova,
+     * 1 - ako je kucao najviše kratkih tekstova,
+     * 2 - ako je kucao najviše srednjih tekstova,
+     * 3 - ako je kucao najviše dugih tekstova
      */
-    function getRecommendedLength() {
+    function getRecommendedLength()
+    {
         $short = 0;
         $medium = 0;
         $long = 0;
@@ -217,13 +220,19 @@ class UserModel extends Authenticatable
         foreach (LeaderboardModel::where('idKor', $this->id)->distinct()->get(['idTekst']) as $row) {
             $length = $row->text()->duzinaCategory();
 
-            switch($length) {
-                case 1: $short++; break;
-                case 2: $medium++; break;
-                case 3: $long++; break;
+            switch ($length) {
+                case 1:
+                    $short++;
+                    break;
+                case 2:
+                    $medium++;
+                    break;
+                case 3:
+                    $long++;
+                    break;
             }
         }
-        
+
         if ($short > ($medium + $long)) return 1;
         if ($medium > ($short + $long)) return 2;
         if ($long > ($short + $medium)) return 3;

@@ -11,7 +11,7 @@
 
 @section('content')
 
-<!-- Script za uvecanje paginacije i ucitavanje tooltipa za zvezdicu -->
+<!-- Script za uvećanje paginacije i učitavanje tooltipa za zvezdicu -->
 <script>$(document).ready(function() {
         $("#pageContainer>nav>ul.pagination").addClass("pagination-lg");
     });
@@ -72,7 +72,7 @@
                         <a class="btn btn-success w-100" href="{{route("create_text")}}" role="button">Dodaj tekst &nbsp🞧</a>
                     </td>
                 @endif
-                
+
 
             </tr>
         </table>

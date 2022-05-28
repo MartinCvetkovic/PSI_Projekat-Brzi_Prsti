@@ -1,6 +1,6 @@
 <!--
     Autor(i):
-    Aleksa Savic 19/0039
+    Aleksa Savic 19/0595
     Martin Cvetkovic 19/0284 - ispravio los prikaz rang liste
 -->
 

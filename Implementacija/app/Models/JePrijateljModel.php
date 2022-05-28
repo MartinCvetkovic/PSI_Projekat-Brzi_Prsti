@@ -9,6 +9,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Klasa za model odnosa prijateljstva među korisnicima
+ *
+ * @version 1.0
+ */
 class JePrijateljModel extends Model
 {
     use HasFactory;
@@ -18,7 +23,7 @@ class JePrijateljModel extends Model
      */
     protected $table = 'jeprijatelj';
     /**
-     * @var string $primaryKey Ime primarnog kljuca tabele modela
+     * @var string $primaryKey Ime primarnog ključa tabele modela
      */
     protected $primaryKey = 'id';
 
@@ -28,7 +33,7 @@ class JePrijateljModel extends Model
     public $timestamps = false;
 
     /**
-     * @var array $fillable niz imena ostalih kljuceva tabele modela
+     * @var array $fillable Niz imena ostalih ključeva tabele modela
      */
     protected $fillable = [
         'idKor1',

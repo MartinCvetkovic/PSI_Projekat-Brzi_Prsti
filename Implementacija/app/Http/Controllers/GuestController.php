@@ -11,21 +11,22 @@ use Illuminate\Http\Request;
 
 /**
  * Klasa za upravljanje funkcionalnostima gosta
- * 
+ *
  * @version 1.0
  */
 class GuestController extends BaseController
 {
     /**
-     * Konstruktor sa podesavanjem middleware-a
+     * Konstruktor sa podešavanjem middleware-a
      */
-    function __construct() {
+    function __construct()
+    {
         $this->middleware('guest');
     }
 
     /**
      * Funkcija za prikaz strane za registraciju
-     * 
+     *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function registerPage()
@@ -35,13 +36,13 @@ class GuestController extends BaseController
 
     /**
      * Funkcija za registraciju novog korisnika
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function register(Request $request)
-    {   
+    {
         $this->validate($request, [
             'username' => "required|min:3|max:20",
             'password' => "required|min:8|max:15|alpha_num",
@@ -54,7 +55,7 @@ class GuestController extends BaseController
             'same' => "Polje mora biti isto kao i lozinka",
         ]);
 
-        if(UserModel::where("username", $request->username)->first() != null){
+        if (UserModel::where("username", $request->username)->first() != null) {
             return view("registerPage", [
                 'errorUsername' => "Korisnicko ime vec postoji"
             ]);
@@ -66,14 +67,13 @@ class GuestController extends BaseController
 
     /**
      * Funkcija za logovanje korisnika
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function login(Request $request)
     {
-
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required'
@@ -83,15 +83,15 @@ class GuestController extends BaseController
 
         $user = UserModel::dohvatiKorisnika($request->username);
 
-        if($user == null){
+        if ($user == null) {
             return back()->with('status', 'Nepostojeće korisničko ime');
         }
 
-        if(!password_verify($request->password, $user->password)){
+        if (!password_verify($request->password, $user->password)) {
             return back()->with('status', 'Pogrešna šifra');
         }
-        
-        if(UserModel::isBlocked($request->username)){
+
+        if (UserModel::isBlocked($request->username)) {
             return back()->with('status', 'Korisnik je blokiran');
         }
 
@@ -99,7 +99,4 @@ class GuestController extends BaseController
 
         return redirect()->route("homePage");
     }
-
-
-
 }

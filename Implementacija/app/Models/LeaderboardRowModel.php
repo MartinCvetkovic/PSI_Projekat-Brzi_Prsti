@@ -6,6 +6,11 @@
 
 namespace App\Models;
 
+/**
+ * Struktura za red rang liste
+ *
+ * @version 1.0
+ */
 class LeaderboardRowModel
 {
     public $userModel;

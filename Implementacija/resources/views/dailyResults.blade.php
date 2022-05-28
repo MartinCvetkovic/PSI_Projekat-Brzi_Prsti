@@ -10,12 +10,12 @@
                 <p>Čestitamo, vaša brzina kucanja je<br>{{$speed}} Reči po Minutu</p>
                 @auth
                     @if ($saved)
-                        <p>Vaš najbolji pokušaj je <br>{{$best_speed}} Reči po Minutu 
+                        <p>Vaš najbolji pokušaj je <br>{{$best_speed}} Reči po Minutu
                             @if ($speed == $best_speed) <br>(Novi lični Rekord!) @endif
                         <p>Vaša pozicija na rang listi<br>dnevnog izazova je #{{$best_position}}</p>
                     @else
                         <p>Nažalost, dnevni izazov se je promenio u međuvremenu</p>
-                        <p>Vas rezultat nije sacuvan</p>
+                        <p>Vaš rezultat nije sačuvan</p>
                     @endif
                 @endauth
                  @guest
@@ -27,7 +27,7 @@
             <td class="text-center align-middle">
                 <a class="btn btn-result title-text" href="{{route('daily_kucanje')}}">Pokušaj Ponovo ↻</a>
             </td>
-            
+
         </tr>
 
         <tr><td colspan="3"><hr></td></tr>
@@ -44,7 +44,7 @@
                                     <p class="card-text">
                                         Čestitamo, plasirali ste se u Top #1
                                         na dnevnom izazovu!
-                                        Ako zadržite ovu poziciju do kraja dana, osvojicete:
+                                        Ako zadržite ovu poziciju do kraja dana, osvojićete:
                                     </p>
                                     <img class="card-img-bottom" src="{{asset('images/gold.png')}}" alt="Gold Badge icon">
                                 </div>
@@ -57,7 +57,7 @@
                                 <p class="card-text">
                                     Čestitamo, plasirali ste se u Top #3
                                     na dnevnom izazovu!
-                                    Ako zadržite ovu poziciju do kraja dana, osvojicete:
+                                    Ako zadržite ovu poziciju do kraja dana, osvojićete:
                                 </p>
                                 <img class="card-img-bottom" src="{{asset('images/silver.png')}}" alt="Silver Badge icon">
                             </div>
@@ -70,7 +70,7 @@
                                 <p class="card-text">
                                     Čestitamo, plasirali ste se u Top #10
                                     na dnevnom izazovu!
-                                    Ako zadrzite ovu poziciju do kraja dana, osvojicete:
+                                    Ako zadržite ovu poziciju do kraja dana, osvojićete:
                                 </p>
                                 <img class="card-img-bottom" src="{{asset('images/bronze.png')}}" alt="Bronze Badge icon">
                             </div>
@@ -99,9 +99,9 @@
                 <p class="text-end">Težina: {{$text->tezina}} / 10</p>
             </td>
         </tr>
-        
 
-        
+
+
     </table>
 </div>
 

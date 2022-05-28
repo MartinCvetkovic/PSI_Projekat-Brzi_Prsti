@@ -12,7 +12,7 @@
             <p class="alert alert-danger" style="margin: 0px; padding:0px 10px 0px; width:fit-content;"> {{$message}} </p>
         @enderror
         <div class="input-group rounded">
-            <input id=validationFilter name="filter" type="search" value="" class="form-control rounded" placeholder="Pretrazi" aria-label="Pretrazi" aria-describedby="search-addon" />
+            <input id=validationFilter name="filter" type="search" value="" class="form-control rounded" placeholder="Pretraži" aria-label="Pretraži" aria-describedby="search-addon" />
         </div>
 
         </form>
@@ -23,9 +23,9 @@
 <div class="row  mx-4 p-4 d-flex justify-content-center flex-fill d-flex " >
 
      <div class="col-sm-10 ">
-        
+
         <div class="list-group">
-           
+
             @isset($profili)
             @if (!$profili->isEmpty())
             <div class="list-group  overflow-auto border-top border-bottom border-black" style="max-height:300px">
@@ -40,13 +40,13 @@
                 @endforeach
             </div>
             @else
-            <p class="alert alert-danger text-center">  Korisnik nije pronadjen </p>
+            <p class="alert alert-danger text-center">  Korisnik nije pronađen </p>
             @endif
-                
+
             @endisset
-           
+
         </div>
-    </div> 
+    </div>
 
 </div>
 
