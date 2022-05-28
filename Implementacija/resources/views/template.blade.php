@@ -37,7 +37,7 @@
                 <h1>Brzi Prsti</h1>
                 <br>
                 <div class="btn-group m-2">
-                    <button class="btn-light btn-lg" type="button" id="pocetna" onclick="location.href='{{route('homePage')}}'">Pocetna</button>
+                    <button class="btn-light btn-lg" type="button" id="pocetna" onclick="location.href='{{route('homePage')}}'">Početna</button>
                     @guest
                     <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Kucanje</button>
                     @endguest
