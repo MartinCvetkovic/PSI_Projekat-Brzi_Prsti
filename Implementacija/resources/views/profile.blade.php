@@ -74,9 +74,9 @@
 
     {{-- Угоди боје ових медаља, или стави слику медаље --}}
     <div class="col-sm-4  justify-content-center justify-content-middle ">
-        <div class=" text-center" style="height:30px; width:300px; background-color: gold" >  {{$profile->zlato}}</div><br>
-        <div class="text-center" style="height:30px; width:300px;background-color: silver">{{$profile->srebro}}</div><br>
-        <div class="text-center" style="height:30px; width:300px;background-color: #cc6633"> {{$profile->bronza}}</div>
+        <div class="d-flex align-items-center justify-content-center" style="height:80px; width:360px; background-image: url({{asset('images/gold_empty.png')}}); font-size: 24px; font-weight: bold"> {{$profile->bronza}}</div><br>
+        <div class="d-flex align-items-center justify-content-center" style="height:80px; width:360px; background-image: url({{asset('images/silver_empty.png')}}); font-size: 24px; font-weight: bold">{{$profile->srebro}}</div><br>
+        <div class="d-flex align-items-center justify-content-center" style="height:80px; width:360px; background-image: url({{asset('images/bronze_empty.png')}}); font-size: 24px; font-weight: bold">  {{$profile->zlato}}</div>
     </div>
 </div>
 
