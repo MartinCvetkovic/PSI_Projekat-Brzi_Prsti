@@ -93,6 +93,7 @@ class TextsController extends Controller
 
         $currentUserId = Auth::user()->id;
         $userFriends = JePrijateljModel::where('idKor1', $currentUserId)->pluck('idKor2')->toArray();
+        $userFriends[] = $currentUserId; // Na prijateljsku listu dodajemo i sami sebe
 
         $filteredRankList = array();
         foreach ($rankList as $rankListRow) {
