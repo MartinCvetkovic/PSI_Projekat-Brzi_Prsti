@@ -92,7 +92,7 @@ class TextsController extends Controller
         $rankList = $this->getRankList($id);
 
         $currentUserId = Auth::user()->id;
-        $userFriends = JePrijateljModel::where('idKor2', $currentUserId)->pluck('idKor2')->toArray();
+        $userFriends = JePrijateljModel::where('idKor1', $currentUserId)->pluck('idKor2')->toArray();
 
         $filteredRankList = array();
         foreach ($rankList as $rankListRow) {
