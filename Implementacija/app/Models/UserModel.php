@@ -9,6 +9,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Klasa koja omogucava rad sa korisnikom u bazi podataka
@@ -79,6 +80,10 @@ class UserModel extends Authenticatable
     public static function dohvatiKorisnika($username)
     {     
         $ret = UserModel::where("username",$username)->first();
+        $brojPrijatelja  = DB::table("jePrijatelj")
+        ->where("idKor1",$ret->id)
+        ->get();
+        $ret->brojPrijatelja = count($brojPrijatelja);
         return $ret;
     }
     

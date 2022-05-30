@@ -77,14 +77,21 @@ class UserController extends BaseController
             'duzina' => $request->duzina
         ]);
     }
-
+    /** Funkcija koja prikazuje formu za pretragu korisnika
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * */
     public function searchUsers()
     {
         return view("pretragaProfila");
     }
+    /** Funkcija koja prikazuje listu korisnika koji zadovoljavaju filter pretrage
+     * @param Request $request Http zahtev
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * */
     public function searchUsersSubmit(Request $request)
     {
-        // kada budes imao auth nemoj sebe da uzimas iz baze
         $this->validate($request,[
             'filter'=> "required"
         ],[
@@ -95,6 +102,11 @@ class UserController extends BaseController
         return view("pretragaProfila",["profili"=>$korisnici]);
 
     }
+    /** Funkcija koja prikazuje profil zadatog korisnika
+     * @param String $username korisnicki ime korisnika 
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * */
     public function visitUser($username)
     {
 
@@ -115,9 +127,15 @@ class UserController extends BaseController
         $profile = UserModel::dohvatiKorisnika($username);
         return view("profile",["profile"=>$profile, "prijatelji"=>$prijatelji,"prijatelj"=>$mojPrijatelj]);
     }
+
+    /** Funkcija koja dodaj profil zadatog korisnika kao prijatelja trenutnog korisnika
+     * @param  String $username korisnicki ime korisnika 
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * */
     public function dodajPrijatelja($username)
     {
-        // uvaci u tabelu "jePrijatelj
+        // ubaci u tabelu "jePrijatelj
         $korisnik = UserModel::dohvatiKorisnika($username);
 
         $currentUser = auth()->user();
@@ -153,6 +171,11 @@ class UserController extends BaseController
                         "prijatelj"=>$prijatelj
         ));
     }
+    /** Funkcija koja blokira profil zadatog korisnika
+     * @param String $username korisnicki ime korisnika 
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * */
     public function blokirajKorisnika($username)
     {
         $korisnik = UserModel::dohvatiKorisnika($username);
@@ -164,6 +187,7 @@ class UserController extends BaseController
         $korisnik->aktivan = 1 - $korisnik->aktivan;
         $korisnik->save();
 
+
         $prijatelji = DB::table('korisnik')
         ->join('jeprijatelj','jeprijatelj.idKor2','=','korisnik.id')
         ->where(['jeprijatelj.idKor1' => $korisnik->id])
@@ -174,6 +198,11 @@ class UserController extends BaseController
                         "prijatelj"=>$prijatelj
         ));
     }
+    /** Funkcija koja daje moderatora zadatkom korisniku
+     * @param $username korisnicki ime korisnika 
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * */
     public function dodajModeratora($username)
     {
 
@@ -186,11 +215,8 @@ class UserController extends BaseController
         ->where(['jeprijatelj.idKor1' => $korisnik->id])
         ->get();
 
-        
-        // return redirect()->back()->withInput(array("profile"=>$korisnik,"prijatelji"=>$prijatelji));
-        // return view("profile",["profile"=>$korisnik,"prijatelji"=>$prijatelji]);
         return back()->withInput(array('username' => $korisnik->username,"prijatelji"=>$prijatelji));
-        // return redirect()->route('visit_user', ["username"=>$korisnik->username]);
+;
     }
 
     /** Funkcija koja zapocinje kucanje dnevnog izazova
