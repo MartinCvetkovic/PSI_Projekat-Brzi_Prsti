@@ -29,10 +29,11 @@
                 @if ($prijatelj->isEmpty())
                     <a class="btn btn-primary" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Dodaj</a>
                 @else
-                    <a class="btn btn-danger" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Obriši</a>                    @endif
+                    <a class="btn btn-danger" href="{{ route("dodaj_prijatelja",["username"=>$profile->username]) }}">Obriši</a>
+                @endif
             @endif
 
-            {{-- Ako sam ja admin/mod mogu ga blokirati/odblokirati --}}
+            {{-- Ako sam ja admin/mod i on nije admin, mogu ga blokirati/odblokirati --}}
             @if (auth()->user()->tip >0 && $profile->tip != 2)
                 {{-- da li je aktivan --}}
                 @if ($profile->aktivan == 1)
