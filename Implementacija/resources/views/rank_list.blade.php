@@ -31,7 +31,7 @@
                             <td>{{++$i}}.</td>
                             <td class="col-sm-5 align-middle">{{$listRow->userModel->username}}</td>
                             <td class="col-sm-3 align-middle text-center">
-                                Vreme: {{$listRow->time}}, WPM: {{$listRow->wpm}}
+                                Vreme: {{ number_format($listRow->time, 2) }}, WPM: {{ number_format($listRow->wpm, 2) }}
                             </td>
                         </tr>
                     @endforeach
