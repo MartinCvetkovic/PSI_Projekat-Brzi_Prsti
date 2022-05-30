@@ -76,3 +76,4 @@ Route::get('/texts/ranks/{id}', [TextsController::class, 'rankList'])->name('ran
 Route::get('/texts/friendly_ranks/{id}', [TextsController::class, 'friendlyRankList'])->name('friendly_rank_list')->middleware("auth");
 
 Route::get('/rankList', [TextsController::class, 'globalRankList'])->name('global_rank_list');
+Route::get('/friendlyRankList', [TextsController::class, 'friendlyGlobalRankList'])->name('friendly_global_rank_list');

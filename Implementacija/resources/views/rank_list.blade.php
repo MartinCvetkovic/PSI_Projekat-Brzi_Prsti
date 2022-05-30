@@ -9,7 +9,20 @@
 @section('content')
 
     <div class="row">
-        <h1>Globalna rang lista</h1>
+        <h1>
+            @if ($type == 0)
+                Globalna rang lista
+                <br>
+                @auth
+                    <a class="btn btn-primary" href="{{route('friendly_global_rank_list')}}">Prebaci na prijateljsku</a>
+                @endauth
+            @elseif ($type == 1)
+                Prijateljska globalna rang lista
+                <br>
+                <a class="btn btn-primary" href="{{route('global_rank_list')}}">Prebaci na globalnu</a>
+            @endif
+        </h1>
+
         <div class="col-md-12">
             <table class="table">
                 <table class="table table-bordered table-striped">
