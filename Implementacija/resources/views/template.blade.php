@@ -37,7 +37,7 @@
                 <h1>Brzi Prsti</h1>
                 <br>
                 <div class="btn-group m-2">
-                    <button class="btn-light btn-lg" type="button" id="pocetna" onclick="location.href='{{route('homePage')}}'">Pocetna</button>
+                    <button class="btn-light btn-lg" type="button" id="pocetna" onclick="location.href='{{route('homePage')}}'">Početna</button>
                     @guest
                     <button class="btn btn-secondary btn-outline-light bg-secondary" disabled>Kucanje</button>
                     @endguest
@@ -59,19 +59,19 @@
                     <button class="btn-light btn-lg" type="button" id="rangliste" onclick="location.href='{{route('global_rank_list')}}'">Rang lista</button>
                 </div>
             </div>
-            <div class="col-sm-3 bg-light d-flex align-items-center justify-content-start p-3 my-2" style="width:24%">
+            <div class="col-sm-3 bg-light d-flex align-items-center justify-content-center py-3 px-1 rounded" style="width:24%">
                 @guest
 
                 <form action="{{route('login')}}" method="POST">
                     @csrf
                     <div class="form-group d-flex flex-column">
-                        <input class="m-1 p-1" type="text" placeholder="Korisnicko ime" name="username">
+                        <input class="my-1 py-1" type="text" placeholder="Korisničko ime" name="username">
                         <div class="alert-danger">
                             @error("username")
                                 {{$message}}
                             @enderror
                         </div>
-                        <input class="m-1 p-1" type="password" placeholder="Lozinka" name="password">
+                        <input class="my-1 py-1" type="password" placeholder="Lozinka" name="password">
                         <div class="alert-danger">
                             @error("password")
                                 {{$message}}
@@ -95,7 +95,7 @@
                 @auth
                     <div class="d-flex flex-column">
                         <div class="text-center">
-                            {{auth()->user()->username}}
+                            Dobrodošli {{auth()->user()->username}}
                         </div>
                         <div class ="d-flex justify-content-between">
                             <button type="button" class="btn p-2" onclick="location.href='{{route('visit_user', ['username' => auth()->user()->username])}}'"><b>Profil</b></button>

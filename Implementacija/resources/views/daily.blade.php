@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="row pb-3">
-        <div class="col-sm d-flex align-items-center border border-light rounded mr-6">
+        <div class="col-sm d-flex align-items-center border border-light rounded mr-6 pt-2 pb-2">
             <table class="table table-borderless mb-0 header-text">
                 <tr>
                     <td class="align-middle text-start rounded-pill-start inset-pill ">Kategorija: </td>
@@ -19,18 +19,18 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr>
-                    <td class="align-middle text-start rounded-pill-start inset-pill">Tezina: </td>
+                    <td class="align-middle text-start rounded-pill-start inset-pill">Težina: </td>
                     <td class="align-middle text-end rounded-pill-end inset-pill">{{$daily->tezina}} / 10</td>
                 </tr>
             </table>
         </div>
-        <div class="col-sm-9 text-center d-flex align-items-center border border-light rounded">
+        <div class="col-sm-9 text-center d-flex align-items-center border border-light rounded pt-2 pb-2">
             <table class="table table-borderless mb-2 mt-2 pl-3 pr-3 header-text">
                 <tr>
-                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="mistakes">Greske: </td>
+                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="mistakes">Greške: </td>
                     <td class="col-sm align-middle text-end rounded-pill-end inset-pill" name="mistakes"><span id="mistakes">0</span></td>
                     <td rowspan="3"class="col-sm-7 align-middle title-text">Dnevni Izazov</td>
-                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill">Prosecno vreme: </td>
+                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill">Prosečno vreme: </td>
                     <td class="col-sm align-middle text-end rounded-pill-end inset-pill">{{$daily->average_time}} s</td>
                 </tr>
                 <tr>
@@ -42,13 +42,13 @@
                 <tr>
                     <td class="col-sm"></td>
                     <td class="col-sm"></td>
-                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="time">Vase vreme: </td>
+                    <td class="col-sm align-middle text-start rounded-pill-start inset-pill" name="time">Vaše vreme: </td>
                     <td class="col-sm align-middle text-end rounded-pill-end inset-pill" name="time"><span id="time">0.0 s</span></td>
                 </tr>
             </table>
         </div>
     </div>
-    <div class="row pb-3" id="mainRow">
+    <div class="row pb-3 d-flex align-center" id="mainRow">
         <div class="col-sm-12 border border-light rounded p-3">
             <p id="textContent" class="mb-0 typing-text"><span class="notTypedText">{{$daily->cleanText()}}</span></p>
         </div>
@@ -60,6 +60,7 @@
                 <input type="hidden" name="_text" value="{{$daily->cleanText()}}">
                 <input type="hidden" name="_idTekst" value="{{$daily->idTekst}}">
                 <input type="hidden" name="_endRoute" value="{{route('daily_kucanje_kraj')}}">
+                <input type="hidden" name="_mode" value="daily">
                 <input type="text" class="form-control" id="userInput">
             </form>
         </div>

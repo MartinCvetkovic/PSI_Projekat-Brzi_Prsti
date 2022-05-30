@@ -24,7 +24,7 @@ class TextModel extends Model
      */
     protected $table = 'tekst';
     /**
-     * @var string $primaryKey Ime primarnog kljuca tabele modela
+     * @var string $primaryKey Ime primarnog ključa tabele modela
      */
     protected $primaryKey = 'id';
 
@@ -34,17 +34,16 @@ class TextModel extends Model
     public $timestamps = false;
 
     /**
-     * @var array $fillable niz imena ostalih kljuceva tabele modela
+     * @var array $fillable Niz imena ostalih ključeva tabele modela
      */
     protected $fillable = [
         'idKat',
         'sadrzaj',
         'tezina'
-    ];  //Dostupno i word_count, average_time (van Query-a)
-
+    ];  // Dostupno i word_count, average_time (van Query-a)
 
     /**
-     * Dozvoljava pristup novom "atributu" word_count (broj reci u sadrzaju teksta)
+     * Dozvoljava pristup novom "atributu" word_count (broj reči u sadrzaju teksta)
      * Koristiti kao $this->word_count
      *
      * @return Illuminate\Database\Eloquent\Casts\Attribute
@@ -54,9 +53,8 @@ class TextModel extends Model
         return str_word_count($this->sadrzaj);
     }
 
-
     /**
-     * Dozvoljava pristup novom "atributu" average_time (prosecno vreme za kucanje teksta)
+     * Dozvoljava pristup novom "atributu" average_time (prosečno vreme za kucanje teksta)
      * Koristiti kao $this->average_time
      *
      * @return Illuminate\Database\Eloquent\Casts\Attribute
@@ -66,9 +64,8 @@ class TextModel extends Model
         return round(LeaderboardModel::where('idTekst', $this->id)->avg('vreme'), 2);
     }
 
-
     /**
-    * Funkcija koja vraca kategoriju teksta
+    * Funkcija koja vraća kategoriju teksta
     *
     * @return CategoryModel
     *
@@ -76,14 +73,13 @@ class TextModel extends Model
     public function category() {
         return CategoryModel::where('id', $this->idKat)->first();
     }
-    
 
     /**
-    * Funkcija koja vraca paginator sa tekstovima koji se poklapaju sa kriterijumima pretrage
-    * 
+    * Funkcija koja vraća paginator sa tekstovima koji se poklapaju sa kriterijumima pretrage
+    *
     * @var integer $idKat Id Kategorije (0 za sve)
-    * @var integer $tezina Opcija tezine (0 za sve)
-    * @var integer $duzina Opcija duzine (0 za sve)
+    * @var integer $tezina Opcija težine (0 za sve)
+    * @var integer $duzina Opcija dužine (0 za sve)
     * @var integer $page Broj stranice rezultata
     *
     * @return Illuminate\Pagination\LengthAwarePaginator
@@ -92,15 +88,15 @@ class TextModel extends Model
     public static function search($idKat, $tezina, $duzina, $page) {
         $ret = TextModel::select();
 
-        //Provera parametara
+        // Provera parametara
         if (CategoryModel::where('id', $idKat)->doesntExist()) $idKat = 0;
         if ($tezina < 0 || $tezina > 3) $tezina = 0;
         if ($duzina < 0 || $duzina > 3) $duzina = 0;
-        
-        //Filtriranje po kategoriji
+
+        // Filtriranje po kategoriji
         if ($idKat) $ret = $ret->where('idKat', $idKat);
 
-        //Filtriranje po tezini
+        // Filtriranje po težini
         if ($tezina) {
             switch($tezina){
                 case 1: $ret = $ret->where('tezina', '<=', 4);
@@ -112,36 +108,55 @@ class TextModel extends Model
             }
         }
 
-        //Filtriranje po duzini teksta
-        //Kako word_count ne postoji u bazi, samo u modelu, ovde se nad rezultatom Query-a vrsi filtriranje
+        // Filtriranje po dužini teksta
+        // Kako word_count ne postoji u bazi, samo u modelu, ovde se nad rezultatom Query-a vrši filtriranje
         if ($duzina) {
-            switch($duzina){
-                case 1: $ret = $ret->get()->filter(function($text) {
-                    return $text->word_count <= 20;
-                });
-                    break;
-                case 2: $ret = $ret->get()->filter(function($text) {
-                    return $text->word_count > 20 && $text->word_count <= 50;
-                });
-                    break;
-                case 3: $ret = $ret->get()->filter(function($text) {
-                    return $text->word_count > 50;
-                });
-                    break;
-            }
+            $ret = $ret->get()->filter(function($text) use($duzina) {
+                return $text->duzinaCategory() == $duzina;
+            });
 
-            //Filter se moze zvati samo nad Collection, a paginate ne moze nad Collection, tako da se ovde rucno pravi Paginator
+            // Filter se može zvati samo nad Collection, a paginate ne može nad Collection, tako da se ovde ručno pravi Paginator
             return new LengthAwarePaginator($ret->forPage($page, 5), $ret->count(), 5, $page, ['path' => route('search_texts')]);
         }
 
         return $ret->paginate(5);
     }
 
-    
     /**
-    * Funkcija koja vraca tekst skracen na prvih $count reci
-    * 
-    * @var integer $count Broj reci na koji treba skratiti tekst
+    * Funkcija koja vraća kategoriju dužine teksta
+    *
+    * @return integer
+    * Jedno od {1, 2, 3}
+    * 1 - Kratak tekst (<20 reči)
+    * 2 - Srednji tekst (21 - 50 reči)
+    * 3 - Dug tekst (>50 reči)
+    */
+    function duzinaCategory() {
+        $words = $this->word_count;
+        if ($words <= 20) return 1;
+        elseif ($words <= 50) return 2;
+        else return 3;
+    }
+
+    /**
+    * Funkcija koja vraća kategoriju težine teksta
+    *
+    * @return integer
+    * Jedno od {1, 2, 3}
+    * 1 - Lak tekst (težina 0-4)
+    * 2 - Srednji tekst (težina 4-7)
+    * 3 - Tezak tekst (težina 7-10)
+    */
+    function tezinaCategory() {
+        if ($this->tezina <= 4) return 1;
+        else if ($this->tezina <= 7) return 2;
+        else return 3;
+    }
+
+    /**
+    * Funkcija koja vraća tekst skraćen na prvih $count reci
+    *
+    * @var integer $count Broj reči na koji treba skratiti tekst
     *
     * @return string
     *
@@ -155,11 +170,10 @@ class TextModel extends Model
             else return $this->sadrzaj;
     }
 
-
     /**
-    * Funkcija koja vraca sadrzaj teksta bez novih redova, tabulacije,
-    * duplih razmaka, i belina na pocetku i kraju
-    * 
+    * Funkcija koja vraća sadržaj teksta bez novih redova, tabulacije,
+    * duplih razmaka, i bez belina na početku i kraju
+    *
     * @return string
     *
     */

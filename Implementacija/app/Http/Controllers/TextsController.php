@@ -16,6 +16,11 @@ use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Klasa za upravljanje tekstovima
+ *
+ * @version 1.0
+ */
 class TextsController extends Controller
 {
     /** Funkcija koja prikazuje listu svih tekstova
@@ -64,7 +69,7 @@ class TextsController extends Controller
         $rankList = $this->getRankList($id);
 
         // Sortiranje po vremenu i wpm
-        usort($rankList, function($a, $b) {
+        usort($rankList, function ($a, $b) {
             $time_diff = $a->time - $b->time;
             if ($time_diff) return $time_diff;
             return $a->wpm - $b->wpm;
@@ -87,11 +92,11 @@ class TextsController extends Controller
         $rankList = $this->getRankList($id);
 
         $currentUserId = Auth::user()->id;
-        $userFriends = JePrijateljModel::where('idKor2', $currentUserId)->pluck('idKor2')->toArray();
+        $userFriends = JePrijateljModel::where('idKor1', $currentUserId)->pluck('idKor2')->toArray();
+        $userFriends[] = $currentUserId; // Na prijateljsku listu dodajemo i sami sebe
 
         $filteredRankList = array();
-        foreach ($rankList as $rankListRow)
-        {
+        foreach ($rankList as $rankListRow) {
             if (in_array($rankListRow->userModel->id, $userFriends))
                 $filteredRankList[] = $rankListRow;
         }
@@ -99,7 +104,7 @@ class TextsController extends Controller
         $rankList = $filteredRankList;
 
         // Sortiranje po vremenu i WPM
-        usort($rankList, function($a, $b) {
+        usort($rankList, function ($a, $b) {
             $time_diff = $a->time - $b->time;
             if ($time_diff) return $time_diff;
             return $a->wpm - $b->wpm;
@@ -113,7 +118,7 @@ class TextsController extends Controller
     }
 
     /**
-     * Prikazuje globalnu rang listu najbrzih korisnika.
+     * Prikazuje globalnu rang listu najbržih korisnika.
      *
      * @return \Illuminate\Http\Response
      */
@@ -148,6 +153,13 @@ class TextsController extends Controller
             $rankList[] = $newRankListRow;
         }
 
+        // Sortiranje po vremenu i WPM
+        usort($rankList, function ($a, $b) {
+            $time_diff = $a->time - $b->time;
+            if ($time_diff) return $time_diff;
+            return $a->wpm - $b->wpm;
+        });
+
         $i = 0;
 
         return view('rank_list', compact('rankList', 'i'));
@@ -169,7 +181,7 @@ class TextsController extends Controller
     /**
      * Ubacuje novi tekst u bazu.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -182,7 +194,7 @@ class TextsController extends Controller
     /**
      * Prikazuje atribute datog teksta.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -195,7 +207,7 @@ class TextsController extends Controller
     /**
      * Prikazuje formu za izmenu teksta.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -209,8 +221,8 @@ class TextsController extends Controller
     /**
      * Ažurira tekst u bazi.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  TextModel $tekst
+     * @param \Illuminate\Http\Request $request
+     * @param TextModel $tekst
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, TextModel $tekst)
@@ -239,6 +251,8 @@ class TextsController extends Controller
     }
 
     /**
+     * Izračunava rang listu za dati tekst.
+     *
      * @param $id
      * @return array
      */
@@ -260,8 +274,7 @@ class TextsController extends Controller
             // Dodaju se vreme i wpm
             $userDict[$currentUser->id]["time"][] = $result->vreme;
 
-            // TODO: Proveriti format vremena
-            $userDict[$currentUser->id]["wpm"][] = $result->vreme / 60.0 * $text->word_count;
+            $userDict[$currentUser->id]["wpm"][] = $text->word_count / ($result->vreme / 60.0);
         }
 
         // Nalazenje proseka od time i wpm za svakog korisnika

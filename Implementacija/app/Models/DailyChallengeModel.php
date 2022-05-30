@@ -9,6 +9,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Klasa za model dnevnog izazova
+ *
+ * @version 1.0
+ */
 class DailyChallengeModel extends Model
 {
     use HasFactory;
@@ -18,7 +23,7 @@ class DailyChallengeModel extends Model
      */
     protected $table = 'dnevniizazov';
     /**
-     * @var string $primaryKey Ime primarnog kljuca tabele modela
+     * @var string $primaryKey Ime primarnog ključa tabele modela
      */
     protected $primaryKey = 'id';
 
@@ -28,7 +33,7 @@ class DailyChallengeModel extends Model
     public $timestamps = false;
 
     /**
-     * @var array $fillable niz imena ostalih kljuceva tabele modela
+     * @var array $fillable niz imena ostalih kljućeva tabele modela
      */
     protected $fillable = [
         'sadrzaj',
@@ -37,20 +42,19 @@ class DailyChallengeModel extends Model
         'idTekst'
     ];  //Dostupno i word_count, average_time (van Query-a)
 
-
     /**
-    * Funkcija koja vraca TextModel sa id == $this->idTekst
-    *
-    * @return TextModel
-    *
-    */
-    public function text() {
+     * Funkcija koja vraća TextModel sa id == $this->idTekst
+     *
+     * @return TextModel
+     *
+     */
+    public function text()
+    {
         return TextModel::where('id', $this->idTekst)->first();
     }
 
-
     /**
-     * Dozvoljava pristup novom "atributu" average_time (prosecno vreme za kucanje teksta)
+     * Dozvoljava pristup novom "atributu" average_time (prosečno vreme za kucanje teksta)
      * Koristiti kao $this->average_time
      *
      * @return Illuminate\Database\Eloquent\Casts\Attribute
@@ -60,9 +64,8 @@ class DailyChallengeModel extends Model
         return round(DailyLeaderboardModel::avg('vreme'), 2);
     }
 
-
     /**
-     * Dozvoljava pristup novom "atributu" word_count (broj reci u sadrzaju teksta)
+     * Dozvoljava pristup novom "atributu" word_count (broj reči u sadržaju teksta)
      * Koristiti kao $this->word_count
      *
      * @return Illuminate\Database\Eloquent\Casts\Attribute
@@ -72,74 +75,73 @@ class DailyChallengeModel extends Model
         return str_word_count($this->sadrzaj);
     }
 
-
     /**
-    * Funkcija koja vraca kategoriju dnevnog izazova
-    *
-    * @return CategoryModel
-    *
-    */
-    public function category() {
+     * Funkcija koja vraća kategoriju dnevnog izazova
+     *
+     * @return CategoryModel
+     *
+     */
+    public function category()
+    {
         return $this->text()->category();
     }
-    
-    
+
     /**
-    * Funkcija koja vraca tekst dnevnog izazova skracen na prvih $count reci
-    * 
-    * @var integer $count Broj reci na koji treba skratiti tekst
-    *
-    * @return string
-    *
-    */
-    public function firstWords($count) {
-        if ($this->word_count > 10){
+     * Funkcija koja vraća tekst dnevnog izazova skraćen na prvih $count reči
+     *
+     * @return string
+     *
+     * @var integer $count Broj reči na koji treba skratiti tekst
+     *
+     */
+    public function firstWords($count)
+    {
+        if ($this->word_count > 10) {
             $words = explode(" ", $this->sadrzaj, $count + 1);
             unset($words[$count]);
-            return implode(" ", $words)."...";
-        }
-            else return $this->sadrzaj;
+            return implode(" ", $words) . "...";
+        } else return $this->sadrzaj;
     }
 
-
     /**
-    * Funkcija koja vraca dnevni izazov ako je postavljen
-    * U suprotnom vraca null
-    *
-    * @return DailyChallengeModel
-    */
-    public static function getDaily() {
+     * Funkcija koja vraća dnevni izazov ako je postavljen
+     * U suprotnom, vraća null
+     *
+     * @return DailyChallengeModel
+     */
+    public static function getDaily()
+    {
         return DailyChallengeModel::first();
     }
 
-
     /**
-    * Funkcija koja vraca dnevni izazov ako je postavljen
-    * U suprotnom vraca 404
-    *
-    * @return DailyChallengeModel
-    */
-    public static function getDailyOrFail() {
+     * Funkcija koja vraća dnevni izazov ako je postavljen
+     * U suprotnom, vraća 404
+     *
+     * @return DailyChallengeModel
+     */
+    public static function getDailyOrFail()
+    {
         if (($t = self::getDaily()) == null) abort(404);
         return $t;
     }
 
-
     /**
-    * Funkcija koja menja dnevni izazov u drugi nasumican tekst
-    * Svi pokusaji iz tabele dnevnaranglista se prebacuju u tabelu ranglista
-    *
-    * Vraca 404 ako ne postoji nijedan drugi tekst u bazi
-    */
-    public static function changeDaily() {
-        //Dohvatanje starog dnevnog izazova
+     * Funkcija koja menja dnevni izazov u drugi nasumičan tekst
+     * Svi pokušaji iz tabele dnevnaranglista se prebacuju u tabelu ranglista
+     *
+     * Vraća 404 ako ne postoji nijedan drugi tekst u bazi
+     */
+    public static function changeDaily()
+    {
+        // Dohvatanje starog dnevnog izazova
         $daily = DailyChallengeModel::getDaily();
         $oldDailyId = $daily->idTekst ?? 0;
 
-        //Odredjivanje novog teksta za dnevni izazov (mora da se razlikuje od trenutnog daily)
+        // Određivanje novog teksta za dnevni izazov (mora da se razlikuje od trenutnog daily)
         $newText = TextModel::where('id', '!=', $oldDailyId)->inRandomOrder()->firstOrFail();
-        
-        //Stvaranje novog modela za novi dnevni izazov
+
+        // Stvaranje novog modela za novi dnevni izazov
         $newDaily = new DailyChallengeModel();
 
         $newDaily->idTekst = $newText->id;
@@ -147,16 +149,16 @@ class DailyChallengeModel extends Model
         $newDaily->tezina = $newText->tezina;
         $newDaily->nazivKategorije = $newText->category()->naziv;
 
-        //Brisanje starog dnevnog izazova iz baze (brisanje svih redova tabele za svaki slucaj)
+        // Brisanje starog dnevnog izazova iz baze (brisanje svih redova tabele za svaki slucaj)
         DailyChallengeModel::query()->delete();
 
-        //Prolazak kroz najbolje rezultate na izazovu i deljenje nagrada
+        // Prolazak kroz najbolje rezultate na izazovu i deljenje nagrada
         $breakTwice = false;
         foreach (DailyLeaderboardModel::asLeaderboard()->orderBy('vreme', 'asc')->get() as $row) {
             $user = UserModel::where('id', $row->idKor)->first();
             if ($user == null) continue;
 
-            switch($row->reward()) {
+            switch ($row->reward()) {
                 case "gold":
                     $user->addGold();
                     break;
@@ -173,24 +175,24 @@ class DailyChallengeModel extends Model
             if ($breakTwice) break;
         }
 
-        //Prebacivanje rezultata dnevnog izazova u normalnu rang listu
+        // Prebacivanje rezultata dnevnog izazova u normalnu rang listu
         foreach (DailyLeaderboardModel::all() as $row) {
             $row->moveToLeaderboard();
         }
 
-        //Pamcenje novog dnevnog izazova u bazi podataka
+        // Pamcenje novog dnevnog izazova u bazi podataka
         $newDaily->save();
     }
 
-
     /**
-    * Funkcija koja vraca sadrzaj teksta bez novih redova, tabulacije,
-    * duplih razmaka, i belina na pocetku i kraju
-    * 
-    * @return string
-    *
-    */
-    public function cleanText() {
+     * Funkcija koja vraća sadržaj teksta bez novih redova, tabulacije,
+     * duplih razmaka, i belina na početku i kraju
+     *
+     * @return string
+     *
+     */
+    public function cleanText()
+    {
         return $this->text()->cleanText();
     }
 }
