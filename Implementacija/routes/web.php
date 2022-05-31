@@ -66,10 +66,22 @@ Route::get('/dailyChange', [UserController::class, 'promeniDaily'])->name('prome
 
 
 Route::get('/texts/create', [TextsController::class, 'create'])->name('create_text')->middleware("auth");
+// Redirect na homepage ako user ručno proba da ode na /texts/store
+Route::get('/texts/store', function () {
+    return redirect()->route('homePage');
+});
 Route::post('/texts/store', [TextsController::class, 'store'])->name('store_text')->middleware("auth");
+// Redirect na homepage ako user ručno proba da ode na /texts/store
+Route::get('/texts/destroy/{id}', function () {
+    return redirect()->route('homePage');
+});
 Route::delete('/texts/destroy/{id}', [TextsController::class, 'destroy'])->name('destroy_text')->middleware("auth");
 Route::get('/texts/show/{id}', [TextsController::class, 'show'])->name('show_text');
 Route::get('/texts/edit/{id}', [TextsController::class, 'edit'])->name('edit_text')->middleware("auth");
+// Redirect na homepage ako user ručno proba da ode na /texts/update
+Route::get('/texts/update', function () {
+    return redirect()->route('homePage');
+});
 Route::post('/texts/update', [TextsController::class, 'update'])->name('update_text')->middleware("auth");
 
 Route::get('/texts/ranks/{id}', [TextsController::class, 'rankList'])->name('rank_list');

@@ -204,6 +204,10 @@ class UserController extends BaseController
     public function blokirajKorisnika($username)
     {
         $korisnik = UserModel::dohvatiKorisnika($username);
+
+        //Zabrana da korisnik rucno ode na /blokiraj/username i blokira bilo koga
+        if (auth()->user()->tip <= $korisnik->tip) abort(403);
+
         $deleted = DB::table('jeprijatelj')->where('idKor1', $korisnik->id)
             ->orWhere('idKor2', $korisnik->id)
             ->delete();
@@ -234,6 +238,10 @@ class UserController extends BaseController
     public function dodajModeratora($username)
     {
         $korisnik = UserModel::dohvatiKorisnika($username);
+
+        //Zabrana da korisnik rucno ode na /mod/username i dodeli mod
+        if (auth()->user()->tip != 2) abort(403);
+
         $korisnik->tip = 1 - $korisnik->tip;
         $korisnik->save();
 

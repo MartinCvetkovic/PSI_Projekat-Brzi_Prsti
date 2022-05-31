@@ -33,8 +33,8 @@
                 @endif
             @endif
 
-            {{-- Ako sam ja admin/mod i on nije admin, mogu ga blokirati/odblokirati --}}
-            @if (auth()->user()->tip >0 && $profile->tip != 2)
+            {{-- Ako imam vece privilegije od korisnika, mogu ga blokirati/odblokirati --}}
+            @if (auth()->user()->tip > $profile->tip)
                 {{-- da li je aktivan --}}
                 @if ($profile->aktivan == 1)
                 <a  class="btn btn-danger mx-4" href="{{ route("blokiraj_korisnika",["username"=>$profile->username]) }}">Blokiraj</a>
