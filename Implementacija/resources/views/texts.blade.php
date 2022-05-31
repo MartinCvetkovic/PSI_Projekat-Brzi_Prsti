@@ -92,6 +92,15 @@
             </div>
         @endif
 
+        @if ($message = Session::get('dailyDeleted'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                Tekst je bio dnevni izazov, <a href='{{route("promeni_daily")}}'>postavite novi!</a>
+            </div>
+        @endif
+
+        
+
         <!-- Tabela tekstova -->
         <table class="table table-bordered table-striped border-row-divide">
             @foreach ($texts as $text)

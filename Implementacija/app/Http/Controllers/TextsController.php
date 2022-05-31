@@ -228,7 +228,10 @@ class TextsController extends Controller
      */
     public function edit($id)
     {
-        $tekst = TextModel::find($id);
+        $tekst = TextModel::findOrFail($id);
+        //Zabrana izmene dnevnog izazova
+        if ($id == DailyChallengeModel::getIdTekst()) return redirect()->route('texts')->with('danger', 'Tekst je trenutno dnevni izazov, ne moze biti izmenjen');
+
         $kategorije = CategoryModel::pluck('naziv', 'id')->toArray();
 
         return view('texts\edit', compact('tekst', 'kategorije'));
@@ -258,10 +261,12 @@ class TextsController extends Controller
         $attrs["id"] = intval($attrs["id"]);
 
         $reqTekst = TextModel::where('id', $attrs["id"])->first();
+
         $reqTekst->update($attrs);
 
         return redirect()->route('texts')->with('success', 'Tekst uspešno izmenjen.');
     }
+
 
     /**
      * Briše tekst iz baze.
@@ -272,14 +277,24 @@ class TextsController extends Controller
      */
     public function destroy($id)
     {
-        //Provera da li ne-admin pokusava da obrise dnevni izazov
-        if (auth()->user()->tip != 2 && $id == DailyChallengeModel::getIdTekst()) 
-            return redirect()->route('texts')->with('danger', 'Tekst je trenutno dnevni izazov, brisanje je dozvoljeno samo adminima');
+        //Provera da li se brise dnevni izazov
+        if ($id == DailyChallengeModel::getIdTekst()) {
+            //Ako korisnik nije admin, zabraniti
+            if (auth()->user()->tip != 2){
+                return redirect()->route('texts')->with('danger', 'Tekst je trenutno dnevni izazov, brisanje je dozvoljeno samo adminima');
+            }
+            //U suprotnom obavestiti ga da je izbrisao dnevni izazov
+            else {
+                TextModel::find($id)->delete();
+                return redirect()->route('texts')->with('success', 'Tekst uspešno obrisan.')->with('dailyDeleted', 1);
+            }
+        }
 
-        $tekst = TextModel::find($id)->delete();
+        TextModel::find($id)->delete();
 
         return redirect()->route('texts')->with('success', 'Tekst uspešno obrisan.');
     }
+    
 
     /**
      * Izračunava rang listu za dati tekst.
