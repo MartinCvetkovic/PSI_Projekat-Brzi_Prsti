@@ -50,7 +50,7 @@ class TextModel extends Model
      */
     public function getWordCountAttribute()
     {
-        return str_word_count($this->sadrzaj);
+        return count(preg_split("/\s+/", $this->sadrzaj));
     }
 
     /**
