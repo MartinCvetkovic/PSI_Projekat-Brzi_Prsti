@@ -85,6 +85,13 @@
             </div>
         @endif
 
+        @if ($message = Session::get('danger'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                {{$message}}
+            </div>
+        @endif
+
         <!-- Tabela tekstova -->
         <table class="table table-bordered table-striped border-row-divide">
             @foreach ($texts as $text)

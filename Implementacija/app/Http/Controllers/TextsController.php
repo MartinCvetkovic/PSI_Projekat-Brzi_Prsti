@@ -8,6 +8,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryModel;
+use App\Models\DailyChallengeModel;
 use App\Models\JePrijateljModel;
 use App\Models\LeaderboardModel;
 use App\Models\LeaderboardRowModel;
@@ -249,6 +250,10 @@ class TextsController extends Controller
      */
     public function destroy($id)
     {
+        //Provera da li ne-admin pokusava da obrise dnevni izazov
+        if (auth()->user()->tip != 2 && $id == DailyChallengeModel::getIdTekst()) 
+            return redirect()->route('texts')->with('danger', 'Tekst je trenutno dnevni izazov, brisanje je dozvoljeno samo adminima');
+
         $tekst = TextModel::find($id)->delete();
 
         return redirect()->route('texts')->with('success', 'Tekst uspešno obrisan.');
@@ -318,7 +323,7 @@ class TextsController extends Controller
 
             // Dodaju se vreme i wpm
             $userDict[$currentUser->id]["time"][] = $result->vreme;
-            $userDict[$currentUser->id]["wpm"][] = $result->vreme / 60.0 * $text->word_count;
+            $userDict[$currentUser->id]["wpm"][] = ($text->word_count * 60.0) / $result->vreme;
         }
 
         // Nalaženje proseka od time i wpm za svakog korisnika

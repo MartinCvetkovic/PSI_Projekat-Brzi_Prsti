@@ -195,4 +195,18 @@ class DailyChallengeModel extends Model
     {
         return $this->text()->cleanText();
     }
+
+
+    /**
+     * Funkcija koja vraća id teksta koji je trenutno dnevni izazov
+     * vraca 0 ako nije postavljen
+     *
+     * @return integer
+     *
+     */
+    public static function getIdTekst() {
+        $daily = DailyChallengeModel::getDaily();
+        if ($daily) return $daily->idTekst;
+        return 0;
+    }
 }
