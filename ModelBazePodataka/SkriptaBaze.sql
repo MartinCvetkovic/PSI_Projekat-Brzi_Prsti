@@ -1,6 +1,7 @@
 DROP SCHEMA IF EXISTS brziprsti;
-CREATE SCHEMA brziprsti;
+CREATE SCHEMA brziprsti COLLATE utf8_unicode_ci;;
 USE brziprsti;
+
 
 CREATE TABLE DnevnaRangLista
 (
