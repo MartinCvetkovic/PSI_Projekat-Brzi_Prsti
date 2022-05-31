@@ -23,12 +23,8 @@ Route::get('/registerPage', [GuestController::class, "registerPage"])->name('reg
 Route::post('/register', [GuestController::class, "register"])->name('register');
 Route::post('/login', [GuestController::class, "login"])->name('login');
 //Redirect na homepage ako user ručno proba da ode na /login ili /register
-Route::get('/register', function () {
-    return redirect()->route('homePage');
-});
-Route::get('/login', function () {
-    return redirect()->route('homePage');
-});
+Route::get('/register', function () {return redirect()->route('homePage');});
+Route::get('/login', function () {return redirect()->route('homePage');});
 
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
@@ -50,38 +46,28 @@ Route::get('/solo', [BaseController::class, 'soloKucanje'])->name('solo_kucanje'
 Route::get('/solo/{id}', [BaseController::class, 'soloKucanje'])->name('solo_kucanje_id');
 Route::post('/soloEnd', [BaseController::class, 'soloKucanjeKraj'])->name('solo_kucanje_kraj');
 // Redirect na homepage ako user ručno proba da ode na /soloEnd
-Route::get('/soloEnd', function () {
-    return redirect()->route('homePage');
-});
+Route::get('/soloEnd', function () {return redirect()->route('homePage');});
 Route::get('/soloResults', [BaseController::class, 'soloKucanjePrikazRezultata'])->name('solo_kucanje_rezultati');
 
 Route::get('/daily', [UserController::class, 'dailyKucanje'])->name('daily_kucanje');
 Route::post('/dailyEnd', [UserController::class, 'dailyKucanjeKraj'])->name('daily_kucanje_kraj');
 // Redirect na homepage ako user ručno proba da ode na /dailyEnd
-Route::get('/dailyEnd', function () {
-    return redirect()->route('homePage');
-});
+Route::get('/dailyEnd', function () {return redirect()->route('homePage');});
 Route::get('/dailyResults', [UserController::class, 'dailyKucanjePrikazRezultata'])->name('daily_kucanje_rezultati');
 Route::get('/dailyChange', [UserController::class, 'promeniDaily'])->name('promeni_daily');
 
 
 Route::get('/texts/create', [TextsController::class, 'create'])->name('create_text')->middleware("auth");
 // Redirect na homepage ako user ručno proba da ode na /texts/store
-Route::get('/texts/store', function () {
-    return redirect()->route('homePage');
-});
+Route::get('/texts/store', function () {return redirect()->route('homePage');});
 Route::post('/texts/store', [TextsController::class, 'store'])->name('store_text')->middleware("auth");
 // Redirect na homepage ako user ručno proba da ode na /texts/store
-Route::get('/texts/destroy/{id}', function () {
-    return redirect()->route('homePage');
-});
+Route::get('/texts/destroy/{id}', function () {return redirect()->route('homePage');});
 Route::delete('/texts/destroy/{id}', [TextsController::class, 'destroy'])->name('destroy_text')->middleware("auth");
 Route::get('/texts/show/{id}', [TextsController::class, 'show'])->name('show_text');
 Route::get('/texts/edit/{id}', [TextsController::class, 'edit'])->name('edit_text')->middleware("auth");
 // Redirect na homepage ako user ručno proba da ode na /texts/update
-Route::get('/texts/update', function () {
-    return redirect()->route('homePage');
-});
+Route::get('/texts/update', function () {return redirect()->route('homePage');});
 Route::post('/texts/update', [TextsController::class, 'update'])->name('update_text')->middleware("auth");
 
 Route::get('/texts/ranks/{id}', [TextsController::class, 'rankList'])->name('rank_list');
