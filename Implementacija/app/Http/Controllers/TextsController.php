@@ -129,11 +129,9 @@ class TextsController extends Controller
         $userDict = array();
         $rankList = $this->getGlobalRankList($resultsForAllTexts, $userDict, null);
 
-        // Sortiranje po vremenu i WPM
+        // Sortiranje po WPM
         usort($rankList, function ($a, $b) {
-            $time_diff = $a->time - $b->time;
-            if ($time_diff) return $time_diff;
-            return $a->wpm - $b->wpm;
+            return $b->wpm - $a->wpm;
         });
 
         $i = 0;
@@ -157,11 +155,9 @@ class TextsController extends Controller
         $userFriends[] = $currentUserId; // Na prijateljsku listu dodajemo i sami sebe
         $rankList = $this->getGlobalRankList($resultsForAllTexts, $userDict, $userFriends);
 
-        // Sortiranje po vremenu i WPM
+        // Sortiranje po WPM
         usort($rankList, function ($a, $b) {
-            $time_diff = $a->time - $b->time;
-            if ($time_diff) return $time_diff;
-            return $a->wpm - $b->wpm;
+            return $b->wpm - $a->wpm;
         });
 
         $i = 0;
@@ -294,7 +290,7 @@ class TextsController extends Controller
 
         return redirect()->route('texts')->with('success', 'Tekst uspešno obrisan.');
     }
-    
+
 
     /**
      * Izračunava rang listu za dati tekst.
