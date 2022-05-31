@@ -191,6 +191,17 @@ class TextsController extends Controller
      */
     public function store(Request $request)
     {
+        //Provera da sadrzaj/tezina nisu prazni i da je tezina broj iz [0, 10]
+        $this->validate($request, [
+            'sadrzaj' => "required",
+            'tezina' => "required|min:0|max:10|numeric"
+        ], [
+            'required' => "Polje je obavezno",
+            'min' => "Tezina mora biti u opsegu 0-10",
+            'max' => "Tezina mora biti u opsegu 0-10",
+            'numeric' => "Tezina mora biti broj"
+        ]);
+
         $tekst = TextModel::create($request->all());
 
         return redirect()->route('texts')->with('success', 'Tekst uspešno napravljen.');
@@ -232,6 +243,17 @@ class TextsController extends Controller
      */
     public function update(Request $request, TextModel $tekst)
     {
+        //Provera da sadrzaj/tezina nisu prazni i da je tezina broj iz [0, 10]
+        $this->validate($request, [
+            'sadrzaj' => "required",
+            'tezina' => "required|min:0|max:10|numeric"
+        ], [
+            'required' => "Polje je obavezno",
+            'min' => "Tezina mora biti u opsegu 0-10",
+            'max' => "Tezina mora biti u opsegu 0-10",
+            'numeric' => "Tezina mora biti broj"
+        ]);
+
         $attrs = $request->only(["id", "sadrzaj", "tezina", "idKat"]);
         $attrs["id"] = intval($attrs["id"]);
 
