@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Database\Factories\UserModelFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -35,6 +36,11 @@ class UserModel extends Authenticatable
      * @var Integer Primarni kljuc
      */
     protected $primaryKey = "id";
+
+    protected static function newFactory()
+    {
+        return UserModelFactory::new();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -78,7 +84,7 @@ class UserModel extends Authenticatable
      * @return Authenticatable $user korisnik
      */
     public static function dohvatiKorisnika($username)
-    {     
+    {
         $ret = UserModel::where("username",$username)->firstOrFail();
         $brojPrijatelja  = DB::table("jePrijatelj")
         ->where("idKor1",$ret->id)
