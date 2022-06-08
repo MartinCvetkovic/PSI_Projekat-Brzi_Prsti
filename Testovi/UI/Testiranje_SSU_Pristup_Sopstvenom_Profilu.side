@@ -1,0 +1,93 @@
+{
+  "id": "f0d42c87-b326-45f5-9614-61a774b2e3c5",
+  "version": "2.0",
+  "name": "Testiranje_SSU_Pristup_Sopstvenom_Profilu",
+  "url": "http://localhost:8000/",
+  "tests": [{
+    "id": "743af10d-b499-4501-a5f4-851f2b7d6726",
+    "name": "Korisnik pristupa svom profilu",
+    "commands": [{
+      "id": "1c9c0faf-a37a-4cc5-a301-203be9459588",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4f6fad27-c211-43d3-bb66-c02e95db649b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1231x1400",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "da7ef2c5-032e-4a64-9580-371be572bf2e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mt-4",
+      "targets": [
+        ["css=.mt-4", "css:finder"],
+        ["xpath=//div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7f60151-80e0-4788-8f4f-f775f00c8f78",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [],
+      "value": "admin"
+    }, {
+      "id": "5ea5b148-d0fe-4e9b-93fa-eaec912a566e",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [],
+      "value": "brziprsti123"
+    }, {
+      "id": "650364b7-ceb1-4251-ad83-49ee859fc9f9",
+      "comment": "",
+      "command": "click",
+      "target": "css=#prijava > b",
+      "targets": [
+        ["css=#prijava > b", "css:finder"],
+        ["xpath=//button[@id='prijava']/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4fc58a2f-db32-40a8-b7ae-a6fd39e9175e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(1) > b",
+      "targets": [
+        ["css=.btn:nth-child(1) > b", "css:finder"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Profil')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6568943b-5072-4aa0-b308-5b874518da47",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(2) > b",
+      "targets": [
+        ["css=.btn:nth-child(2) > b", "css:finder"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Odjavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "db26f668-4713-44f4-844f-c9d70639e636",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["743af10d-b499-4501-a5f4-851f2b7d6726"]
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}
