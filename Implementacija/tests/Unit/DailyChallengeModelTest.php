@@ -11,8 +11,8 @@ class DailyChallengeModelTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_text()
     {
-        $this->assertTrue(true);
+        
     }
 }
