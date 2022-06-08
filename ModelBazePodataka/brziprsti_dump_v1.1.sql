@@ -1,3 +1,7 @@
+DROP SCHEMA IF EXISTS brziprsti;
+CREATE SCHEMA brziprsti COLLATE utf8_unicode_ci;
+USE brziprsti;
+
 -- phpMyAdmin SQL Dump
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
