@@ -1,0 +1,293 @@
+{
+  "id": "874fee40-21bf-4017-9e45-d71b8c208ef8",
+  "version": "2.0",
+  "name": "Testiranje_Rang_Liste",
+  "url": "http://localhost:8000/",
+  "tests": [{
+    "id": "20cad58b-d937-4f24-9a5c-9c6da5bc7eeb",
+    "name": "TP1_neprijavljeniKorisnikPristupaGlobalnoj",
+    "commands": [{
+      "id": "2a3703b0-a0f6-48dd-a493-595022ac88bc",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b4949150-17ef-4c12-bda8-5daadf021136",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d4e9938c-b5f9-4ff0-bc23-1d55e29b90ed",
+      "comment": "",
+      "command": "click",
+      "target": "id=rangliste",
+      "targets": [
+        ["id=rangliste", "id"],
+        ["css=#rangliste", "css:finder"],
+        ["xpath=//button[@id='rangliste']", "xpath:attributes"],
+        ["xpath=//button[5]", "xpath:position"],
+        ["xpath=//button[contains(.,'Rang lista')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "55f6c931-0e45-41e3-8a51-c51c2ba8360c",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1:nth-child(1)",
+      "targets": [
+        ["css=h1:nth-child(1)", "css:finder"],
+        ["xpath=//body/div/div[2]/h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Globalna rang lista\n')]", "xpath:innerText"]
+      ],
+      "value": "Globalna rang lista"
+    }]
+  }, {
+    "id": "25d93136-5b75-4692-8941-f748c7a33842",
+    "name": "TP2_prijavljeniPristupaGlobalnoj_posebanTekst",
+    "commands": [{
+      "id": "deecf4af-8360-494f-8664-c4118a3961ed",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7c1f9659-2c4d-4153-b588-8f1363cedebd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a38b5014-1fdf-4cb7-8b44-3f876d3aab95",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.my-1:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "75098b75-8955-421b-9028-7950a5c0dc06",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.my-1:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "b0dd6f48-e791-413e-9be7-ede67fd5fb42",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.my-1:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "1f79e963-5569-43a1-be77-138f9ccbc8fd",
+      "comment": "",
+      "command": "click",
+      "target": "css=#prijava > b",
+      "targets": [
+        ["css=#prijava > b", "css:finder"],
+        ["xpath=//button[@id='prijava']/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Prijavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ead6892d-4cde-4e75-bbd6-59ef55b8f537",
+      "comment": "",
+      "command": "click",
+      "target": "id=tekstovi",
+      "targets": [
+        ["id=tekstovi", "id"],
+        ["css=#tekstovi", "css:finder"],
+        ["xpath=//button[@id='tekstovi']", "xpath:attributes"],
+        ["xpath=//button[4]", "xpath:position"],
+        ["xpath=//button[contains(.,'Tekstovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc1ead9d-b168-4971-9a0a-b825fbadd497",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Rang lista",
+      "targets": [
+        ["linkText=Rang lista", "linkText"],
+        ["css=tr:nth-child(1) > .col-sm-3 td:nth-child(2) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Rang lista')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/ranks/12']", "xpath:href"],
+        ["xpath=//tr[2]/td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Rang lista')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2e096db-ab62-4af2-acef-1652c89932b0",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1:nth-child(1)",
+      "targets": [
+        ["css=h1:nth-child(1)", "css:finder"],
+        ["xpath=//body/div/div[2]/h1", "xpath:position"]
+      ],
+      "value": "Rang lista za tekst (globalna)"
+    }]
+  }, {
+    "id": "95ca5770-31b6-41a1-819e-331eb33cd333",
+    "name": "TP2_prijavljeniPristupaPrijateljskoj_posebanTekst",
+    "commands": [{
+      "id": "e692da4d-6266-4592-b8a5-1eba76d19459",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c7b6cf8d-b323-4bba-a262-9d156bc7cc16",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ae3ee6b4-63c7-469a-9afe-3ef721ce17b6",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.my-1:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3269bbd1-297b-4c7e-af34-4e1a36b7deb1",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.my-1:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "cb5e0307-8ef5-4833-84ba-4b712b42a5f4",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.my-1:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "2df4eca8-815c-47df-8a72-fac2e1a2dc2b",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.my-1:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "4ee4f814-138a-4942-b5bb-79b121ac0ac7",
+      "comment": "",
+      "command": "click",
+      "target": "id=tekstovi",
+      "targets": [
+        ["id=tekstovi", "id"],
+        ["css=#tekstovi", "css:finder"],
+        ["xpath=//button[@id='tekstovi']", "xpath:attributes"],
+        ["xpath=//button[4]", "xpath:position"],
+        ["xpath=//button[contains(.,'Tekstovi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "69c19fa4-43fa-4c09-973f-c0b02f74cb99",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Rang lista",
+      "targets": [
+        ["linkText=Rang lista", "linkText"],
+        ["css=tr:nth-child(1) > .col-sm-3 td:nth-child(2) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Rang lista')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/ranks/12']", "xpath:href"],
+        ["xpath=//tr[2]/td/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Rang lista')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1971a04-c184-4290-9c05-7664e965c75a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=Prebaci na prijateljsku",
+      "targets": [
+        ["linkText=Prebaci na prijateljsku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Prebaci na prijateljsku')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/friendly_ranks/12']", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prebaci na prijateljsku')]", "xpath:innerText"]
+      ],
+      "value": "Prebaci na prijateljsku"
+    }, {
+      "id": "aadbd928-6a55-4ac2-a2bf-95d11e598b84",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Prebaci na prijateljsku",
+      "targets": [
+        ["linkText=Prebaci na prijateljsku", "linkText"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Prebaci na prijateljsku')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/friendly_ranks/12']", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Prebaci na prijateljsku')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc0d20a2-c377-4de3-9723-335b419162ec",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1:nth-child(1)",
+      "targets": [
+        ["css=h1:nth-child(1)", "css:finder"],
+        ["xpath=//body/div/div[2]/h1", "xpath:position"]
+      ],
+      "value": "Rang lista za tekst (prijateljska)"
+    }]
+  }],
+  "suites": [{
+    "id": "720cceb1-e6a6-4b3d-9e1d-eed94ed6d8b2",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}

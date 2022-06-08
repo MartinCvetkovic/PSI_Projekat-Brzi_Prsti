@@ -1,0 +1,1090 @@
+{
+  "id": "e13bc5c1-a7d9-4597-b4c7-c7d208788727",
+  "version": "2.0",
+  "name": "Testiranje_tekstova",
+  "url": "http://localhost:8000/texts",
+  "tests": [{
+    "id": "bd9a5767-8aee-4f66-8a44-d968640da881",
+    "name": "TP1_prazanTekst_Dodavanje",
+    "commands": [{
+      "id": "af8fc5c1-3ce8-43a8-b27c-2834714c726a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "99dc0f99-51e1-4804-ba64-38b2233a9012",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "97109775-302e-4a07-a88b-87a0eec92147",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj tekst  🞧",
+      "targets": [
+        ["linkText=Dodaj tekst  🞧", "linkText"],
+        ["css=.col-sm-2 > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj tekst  🞧')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/create']", "xpath:href"],
+        ["xpath=//td[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj tekst  🞧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4098555b-6eb5-4830-90a1-6d91891dec71",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30ef3748-e9fd-4807-aff2-496b7733f8a6",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "3db39e05-7c67-4698-bfb1-7de4f734c81a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d44071c3-4d69-4fce-bf40-cb42c7306617",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "31c13443-55d8-489b-bb47-baa416225374",
+    "name": "TP2_bezTezine_Dodavanje",
+    "commands": [{
+      "id": "3f3ea41d-eb1b-42ad-809e-84d5b6b32293",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "80682b9f-36e0-40db-8dd2-535acd5df09a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dd1cde54-d54a-4f52-957b-030c90a91178",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj tekst  🞧",
+      "targets": [
+        ["linkText=Dodaj tekst  🞧", "linkText"],
+        ["css=.col-sm-2 > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj tekst  🞧')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/create']", "xpath:href"],
+        ["xpath=//td[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj tekst  🞧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ef0540e-24b2-44cd-8f84-a2e2073ceab9",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d47b2336-6941-4aa6-9b31-fd6c3e287d85",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "cao"
+    }, {
+      "id": "df12a26a-b1a7-4339-a1ab-e06453aec833",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d8a05a5d-365a-4441-b506-036542598f02",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "267b790e-7787-4ac1-bb33-d2d5b7ba0cdf",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "b0e204c3-b36d-4f57-a37a-fda218f94349",
+    "name": "TP3_tezinaPreko10_Dodavanje",
+    "commands": [{
+      "id": "3b8f8a23-aad2-4c97-b5b4-4ef6c50b07bc",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bd29ba72-fe51-43ce-9115-710cba8b9003",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3072b1f9-648d-4738-abb7-2133ee1a0b08",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj tekst  🞧",
+      "targets": [
+        ["linkText=Dodaj tekst  🞧", "linkText"],
+        ["css=.col-sm-2 > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj tekst  🞧')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/create']", "xpath:href"],
+        ["xpath=//td[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj tekst  🞧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e6a9a2b-2c89-422a-96ca-d89f2e43c738",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e02b529-53ff-4f26-a666-5ec8b3a9cb1b",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "tekst"
+    }, {
+      "id": "e9819653-32a0-42da-ade9-395c0745c5de",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6898459f-06b3-49e0-b9ff-1bf15a126f28",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "10ff47b2-a877-4ee9-9ba3-bfdd18fee6c4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "18a6efaa-3b09-4041-b8c4-bd1200a83022",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ecfe060a-b4a3-47ae-a4b5-5de0847bd434",
+    "name": "TP4_negativnaTezina_Dodavanje",
+    "commands": [{
+      "id": "ac27bc03-7884-4306-8af0-5f2174886bee",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cd99379b-c040-4677-928f-12f6bdc18339",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "78c73dfc-ee80-4e0e-a2be-dfbbd62d30b2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj tekst  🞧",
+      "targets": [
+        ["linkText=Dodaj tekst  🞧", "linkText"],
+        ["css=.col-sm-2 > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj tekst  🞧')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/create']", "xpath:href"],
+        ["xpath=//td[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj tekst  🞧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ea27c1e-07c5-4d72-9eaa-18fc456525e7",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a814cd0e-7334-43fc-9aaf-0664b22f37df",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "tekst"
+    }, {
+      "id": "860ee063-fedc-4b52-afee-1b5e7405c949",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e1310a4-1b3e-4845-ab9b-03571a06c116",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "-1234"
+    }, {
+      "id": "96870403-ed2c-45ff-a1a4-f86bd84d28da",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "34d0e3a4-6b45-4cb8-8365-465012cefbc3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "e5f68861-6073-4540-9503-fb6c38fbcc2a",
+    "name": "TP5_tezinaNijeBroj_Dodavanje",
+    "commands": [{
+      "id": "3814570c-1e0a-4b01-8f38-baa7e58e593c",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "685e65f6-5280-4c91-b6db-91ed701bff00",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8b371bd0-73b2-4f7b-bf99-bb30881cdc40",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj tekst  🞧",
+      "targets": [
+        ["linkText=Dodaj tekst  🞧", "linkText"],
+        ["css=.col-sm-2 > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj tekst  🞧')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/create']", "xpath:href"],
+        ["xpath=//td[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj tekst  🞧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "26ae76c4-4bff-4c31-8d83-e8ddffef70f0",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05605a77-61f2-48ec-8163-12c794fe0c0a",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "tekst"
+    }, {
+      "id": "6b8a7516-65c0-4bb6-ae07-ad57efd4473f",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cf73858c-28e5-471e-acec-654423ad68d7",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "tesko"
+    }, {
+      "id": "4cce5d79-82b4-4381-9640-00e0a9abdd1f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a13122a-4e38-4b1d-8104-0c5df4080135",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "07303d4b-97b2-4889-8057-46171f3fc6b7",
+    "name": "TP6_uspesno_dodavanje",
+    "commands": [{
+      "id": "0b0d7385-e222-4899-9cd7-6d60da030954",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b8358a44-c85b-4b75-867d-d71fa1f8b112",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8ff750c9-4043-4686-af28-4ee7abc58a5a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Dodaj tekst  🞧",
+      "targets": [
+        ["linkText=Dodaj tekst  🞧", "linkText"],
+        ["css=.col-sm-2 > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Dodaj tekst  🞧')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/create']", "xpath:href"],
+        ["xpath=//td[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Dodaj tekst  🞧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b224d590-7031-4c6e-8495-7b51eef837ea",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f898727-d551-4233-b540-31fde612a403",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Nov tekst"
+    }, {
+      "id": "aec7c9df-3c3d-42bc-977c-0d399df710dd",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "4e9ebfea-2c86-48a1-b789-7c8ba40eb8b9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4fe997e4-953d-4b0b-a90c-ffea8e1f0018",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "0adc0ab1-357e-46f9-86cd-c1586876403f",
+    "name": "TP7_prazanTekst_Izmena",
+    "commands": [{
+      "id": "4a959c29-f575-4943-a60c-cee56f28a15f",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7978b60e-ead5-4186-a644-ec69369c4a97",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "73509312-1ef0-4aa5-9c5f-2a07c5a70418",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izmeni",
+      "targets": [
+        ["linkText=Izmeni", "linkText"],
+        ["css=tr:nth-child(1) td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Izmeni')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/edit/12']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izmeni')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab0779d8-1c70-4ab1-a44d-dbdc331ac028",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "82333766-0499-40be-9c45-1a32f0a4166b",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "766a791a-77e0-4447-a0f9-9eedda2149fa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ecd9fe07-db2a-486f-a787-ab86fee766a8",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "b7891f5a-3037-45b1-8256-db8e5d894a9e",
+    "name": "TP8_bezTezine_Izmena",
+    "commands": [{
+      "id": "d9dc942f-7a1e-4ce9-89a4-7d49df92238a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "043cdf9d-f423-4460-b19b-5e4712ad0074",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1294x774",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "62613c5f-f46d-4353-be40-46f21fa88f29",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izmeni",
+      "targets": [
+        ["linkText=Izmeni", "linkText"],
+        ["css=tr:nth-child(1) td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Izmeni')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/edit/12']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izmeni')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "10e6a803-ff58-4f53-bc74-41e22b5c3a89",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container",
+      "targets": [
+        ["css=.container", "css:finder"],
+        ["xpath=//div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aff5465d-934f-40d4-b823-b6ebf6bd9f36",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c6e4143-f04f-48f7-8df1-4b3be7f93ca5",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "75dea06d-aca1-4072-bb87-7db6134c9945",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Al je lep ovaj svet, ovde potok, onde cvetm"
+    }, {
+      "id": "7f78cbb0-5d05-465e-8564-d7e1f64e4ca6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f0055fd2-82d3-4960-82e6-afdde60aa911",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "9e065f5a-dc3c-40b2-91cd-c60a58818db8",
+    "name": "TP9_tezinaPreko10_Izmena",
+    "commands": [{
+      "id": "7a91a888-880c-48ce-93dc-e64662d39773",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "95055c57-e1f2-4fb1-8d35-6e829b986f66",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "602x464",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "899df1da-dc29-488f-8765-961aee775ca5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izmeni",
+      "targets": [
+        ["linkText=Izmeni", "linkText"],
+        ["css=tr:nth-child(1) td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Izmeni')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/edit/12']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izmeni')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "20c890b2-2b1e-4a02-a9b9-b8f08ec5323a",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83d1bc02-dbf2-44ec-9764-e3c3067167d8",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "632"
+    }, {
+      "id": "7024b158-6e31-440f-9ebe-63f0a714b314",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "30c8e08f-5726-4667-9750-52210b9b7622",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "4633b4d5-d35c-4561-8f06-6da40bdb65e6",
+    "name": "TP10_negativnaTezina_Izmena",
+    "commands": [{
+      "id": "cd022e20-79bd-4642-b902-65caedf5e522",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c449ac8a-ebc5-4925-bcd5-4304615dff0b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "602x464",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dbd9ae85-d21b-41fd-a032-029374342c0a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izmeni",
+      "targets": [
+        ["linkText=Izmeni", "linkText"],
+        ["css=tr:nth-child(1) td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Izmeni')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/edit/12']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izmeni')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "309d4cd2-acbb-473f-93bd-fa90a7ef1c08",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5dcf5c6f-3a1a-4db0-95ce-8313763ffb7c",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "-6"
+    }, {
+      "id": "3076610e-cce9-404e-91b5-233481fcf1a5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1a81cf6-0707-489f-ac69-8c6798ef1369",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=.invalid-feedback",
+      "targets": [
+        ["css=.invalid-feedback", "css:finder"],
+        ["xpath=//form/div/div/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "83aee0f0-e15d-4aea-997c-1a79a343e028",
+    "name": "TP11_tezinaNijeBroj_Izmena",
+    "commands": [{
+      "id": "7a8a27db-a259-4fdf-993e-6044f09fc06e",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "57e8e3a0-9be7-434c-a603-9a32b670c81d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "602x464",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6fb7c659-62f6-48d2-b0ad-0473b6b5c233",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izmeni",
+      "targets": [
+        ["linkText=Izmeni", "linkText"],
+        ["css=tr:nth-child(1) td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Izmeni')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/edit/12']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izmeni')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cf919d92-eff2-405f-a333-831bd481d1d8",
+      "comment": "",
+      "command": "click",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e262db7-eca1-4696-b1be-55352b675919",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "lako"
+    }, {
+      "id": "72dd50d0-1503-4229-b427-03c31282af03",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "e4549982-3610-4ed9-918c-cc067b9c83bc",
+    "name": "TP12_uspesno_Izmena",
+    "commands": [{
+      "id": "50ca3c3a-1a9a-4a8d-9e3a-db460492c9db",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/texts",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6b0045b2-48cc-4a19-af11-ff81d248c87d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "602x464",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3b017d7e-5e61-4b96-b64e-91f47e2aaab9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Izmeni",
+      "targets": [
+        ["linkText=Izmeni", "linkText"],
+        ["css=tr:nth-child(1) td:nth-child(3) > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Izmeni')]", "xpath:link"],
+        ["xpath=//a[@href='http://localhost:8000/texts/edit/12']", "xpath:href"],
+        ["xpath=//td[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Izmeni')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ee283570-917c-4c69-a7f3-e77f8ccc749e",
+      "comment": "",
+      "command": "click",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "afb46e99-0337-437a-b9db-243d654db709",
+      "comment": "",
+      "command": "type",
+      "target": "name=sadrzaj",
+      "targets": [
+        ["name=sadrzaj", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//textarea[@name='sadrzaj']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Al je lep ovaj svet, ovde potok, onde cvet tamo b"
+    }, {
+      "id": "5eed9ada-0807-4f06-9610-31a43a8dc75b",
+      "comment": "",
+      "command": "click",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7234a09e-3f8a-44d3-a3ae-26bc55c3c5ed",
+      "comment": "",
+      "command": "type",
+      "target": "name=tezina",
+      "targets": [
+        ["name=tezina", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='tezina']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "9"
+    }, {
+      "id": "cd8874df-5f6e-4f69-a2e4-aa3c7f731b10",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/div/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Snimi')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5953d969-febc-48b9-92cd-64d39b166d55",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.alert",
+      "targets": [
+        ["css=.alert", "css:finder"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f306d450-4bb3-4066-98e6-2fe40e501c23",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "6473ed75-b903-477b-af84-cc7427a50b07",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["bd9a5767-8aee-4f66-8a44-d968640da881"]
+  }],
+  "urls": ["http://localhost:8000/texts"],
+  "plugins": []
+}
