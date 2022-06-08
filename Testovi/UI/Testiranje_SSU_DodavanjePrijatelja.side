@@ -124,17 +124,6 @@
       ],
       "value": ""
     }, {
-      "id": "5b17fee8-2567-469a-ba03-4d5201c3b013",
-      "comment": "",
-      "command": "assertText",
-      "target": "css=p:nth-child(2)",
-      "targets": [
-        ["css=p:nth-child(2)", "css:finder"],
-        ["xpath=//p[2]", "xpath:position"],
-        ["xpath=//p[contains(.,'Broj prijatelja: 0')]", "xpath:innerText"]
-      ],
-      "value": "Broj prijatelja: 1"
-    }, {
       "id": "12a06ce6-defb-4965-aa90-8929711e98b0",
       "comment": "",
       "command": "assertText",
