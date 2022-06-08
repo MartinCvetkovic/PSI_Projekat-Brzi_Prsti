@@ -85,7 +85,7 @@ class UserModel extends Authenticatable
      */
     public static function dohvatiKorisnika($username)
     {
-        $ret = UserModel::where("username",$username);
+        $ret = UserModel::where("username",$username)->first();
         // Ivanov deo
         if($ret != null){
             $brojPrijatelja  = DB::table("jePrijatelj")
