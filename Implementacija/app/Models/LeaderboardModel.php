@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Database\Factories\LeaderboardModelFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,11 @@ class LeaderboardModel extends Model
         'idTekst',
         'vreme'
     ]; // Dostupno i wpm, rank (van Query-a)
+
+    protected static function newFactory()
+    {
+        return LeaderboardModelFactory::new();
+    }
 
     /**
      * Koristiti kao $this->wpm
