@@ -1,0 +1,1313 @@
+{
+  "id": "2f8a3734-102e-4b73-ba9a-1f49eec60b53",
+  "version": "2.0",
+  "name": "Testiranje_Registracija",
+  "url": "http://localhost:8000/",
+  "tests": [{
+    "id": "75f607ee-7989-40e0-8b08-3016e642346f",
+    "name": "L_UspesnaRegistracija",
+    "commands": [{
+      "id": "68a7f70b-38a6-42e3-8987-a2882a25b366",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a8ea854a-95d7-4d76-888d-22484f9dc26c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1300x779",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5da0a905-3057-4cdf-9757-8cf9b2362dc1",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "deba0391-014e-42fa-837d-334cadfe0b92",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95b0f7f9-d53f-4e95-bea0-c8548b3ff552",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "regTest1"
+    }, {
+      "id": "2d063e9a-65bc-4498-971c-d41e95629e53",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6bf7db2-3dc9-4e01-86af-f72803f61782",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "45147258-c5a8-4265-8bd1-3b526b0e2a24",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b709d88b-9aab-4c47-8339-a364a36ae78e",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "2d213796-3d5d-4846-9455-9438262bf957",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8fffe527-6099-4062-9749-12d758d968a4",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=pocetna",
+      "targets": [
+        ["id=pocetna", "id"],
+        ["css=#pocetna", "css:finder"],
+        ["xpath=//button[@id='pocetna']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Početna')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "9deb9d76-31ac-4b89-bab7-fd39653ac59c",
+    "name": "N_PostojeciUsername",
+    "commands": [{
+      "id": "d25bd011-9dab-487d-8d48-e17c93db625f",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4ce038c9-6517-4e6f-87ab-b76604f2d2c1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1303x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5cf7b4f5-aaf6-45c4-9541-5a94ad61f307",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e34f354-7025-4aa0-a8bc-3c0e00130988",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b64eeefe-475a-4822-8864-34a2f0f9b404",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "korisnik1"
+    }, {
+      "id": "1705f153-134d-4750-999d-34477c6eefa2",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7fea7571-37bc-4bf1-8186-e852c7db18d6",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "eed2abea-10ed-48ec-83cc-b8290bffc909",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c59f6509-5a50-4502-b6cf-39b7a3645663",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "2d7603ec-256f-4721-a76e-1244caada903",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e94c27cd-7caf-40c3-8a5d-89914d121609",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(1) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(1) .alert-danger", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Korisnicko ime vec postoji')]", "xpath:innerText"]
+      ],
+      "value": "Korisnicko ime vec postoji"
+    }]
+  }, {
+    "id": "321d2c03-14c0-4655-bd54-33df937470be",
+    "name": "N_PrazanUsername",
+    "commands": [{
+      "id": "3765388b-c53f-4680-8087-a67d5f929654",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b151249f-b1d7-4429-afd1-26931f5ebe6f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1300x779",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fbfe1f39-1a32-4130-8a09-aeedf181e149",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "acffad5d-d4c9-42ee-a34e-2dd63e28a959",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d95dfab1-16ac-42f4-bb8d-4adcbe2e3a42",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "d0945780-4420-4d6e-8478-d6b58ee81145",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4528440-1bd6-4643-90b1-29e8cc48f511",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "d8b7e882-fb5d-4e85-a668-f51501346194",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "057be5a2-2749-41a9-93db-e3d40ba2d5cb",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(1) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(1) .alert-danger", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje je obavezno')]", "xpath:innerText"]
+      ],
+      "value": "Polje je obavezno"
+    }]
+  }, {
+    "id": "a8d7b9f1-cdd1-46dc-81af-9b384b5fce2b",
+    "name": "N_PrazanPassword",
+    "commands": [{
+      "id": "bcbe1d56-8892-4c3c-bcb6-457b6a7f55c5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b2892eb6-8e5a-4afc-a68f-279cba13cece",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1304x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9a64baf9-f558-4fdb-8bc0-effeae920771",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6106281-40b4-4188-983e-22ed7c0512bd",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33a97e08-85d6-47a0-9919-8fde62d6a384",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "testRegEP"
+    }, {
+      "id": "603f751f-9bea-4ed7-9d7b-89450eff0cfc",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a69d35cb-01f9-4411-af0d-2d2e7906213e",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "5cb64bce-98bf-4e79-bce2-06360cc0d701",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "529a32e1-b45c-4ff7-a5e4-3c5844af0e53",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(2) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(2) .alert-danger", "css:finder"],
+        ["xpath=//tr[2]/td[3]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje je obavezno')]", "xpath:innerText"]
+      ],
+      "value": "Polje je obavezno"
+    }]
+  }, {
+    "id": "2101227b-d976-4a30-a5b0-9de33b7abda0",
+    "name": "N_PrazanConfirmPassword",
+    "commands": [{
+      "id": "95245804-6c1c-4248-b598-4be9b97f9592",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "06e50f11-3626-4ba0-b555-261d84bb77c2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1308x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ddf4f306-1bd6-4a0f-a1cc-f97c758c1581",
+      "comment": "",
+      "command": "click",
+      "target": "id=registracija",
+      "targets": [
+        ["id=registracija", "id"],
+        ["css=#registracija", "css:finder"],
+        ["xpath=//button[@id='registracija']", "xpath:attributes"],
+        ["xpath=//div[2]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d0024f8a-5429-42ac-82c0-bbb21e25d6b1",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df898353-9d1a-4088-b507-40f857f520eb",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "testRegECP"
+    }, {
+      "id": "57eefa19-8258-413e-9f4c-fd0eeba7b9c4",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b572c0b-0eb0-4575-bb60-0c440f14e25c",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "briprsti123"
+    }, {
+      "id": "16c5aa98-1267-410e-9cc5-f5c4fc57f5f4",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8b453c02-52c7-42ad-8259-aade1c04775f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(3) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(3) .alert-danger", "css:finder"],
+        ["xpath=//tr[3]/td[3]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje je obavezno')]", "xpath:innerText"]
+      ],
+      "value": "Polje je obavezno"
+    }]
+  }, {
+    "id": "91449270-ffc9-4d4d-bced-bb29b533d8ac",
+    "name": "N_LozinkaRazlicitaOdPotvrde",
+    "commands": [{
+      "id": "54982a5f-602b-44b2-b75d-d72c06f9c069",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5d0e9b4c-7e7a-4190-9474-36930e75a461",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1312x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c8b2f73c-b2d9-43a9-9ae1-10c56297b38b",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "80039864-c435-4744-82b5-91bcbec4fc42",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b81a29f-1c0f-4473-bb30-65d5e6ed0d65",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "testRegMM"
+    }, {
+      "id": "928b39ee-99a2-4c10-b117-f1cc1aefb769",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4592f8e3-7a91-4efc-9d11-ad3e5fc7b974",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "9ad38837-3f14-428d-b226-30bd3d0c1ff2",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e56db62a-6fdb-4c1b-b574-97850f8a333f",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "prstibrzi132"
+    }, {
+      "id": "fa2ca6e0-fbe6-4c62-9424-558491252eb1",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "60dd3500-968b-4e40-be8b-4c50decdb130",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(3) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(3) .alert-danger", "css:finder"],
+        ["xpath=//tr[3]/td[3]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje mora biti isto kao i lozinka')]", "xpath:innerText"]
+      ],
+      "value": "Polje mora biti isto kao i lozinka"
+    }]
+  }, {
+    "id": "e80223c9-bc3e-4113-b4b5-d3c8e1f67937",
+    "name": "N_KratakUsername",
+    "commands": [{
+      "id": "2080bebf-f24a-45c0-96e8-3a86378f1407",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "779b1bd7-6248-4eee-a66b-5ed7c8876b6b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1303x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5032b122-e0f1-45a1-b368-661da8bacb05",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "02b21bb9-58a8-4a84-ba9c-345b79681ebd",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "55ab1b17-bf3a-47aa-9cdd-11ec166f5728",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "t1"
+    }, {
+      "id": "54e7b116-a998-4621-b9e7-caa33211aee1",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f9ad40b-8ea1-4039-8e17-7cffd2ecd5b4",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "e6aeaa9c-e79f-48ea-8c7a-0c5f20dcc8f3",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6f8a457-2935-4ba1-8860-c68643f8d6b2",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "a0f0be47-7888-4de4-b510-2d7e29e6016a",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "faddbe99-5325-4820-aff3-865b16590ee8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(1) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(1) .alert-danger", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje mora imati bar 3 karaktera')]", "xpath:innerText"]
+      ],
+      "value": "Polje mora imati bar 3 karaktera"
+    }]
+  }, {
+    "id": "b566ce6f-d5c8-4f13-8c29-c312a8cff69a",
+    "name": "N_DugacakUsername",
+    "commands": [{
+      "id": "de211a81-54cc-4829-b82f-2a0e80bcacc2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "78ef3ce7-1bb5-48e5-b130-5b1bfa41c724",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1306x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fe9db848-c431-49ad-918a-54d15ad61305",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "acb10606-1d68-45b8-b5f5-7f79927283d6",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4244ea26-7a29-4cc6-9850-88b92f470bfa",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "iuh2to3ogi2eifjti4u8egbjt4jeinfbthj4ot4jot4orgbjt4ogtj4obho"
+    }, {
+      "id": "4e805bfa-8dea-48aa-bebd-1b0e8bb2a6c9",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5395ca09-f09f-4090-b390-1c568d900869",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "87fe31a0-bb8f-4149-8266-4042ff50d020",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30fcda00-9787-4a91-975e-48d2734785f9",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123"
+    }, {
+      "id": "ac1cedf4-d60b-4b60-8859-afed49703063",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4289490b-dfda-4344-8dac-a0f00d340ec3",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(1) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(1) .alert-danger", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje mora imati manje od 20 karaktera')]", "xpath:innerText"]
+      ],
+      "value": "Polje mora imati manje od 20 karaktera"
+    }]
+  }, {
+    "id": "e7ada46e-5de7-4c41-8d29-9e8e7783ae98",
+    "name": "N_KratkaLozinka",
+    "commands": [{
+      "id": "ee25899b-7878-4e1f-a850-2dd6a06bbad8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "773f1256-9584-4711-a7f5-f1313d254a3a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1310x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "05ab6227-6c2d-48bc-bf92-3516476f9c87",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3864668-675e-4837-9edb-058b8bdaa30f",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b92d41d-d5ba-4295-bbe5-3c99fc518bc4",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "testRegSP"
+    }, {
+      "id": "1d8e2128-30ca-447b-a4ce-d1f659d365c2",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dad7e145-20e7-4d92-b77b-9cac8236cd51",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "a1"
+    }, {
+      "id": "352cb874-924f-4258-a1e6-22a3120563f1",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d56b10e-14c8-4d15-afdd-c76553613459",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "a1"
+    }, {
+      "id": "a88b3b55-adeb-49e7-963d-cb2c57f4516a",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "518a52d0-5177-4a10-8412-08c60e632e81",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(2) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(2) .alert-danger", "css:finder"],
+        ["xpath=//tr[2]/td[3]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje mora imati bar 8 karaktera')]", "xpath:innerText"]
+      ],
+      "value": "Polje mora imati bar 8 karaktera"
+    }]
+  }, {
+    "id": "30b467b3-a926-45b7-8540-1c4ba95c2949",
+    "name": "N_DugackaLozinka",
+    "commands": [{
+      "id": "960fa608-7a42-4906-ab81-9709fa1652f4",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b18f55a1-eba4-4b61-a2c4-968e7340450c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1312x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "25bda3bd-d1c1-4ef5-80b8-2cb1cf34ab5b",
+      "comment": "",
+      "command": "click",
+      "target": "id=registracija",
+      "targets": [
+        ["id=registracija", "id"],
+        ["css=#registracija", "css:finder"],
+        ["xpath=//button[@id='registracija']", "xpath:attributes"],
+        ["xpath=//div[2]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "27193859-3fea-42c4-ae23-79186f6f02a0",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c8864999-96c1-400a-a672-5b2a385d9d6f",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "testRegLP"
+    }, {
+      "id": "ce4dedc4-d0e6-4bd8-bbc5-e1e2a564f2e4",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e50588f6-1256-4a28-822c-6ba51ef403f2",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123brziprsti123brziprsti123"
+    }, {
+      "id": "08b1c613-512e-4a0a-a14c-e28f3b9e9c33",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "66a36a11-d941-4a23-ad26-3947e7e02c9a",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123brziprsti123brziprsti123"
+    }, {
+      "id": "0a70e65e-3595-4c8c-944c-d219b20f70ec",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c4429f89-6675-489a-8ffc-879693bc9a39",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(2) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(2) .alert-danger", "css:finder"],
+        ["xpath=//tr[2]/td[3]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje mora imati manje od 15 karaktera')]", "xpath:innerText"]
+      ],
+      "value": "Polje mora imati manje od 15 karaktera"
+    }]
+  }, {
+    "id": "04c5f9bf-9cd2-449c-ab0a-480d73b109a3",
+    "name": "N_LozinkaSaSpecijalnimKarakterima",
+    "commands": [{
+      "id": "3ab898d3-ba6d-4960-9d51-0ba396220826",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a22e354d-d946-4e43-967f-2d11549135bf",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1312x780",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9b310613-72a8-4928-89e9-9cf882b3085e",
+      "comment": "",
+      "command": "click",
+      "target": "css=#registracija > b",
+      "targets": [
+        ["css=#registracija > b", "css:finder"],
+        ["xpath=//button[@id='registracija']/b", "xpath:idRelative"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c54de9f-b310-4fab-93af-952d13cbcb99",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "64c68e04-3c84-4a73-a023-60b19aa33eeb",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=tr:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//td[2]/input", "xpath:position"]
+      ],
+      "value": "testRegSL"
+    }, {
+      "id": "c944fb16-2f61-4397-b6d9-9daabcfaa9f9",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d79ac8fa-1119-4a30-8f33-6ae02ac9e4cb",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=tr:nth-child(2) input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123*"
+    }, {
+      "id": "4f3b6f92-bbf7-4930-bd7f-9f4a712e7ba6",
+      "comment": "",
+      "command": "click",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f1403e9-9a8b-4d67-964f-4d3fba904d66",
+      "comment": "",
+      "command": "type",
+      "target": "name=passwordConfirm",
+      "targets": [
+        ["name=passwordConfirm", "name"],
+        ["css=tr:nth-child(3) input", "css:finder"],
+        ["xpath=//input[@name='passwordConfirm']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "brziprsti123*"
+    }, {
+      "id": "c628e441-ecf5-4c3b-92dd-c4b458126a6d",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) > .btn",
+      "targets": [
+        ["css=td:nth-child(1) > .btn", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Registruj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "62bbbbb7-b425-47cc-822b-00c4e69a1b3a",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(2) .alert-danger",
+      "targets": [
+        ["css=tr:nth-child(2) .alert-danger", "css:finder"],
+        ["xpath=//tr[2]/td[3]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Polje mora sadrzati slova i brojeve')]", "xpath:innerText"]
+      ],
+      "value": "Polje mora sadrzati slova i brojeve"
+    }]
+  }],
+  "suites": [{
+    "id": "d2b56b41-69fc-458e-916d-797d20a28d7e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}
