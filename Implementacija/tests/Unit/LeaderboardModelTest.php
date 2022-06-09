@@ -5,12 +5,13 @@ namespace Tests\Unit;
 use App\Models\LeaderboardModel;
 use App\Models\TextModel;
 use App\Models\UserModel;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class LeaderboardModelTest extends TestCase
 {
-    // use RefreshDatabase;
+    use DatabaseTransactions;
 
     public function test_user()
     {
@@ -43,10 +44,14 @@ class LeaderboardModelTest extends TestCase
     {
         //Los pristup
 
-        $lbm = LeaderboardModel::newFactory()->make();
-        $lbm->create(12,99990099);
+        $user = UserModel::where("tip",2)->first();
+        $this->be($user);
+        $text = TextModel::first();
 
-        $this->assertDatabaseMissing("ranglista", ["vreme"=>"99990099"]);
+        $lbm = LeaderboardModel::newFactory()->make();
+        $lbm->create($text->id,1);
+
+        $this->assertDatabaseHas("ranglista", ["idKor"=>$user->id,"vreme"=>"1","idTekst"=>$text->id]);
         // $zaBrisanje = LeaderboardModel::where("idKor")
     }
     public function test_getRankAttribute()
