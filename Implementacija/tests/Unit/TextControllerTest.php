@@ -17,15 +17,6 @@ class TextControllerTest extends TestCase
     use DatabaseTransactions;
 
     /*
-        Provera redirektovanja do globalne rang liste
-    */
-    public function test_global_rankList_view()
-    {
-        $response = $this->get('/rankList');
-
-        $response->assertViewIs("rank_list");
-    }
-    /*
         Provera ubacivanja u bazu podataka
     */
     public function test_insert_to_rangList(){
@@ -94,7 +85,43 @@ class TextControllerTest extends TestCase
         $response = $this->actingAs($user)->get("/texts/create");
         $response->assertViewIs("texts\create");
     }
-     /*
+    /*
+        Provera pristupa admina stranici tekstova - prikaz dugmeta izmene
+    */
+    public function test_prisup_tekstovima_dugmeIzmene_auth()
+    {
+        $user = UserModel::where("tip",1)->first();
+ 
+        $response = $this->actingAs($user)->get("/texts");
+
+        $response->assertViewIs("texts");
+        $response->assertSee("Izmeni");
+    }
+    /*
+        Provera pristupa admina stranici tekstova - prikaz dugmeta dodavanja
+    */
+    public function test_prisup_tekstovima_dugmeDodatka_auth()
+    {
+        $user = UserModel::where("tip",1)->first();
+ 
+        $response = $this->actingAs($user)->get("/texts");
+
+        $response->assertViewIs("texts");
+        $response->assertSee("Dodaj");
+    }
+    /*
+        Provera pristupa admina stranici tekstova - prikaz dugmeta dodavanja, ne treba se prikazati
+    */
+    public function test_prisup_tekstovima_dugmeDodatka_neAuth()
+    {
+        $user = UserModel::where("tip",0)->first();
+ 
+        $response = $this->actingAs($user)->get("/texts");
+
+        $response->assertViewIs("texts");
+        $response->assertDontSee("Dodaj");
+    }
+    /*
         Provera pristupa, moderatora stranici za izmenu  tekstova
     */
     public function test_prisup_stvaranju_mod()
@@ -105,6 +132,20 @@ class TextControllerTest extends TestCase
 
         $response->assertViewIs("texts\create");
     }
+
+    /*
+        Provera pristupa admina stranici tekstova - prikaz dugmeta dodavanja, ne treba se prikazati
+    */
+    public function test_prisup_tekstovima_dugmeIzmene_neAuth()
+    {
+        $user = UserModel::where("tip",0)->first();
+ 
+        $response = $this->actingAs($user)->get("/texts");
+
+        $response->assertViewIs("texts");
+        $response->assertDontSee("Izmeni");
+    }
+
     // Ne redirektuje na pocetnu stranicu
      /*
         Provera pristupa registrovanog (tip==0) stranici za izmenu  tekstova
@@ -275,6 +316,43 @@ class TextControllerTest extends TestCase
  
         $response = $this->actingAs($user)->get('/tekst/edit/-1')->assertNotFound();
     }
+    /*
+        Pristup editu nepostojeceg teksta
+    */
+    public function test_pristup_prijateljskoj_globalnoj_rL()
+    {
+        $user = UserModel::first();
+ 
+        $response = $this->actingAs($user)
+                ->get('/friendlyRankList');
+
+        $response->assertViewIs("rank_list");
+        $response->assertSeeText("Prebaci na globalnu");
+    }
+    /*
+        Provera redirektovanja do globalne rang liste
+    */
+    public function test_global_rankList_neprijavljeni()
+    {
+        $response = $this->get('/rankList');
+
+        $response->assertViewIs("rank_list");
+        $response->assertDontSee("Prebaci na globalnu");
+    }
+    /*
+        Prikaz glovalne rang liste prijavljenogkorisnika
+    */
+    public function test_global_rankList_prijavljeni()
+    {
+        $response = $this->get('/rankList');
+
+        $response->assertViewIs("rank_list");
+        $response->assertDontSee("Prebaci na prijateljsku");
+    }
+    /*
+        
+    */
+
 
 
 
