@@ -226,6 +226,14 @@ class UserControllerTest extends TestCase
         ]);
     }
 
+    // test otvaranja stranice za pretragu korisnika
+    public function test_search_users_form() {
+        $mod = UserModel::where('tip', 1)->first();
+        $response = $this->actingAs($mod);
+
+        $response->get("/searchusers")->assertViewIs("pretragaProfila");
+    }
+
     // test pretrage korisnika
     public function test_search_users() {
         $mod = UserModel::where('tip', 1)->first();
