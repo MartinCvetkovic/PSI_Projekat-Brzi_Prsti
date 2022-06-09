@@ -27,27 +27,37 @@ class LeaderboardModelTest extends TestCase
         $text = $lbm->text();
         //  dd($text);
 
-        $this->assertTrue($text->id == 12);
+        $this->assertTrue($text->id == $lbm->idTekst);
     }
 
-    public function test_getRankAttribute()
+    public function test_getWpmAttribute()
     {
 
         $lbm = LeaderboardModel::newFactory()->make();
         $broj = $lbm->getWpmAttribute();
-        
-        $this->assertTrue($broj == 0.04);
+        $tacno = round(TextModel::where("id", $lbm->idTekst)->first()->word_count / $lbm->vreme * 60, 2);
+
+        $this->assertTrue($broj == $tacno);
     }
     public function test_create()
     {
-        // $user = UserModel::where("tip",1)->first();
-        // $response = $this->actingAs($user);
+        //Los pristup
 
         $lbm = LeaderboardModel::newFactory()->make();
         $lbm->create(12,99990099);
+
         $this->assertDatabaseMissing("ranglista", ["vreme"=>"99990099"]);
         // $zaBrisanje = LeaderboardModel::where("idKor")
     }
-    
+    public function test_getRankAttribute()
+    {
+        // return LeaderboardModel::where('idTekst', $this->idTekst)->where('vreme', '<=', $this->vreme - 0.01)->distinct()->count("idKor") + 1;
+
+        $lbm = LeaderboardModel::newFactory()->make();
+        $ret = $lbm->getRankAttribute();
+        $prava = LeaderboardModel::where('idTekst', $lbm->idTekst)->where('vreme', '<=', $lbm->vreme - 0.01)->distinct()->count("idKor") + 1;
+        
+        $this->assertTrue($ret == $prava);
+    }
 
 }
