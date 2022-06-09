@@ -114,4 +114,87 @@ class UserControllerTest extends TestCase
         
         $response->get("/blokiraj/r1ewgt43fr3r")->assertNotFound();
     }
+
+    public function test_showTexts()
+    {
+        $user = UserModel::where('tip', 0)->first();
+        $response = $this->actingAs($user);
+        $response->get('texts')->assertViewIs('texts');
+    }
+
+    
+    public function test_showTextsGuest()
+    {
+        $this->get('texts')->assertRedirect('/');
+    }
+    
+    public function test_textSearch()
+    {
+        $user = UserModel::where('tip', 0)->first();
+        $response = $this->actingAs($user);
+        $response->get('textsearch?kategorija=2&tezina=1&duzina=2')->assertViewIs('texts');
+    }
+
+    
+    public function test_textSearchGuest()
+    {
+        $this->get('textsearch')->assertRedirect('/');
+    }
+    
+    public function test_recommendTexts()
+    {
+        $user = UserModel::where('tip', 0)->first();
+        $response = $this->actingAs($user);
+        $response->get('recommendTexts')->assertRedirect('textsearch?kategorija=0&tezina=3&duzina=1&page=1');
+    }
+    
+    public function test_recommendTextsGuest()
+    {
+        $this->get('recommendTexts')->assertRedirect('/');
+    }
+
+    public function test_getDaily()
+    {
+        $user = UserModel::where('tip', 0)->first();
+        $response = $this->actingAs($user);
+        $response->get('daily')->assertViewIs('daily');
+    }
+    
+    public function test_getDailyGuest()
+    {
+        $this->get('daily')->assertRedirect('/');
+    }
+
+    public function test_getDailyEnd()
+    {
+        $user = UserModel::where('tip', 0)->first();
+        $response = $this->actingAs($user);
+        $response->get('dailyEnd')->assertRedirect('/');
+    }
+    
+    public function test_getDailyEndGuest()
+    {
+        $this->get('dailyEnd')->assertRedirect('/');
+    }
+
+    public function test_dailyPrikazRezultata()
+    {
+        //$this->get('/soloResults')->assertViewIs('solo_kucanje_rezultati');
+        //$this->assertTrue(true);
+    }
+    
+    public function test_promeniDailyAdmin()
+    {
+        $user = UserModel::where('tip', 2)->first();
+        $response = $this->actingAs($user);
+        $response->get('dailyChange')->assertRedirect('/');
+    }
+    
+    public function test_promeniDailyNonAdmin()
+    {
+        $user = UserModel::where('tip', 0)->first();
+        $response = $this->actingAs($user);
+        $response->get('dailyChange')->assertForbidden();
+    }
+
 }
