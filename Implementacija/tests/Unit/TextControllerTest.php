@@ -26,19 +26,23 @@ class TextControllerTest extends TestCase
     */
     public function test_insert_to_rangList(){
 
+        $text = TextModel::first();
+        $korisnik = UserModel::first();
+
         $rank1 = LeaderboardModel::make([
-            'idKor' => "3",
-            'idTekst' => "12",
+            'idKor' => $korisnik->id,
+            'idTekst' => $text->id,
             'vreme' => "12345"
         ]);
         $rank1->save();
 
         // $this->assertTrue($rank1->idKor != $rank2->idKor);
         $this->assertDatabaseHas("ranglista", [
-            "idKor"=>"3",
-            "idTekst"=>"12",
+            'idKor' => $korisnik->id,
+            'idTekst' => $text->id,
             'vreme' => "12345"
         ]);
+        $rank1->delete();
     }
     /*
         Provera zahteva neprijavljenih za promenu teksta
@@ -172,9 +176,13 @@ class TextControllerTest extends TestCase
         $user = UserModel::where("tip",1)->first();
  
         $response = $this->actingAs($user)
-                        ->post("/texts/store",["sadrzaj"=>"value", "tezina"=>"1","idKat"=>"2"])
+                        ->post("/texts/store",["sadrzaj"=>"___test___text___", "tezina"=>"1","idKat"=>"2"])
                         ->assertStatus(302);
         $response->assertRedirect("/texts")->with("success");
+        $forDelete = TextModel::where("sadrzaj","___test___text___");
+        $forDelete->delete();
+
+
     }
     /*
         Kreiranje sa tezinom < 10
@@ -214,7 +222,6 @@ class TextControllerTest extends TestCase
         $user = UserModel::where("tip",1)->first();
         $tekst = TextModel::first();
  
- 
         $response = $this->actingAs($user)
         ->post("/texts/update",["id"=>$tekst->id,"sadrzaj"=>"value", "tezina"=>"tesko","idKat"=>"2"])
                     ->assertSessionHasErrors("tezina")
@@ -244,7 +251,7 @@ class TextControllerTest extends TestCase
     {
         $user = UserModel::where("tip",1)->first();
         $tekst = TextModel::first();
- 
+        $oldText = $tekst->sadrzaj;
   
         $response = $this->actingAs($user)
                     ->post("/texts/update",["id"=>$tekst->id,"sadrzaj"=>"novi sadrzaj", "tezina"=>"1","idKat"=>"2"])
@@ -252,6 +259,7 @@ class TextControllerTest extends TestCase
 
         $this->assertDatabaseHas('tekst', [ 'sadrzaj' => "novi sadrzaj", "tezina"=>"1"]);
         $response->assertRedirect("/texts")->with("success");
+        $tekst->sadrzaj = $oldText;
     }
 
     /*
