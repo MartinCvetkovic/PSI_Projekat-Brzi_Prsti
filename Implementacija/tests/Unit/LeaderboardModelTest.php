@@ -59,5 +59,14 @@ class LeaderboardModelTest extends TestCase
         
         $this->assertTrue($ret == $prava);
     }
+    public function test_bestForUser()
+    {
+        $lbm = LeaderboardModel::newFactory()->make();
+        $ret = $lbm->bestForUser(12,2);
+        // dd($ret);
+        $tacno = LeaderboardModel::where('idKor', 2)->where('idTekst', 12)->orderBy('vreme', 'asc')->first()->vreme;
+        $this->assertTrue($tacno == $ret->vreme);
+
+    }
 
 }
