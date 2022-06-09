@@ -213,26 +213,26 @@ class UserControllerTest extends TestCase
     }
 
     // test dodavanja i uklanjanja korisnika kao prijatelja
-    /*public function test_friend_and_unfriend_user() {
-        $mod = UserModel::where('tip', 1)->first();
-        $response = $this->actingAs($mod);
+    public function test_friend_and_unfriend_user() {
+        $firstUser = UserModel::where('tip', 0)->first();
+        $response = $this->actingAs($firstUser);
 
-        $user = UserModel::where('tip', 0)->where('aktivan', 1)->first();
+        $secondUser = UserModel::where('tip', 0)->where('aktivan', 1)->first();
 
-        $response->get("/dodaj/".$user->username);
+        $response->get("/dodaj/".$secondUser->username);
 
         $this->assertDatabaseHas('jeprijatelj', [
-            'idKor1' => $mod->id,
-            'idKor2' => $user->id
+            'idKor1' => $firstUser->id,
+            'idKor2' => $secondUser->id
         ]);
 
-        $response->get("/dodaj/".$user->username);
+        $response->get("/dodaj/".$secondUser->username);
 
         $this->assertDatabaseMissing('jeprijatelj', [
-            'idKor1' => $mod->id,
-            'idKor2' => $user->id
+            'idKor1' => $firstUser->id,
+            'idKor2' => $secondUser->id
         ]);
-    }*/
+    }
 
     // test otvaranja stranice za pretragu korisnika
     public function test_search_users_form() {
