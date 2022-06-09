@@ -348,12 +348,7 @@ class TextControllerTest extends TestCase
 
         $response->assertViewIs("rank_list");
         $response->assertDontSee("Prebaci na prijateljsku");
-    }
-
-
-
-
-    
+    }  
 
     //Uspesno brisanje teksta
     public function test_delete_text() {

@@ -13,7 +13,7 @@ class LeaderboardModelFactory extends Factory
      *
      * @var string
      */
-    protected $model = LeaderboardModelFactory::class;
+    protected $model = LeaderboardModel::class;
 
     /**
      * Define the model's default state.
@@ -23,9 +23,9 @@ class LeaderboardModelFactory extends Factory
     public function definition()
     {
         return [
-            'idKor' => 1000,
-            'vreme' => 100,
-            'idTekst' => 13
+            'idKor' => 2,
+            'vreme' => 12345,
+            'idTekst' => 12
         ];
     }
 }
