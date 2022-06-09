@@ -2,10 +2,13 @@
 
 namespace Tests\Unit;
 
+use App\Models\UserModel;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BaseControllerTest extends TestCase
 {
+    use DatabaseTransactions;
     //Test rute za homepage
     public function test_home_page() {
         $this->get('/')->assertViewIs('home');
@@ -23,15 +26,13 @@ class BaseControllerTest extends TestCase
 
     public function test_soloEndPost()
     {
-        /*$response = $this->post('/soloEnd', [
-            'id' => 13,
-            'speed' => 15,
-            'best_speed' => 13,
-            'best_position' => 2
+        $mod = UserModel::where('tip', 1)->first();
+        $response = $this->actingAs($mod)->post('/soloEnd', [
+            'idTekst' => 13,
+            'time' => 1
         ]);
 
-        $response->assertRedirect(route('solo_kucanje_rezultati'));*/
-        //$this->assertDatabaseHas('korisnik', ['username' => 'testuserreg1']);
+        $response->assertRedirect('http://localhost/soloResults?id=13&speed=480&best_speed=480&best_position=1');
     }
 
     public function test_soloEndGet()
@@ -41,6 +42,13 @@ class BaseControllerTest extends TestCase
 
     public function test_soloKucanjePrikazRezultata()
     {
-        //$this->get('/soloResults')->assertViewIs('solo_kucanje_rezultati');
+        $mod = UserModel::where('tip', 1)->first();
+        $response = $this->actingAs($mod)->get('/soloResults', [
+            'id' => 13,
+            'speed' => 480,
+            'best_speed' => 480,
+            'best_position' => 1
+        ]);
+        $response->assertNotFound();
     }
 }

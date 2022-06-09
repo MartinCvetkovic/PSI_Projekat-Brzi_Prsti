@@ -4,10 +4,12 @@ namespace Tests\Unit;
 
 use App\Models\DailyChallengeModel;
 use App\Models\TextModel;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class DailyChallengeModelTest extends TestCase
 {
+    use DatabaseTransactions;
     
     public function test_text()
     {
@@ -31,9 +33,8 @@ class DailyChallengeModelTest extends TestCase
 
     public function test_changeDaily()
     {
-        // Zakomentarisan jer menja bazu
-        /*DailyChallengeModel::changeDaily();
-        $this->assertTrue(2 != DailyChallengeModel::getDaily()->id);*/
+        DailyChallengeModel::changeDaily();
+        $this->assertTrue(2 != DailyChallengeModel::getDaily()->id);
         $this->assertTrue(true);
     }
 
