@@ -197,10 +197,11 @@ class UserControllerTest extends TestCase
         $response->get('dailyChange')->assertForbidden();
     }
 
+    // test prikaza sopstvenog profila
     public function test_show_own_profile() {
         $user = UserModel::where('tip', 0)->where('aktivan', 1)->first();
         $response = $this->actingAs($user);
-        $response = $response->get("/user/".$user->username)->assertSeeText($user->username);
+        $response->get("/user/".$user->username)->assertSeeText($user->username);
     }
 
     // test dodavanja i uklanjanja korisnika kao prijatelja
@@ -225,4 +226,11 @@ class UserControllerTest extends TestCase
         ]);
     }
 
+    // test pretrage korisnika
+    public function test_search_users() {
+        $mod = UserModel::where('tip', 1)->first();
+        $response = $this->actingAs($mod);
+
+        $response->get("/submitusersearch?filter=kor")->assertSeeText("korisnik1");
+    }
 }
