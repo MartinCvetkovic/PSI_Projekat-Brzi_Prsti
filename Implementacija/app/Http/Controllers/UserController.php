@@ -242,6 +242,9 @@ class UserController extends BaseController
         //Zabrana da korisnik rucno ode na /mod/username i dodeli mod
         if (auth()->user()->tip != 2) abort(403);
 
+        //Zabrana da se funkcija zove za admine (tip im odlazi na -1)
+        if ($korisnik->tip > 1) abort(403);
+
         $korisnik->tip = 1 - $korisnik->tip;
         $korisnik->save();
 

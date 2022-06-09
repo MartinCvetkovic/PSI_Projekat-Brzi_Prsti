@@ -3,15 +3,19 @@
 namespace Tests\Unit;
 // use PHPUnit\Framework\TestCase;
 
+use App\Models\DailyChallengeModel;
 use App\Models\User;
 use App\Models\LeaderboardModel;
 use App\Models\TextModel;
 use App\Models\UserModel;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class TextControllerTest extends TestCase
     
 {
+    use DatabaseTransactions;
+
     /*
         Provera redirektovanja do globalne rang liste
     */
@@ -263,16 +267,56 @@ class TextControllerTest extends TestCase
     }
 
     /*
-        Pristup editu nepostojeceg teksta, ne prolazi
+        Pristup editu nepostojeceg teksta
     */
-    // public function test_global_edit_nepostojeceg()
-    // {
-    //     $user = UserModel::where("tip",2)->first();
+    public function test_global_edit_nepostojeceg()
+    {
+        $user = UserModel::where("tip",2)->first();
  
- 
-    //     $response = $this->actingAs($user)->get('/tekst/edit/-1');
+        $response = $this->actingAs($user)->get('/tekst/edit/-1')->assertNotFound();
+    }
 
-    //     $response->assertRedirect("/");
-    // }
 
+
+    
+
+    //Uspesno brisanje teksta
+    public function test_delete_text() {
+        $id = TextModel::where('id', '!=', DailyChallengeModel::getIdTekst())->first()->id;
+
+        $this->actingAs(UserModel::where('tip', 1)->first())->delete('/texts/destroy/'.$id);
+        $this->assertDatabaseMissing('tekst', ['id' => $id]);
+    }
+
+    //Brisanje nepostojeceg teksta
+    public function test_delete_bad_id_text() {
+        $id = -1;
+
+        $this->actingAs(UserModel::where('tip', 1)->first())->delete('/texts/destroy/'.$id)->assertNotFound();
+    }
+
+    //Brisanje teksta kao obican korisnik
+    public function test_delete_as_user() {
+        $id = TextModel::where('id', '!=', DailyChallengeModel::getIdTekst())->first()->id;
+
+        $this->actingAs(UserModel::where('tip', 0)->first())->delete('/texts/destroy/'.$id)->assertForbidden();
+        $this->assertDatabaseHas('tekst', ['id' => $id]);
+    }
+
+    //Brisanje daily-a kao mod
+    public function test_delete_daily_as_mod() {
+        $id = DailyChallengeModel::getIdTekst();
+
+        $this->actingAs(UserModel::where('tip', 1)->first())->delete('/texts/destroy/'.$id)->assertSessionHas('danger', 'Tekst je trenutno dnevni izazov, brisanje je dozvoljeno samo adminima');
+        $this->assertDatabaseHas('tekst', ['id' => $id]);
+    }
+
+    //Brisanje daily-a kao admin
+    public function test_delete_daily_as_admin() {
+        $id = DailyChallengeModel::getIdTekst();
+
+        $this->actingAs(UserModel::where('tip', 2)->first())->delete('/texts/destroy/'.$id)->assertSessionHas('dailyDeleted', 1);
+        $this->assertDatabaseMissing('tekst', ['id' => $id]);
+        $this->assertDatabaseCount('dnevniizazov', 0);
+    }
 }

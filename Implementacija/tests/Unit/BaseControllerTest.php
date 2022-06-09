@@ -2,17 +2,12 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class BaseControllerTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $this->assertTrue(true);
+    //Test rute za homepage
+    public function test_home_page() {
+        $this->get('/')->assertViewIs('home');
     }
 }
