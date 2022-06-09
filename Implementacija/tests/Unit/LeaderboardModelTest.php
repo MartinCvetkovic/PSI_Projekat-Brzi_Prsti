@@ -26,7 +26,6 @@ class LeaderboardModelTest extends TestCase
         $lbm = LeaderboardModel::newFactory()->make();
 
         $text = $lbm->text();
-        //  dd($text);
 
         $this->assertTrue($text->id == $lbm->idTekst);
     }
@@ -42,7 +41,6 @@ class LeaderboardModelTest extends TestCase
     }
     public function test_create()
     {
-        //Los pristup
 
         $user = UserModel::where("tip",2)->first();
         $this->be($user);
@@ -52,23 +50,25 @@ class LeaderboardModelTest extends TestCase
         $lbm->create($text->id,1);
 
         $this->assertDatabaseHas("ranglista", ["idKor"=>$user->id,"vreme"=>"1","idTekst"=>$text->id]);
-        // $zaBrisanje = LeaderboardModel::where("idKor")
     }
+
     public function test_getRankAttribute()
     {
-        // return LeaderboardModel::where('idTekst', $this->idTekst)->where('vreme', '<=', $this->vreme - 0.01)->distinct()->count("idKor") + 1;
-
+        
         $lbm = LeaderboardModel::newFactory()->make();
         $ret = $lbm->getRankAttribute();
         $prava = LeaderboardModel::where('idTekst', $lbm->idTekst)->where('vreme', '<=', $lbm->vreme - 0.01)->distinct()->count("idKor") + 1;
         
         $this->assertTrue($ret == $prava);
     }
+
+    // moraju podaci iz rankList
     public function test_bestForUser()
     {
+        $red = LeaderboardModel::first();
         $lbm = LeaderboardModel::newFactory()->make();
-        $ret = $lbm->bestForUser(12,2);
-        // dd($ret);
+        $ret = $lbm->bestForUser($red->idTekst,$red->idKor);
+
         $tacno = LeaderboardModel::where('idKor', 2)->where('idTekst', 12)->orderBy('vreme', 'asc')->first()->vreme;
         $this->assertTrue($tacno == $ret->vreme);
 
