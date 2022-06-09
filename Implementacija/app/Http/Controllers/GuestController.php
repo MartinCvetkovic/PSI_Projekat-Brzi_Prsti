@@ -81,7 +81,8 @@ class GuestController extends BaseController
             'required' => 'Polje je obavezno'
         ]);
 
-        $user = UserModel::dohvatiKorisnika($request->username);
+        //Direktan query umesto pomocne funkcije
+        $user = UserModel::where("username",$request->username)->first();
 
         if ($user == null) {
             return back()->with('status', 'Nepostojeće korisničko ime');

@@ -86,15 +86,14 @@ class UserModel extends Authenticatable
      */
     public static function dohvatiKorisnika($username)
     {
-        $ret = UserModel::where("username",$username)->first();
-        // Ivanov deo
-        if($ret != null){
-            $brojPrijatelja  = DB::table("jePrijatelj")
-            ->where("idKor1",$ret->id)
-            ->get();
-            $ret->brojPrijatelja = count($brojPrijatelja);
-            $ret->save();
-        }
+        //Mora orFail, funkcija ne sme da vrati null onako kako je koriscena, sorry
+        $ret = UserModel::where("username",$username)->firstOrFail();
+
+        $brojPrijatelja  = DB::table("jePrijatelj")
+        ->where("idKor1",$ret->id)
+        ->get();
+        $ret->brojPrijatelja = count($brojPrijatelja);
+        $ret->save();
         return $ret;
     }
 
@@ -114,6 +113,9 @@ class UserModel extends Authenticatable
      */
     public static function addUser($username, $password, $zlato, $srebro, $bronza, $tip, $aktivan, $brojPrijatelja)
     {
+        //Provera da username ne postoji vec u bazi
+        if (UserModel::where('username', $username)->first() != null) return;
+
         $user = new UserModel();
         $user->username = $username;
         $user->password = $password;

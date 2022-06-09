@@ -273,6 +273,13 @@ class TextsController extends Controller
      */
     public function destroy($id)
     {
+        //Provera da li korisnik ima privilegije za brisanje
+        if (auth()->user()->tip == 0) abort(403);
+
+        //Provera da li tekst postoji
+        $text = TextModel::find($id);
+        if ($text == null) abort(404);
+
         //Provera da li se brise dnevni izazov
         if ($id == DailyChallengeModel::getIdTekst()) {
             //Ako korisnik nije admin, zabraniti
@@ -281,12 +288,12 @@ class TextsController extends Controller
             }
             //U suprotnom obavestiti ga da je izbrisao dnevni izazov
             else {
-                TextModel::find($id)->delete();
+                $text->delete();
                 return redirect()->route('texts')->with('success', 'Tekst uspešno obrisan.')->with('dailyDeleted', 1);
             }
         }
 
-        TextModel::find($id)->delete();
+        $text->delete();
 
         return redirect()->route('texts')->with('success', 'Tekst uspešno obrisan.');
     }

@@ -3,10 +3,13 @@
 namespace Tests\Unit;
 
 use App\Models\UserModel;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class GuestControllerTest extends TestCase
 {
+    use DatabaseTransactions;
+
     //Provera prikaza register stranice
     public function test_register_page_view() {
         $this->get('/registerPage')->assertViewIs('registerPage');
@@ -23,7 +26,7 @@ class GuestControllerTest extends TestCase
         $response->assertRedirect(route('homePage'));
         $this->assertDatabaseHas('korisnik', ['username' => 'testuserreg1']);
 
-        UserModel::where('username', 'testuserreg1')->delete();
+        //UserModel::where('username', 'testuserreg1')->delete();
     }
 
     //Provera registracije korisnika koji vec postoji
