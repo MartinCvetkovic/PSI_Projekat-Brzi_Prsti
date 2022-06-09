@@ -349,9 +349,6 @@ class TextControllerTest extends TestCase
         $response->assertViewIs("rank_list");
         $response->assertDontSee("Prebaci na prijateljsku");
     }
-    /*
-        
-    */
 
 
 
