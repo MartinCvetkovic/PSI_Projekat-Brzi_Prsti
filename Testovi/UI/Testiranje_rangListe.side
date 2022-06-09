@@ -147,6 +147,17 @@
         ["xpath=//body/div/div[2]/h1", "xpath:position"]
       ],
       "value": "Rang lista za tekst (globalna)"
+    }, {
+      "id": "494c4e25-7830-4d7e-a20a-be7718101d02",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(2) > b",
+      "targets": [
+        ["css=.btn:nth-child(2) > b", "css:finder"],
+        ["xpath=//button[2]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Odjavi se')]", "xpath:innerText"]
+      ],
+      "value": ""
     }]
   }, {
     "id": "95ca5770-31b6-41a1-819e-331eb33cd333",

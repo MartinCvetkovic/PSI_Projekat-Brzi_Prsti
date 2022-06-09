@@ -38,7 +38,7 @@
         @endauth
     </div>
     <div class="row bg-primary border border-3 border-dark m-4 p-3">
-        <div class="col-sm-6"><b>Pregled rang liste - uporedite se sa ostalim korisnicima po tekstovima</b></div>
+        <div class="col-sm-6"><b>Pregled rang liste - uporedite se sa ostalim korisnicima</b></div>
         <div class="col-sm-3"></div>
         <div class="col-sm-3 text-center"><button class="btn btn-light btn-outline-dark" onclick="location.href='{{route('global_rank_list')}}'">Pregled rang liste</button></div>
     </div>
